@@ -53,20 +53,5 @@ def sistema1(request):
     return render(request,"sistema1.html" , context)
 
 
-def prueba(request):
-    
-    if request.method == 'POST':
-        show_view1 = request.POST.get('view1') == 'on'
-        show_view2 = request.POST.get('view2') == 'on'
-        
-        context = {
-            'show_view1': show_view1,
-            'show_view2': show_view2,
-        }
-    else:
-        context = {
-            'show_view1': False,
-            'show_view2': False,
-        }
-    
-    return render(request,"prueba.html",context)
+#def prueba(request):
+#    return render(request,"prueba.html",context)
