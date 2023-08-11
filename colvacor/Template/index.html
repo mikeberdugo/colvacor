@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  {% load static %}
+  <!-- ... (código HTML existente) ... -->
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title> Admin </title>
+
+  <!-- Google Font: Source Sans Pro -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="{% static 'plugins/fontawesome-free/css/all.min.css' %}">
+  <!-- icheck bootstrap -->
+  <link rel="stylesheet" href="{% static 'plugins/icheck-bootstrap/icheck-bootstrap.min.css' %}">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="{% static 'dist/css/adminlte.min.css' %} ">
+
+  <!--Fin codigo existente-->
+</head>
+<body class="hold-transition login-page">
+<div class="login-box">
+  <!-- ... (código HTML existente) ... -->
+    <!-- ... (código HTML existente) ... -->
+
+    <!-- /.login-logo -->
+    <div class="card card-outline card-primary">
+    <div class="card-header text-center">
+      <img src="{% static 'img/colvalogo.png' %}" width="50%x" alt="">
+    </div>
+    <div class="card-body">
+      <p class="login-box-msg">Ingrese sus credenciales de acceso</p>
+      {% if error_message %}
+            {% for message in error_message %}
+                <p class="alert alert-danger" > {{ message }}</p>
+            {% endfor %}
+      {% endif %}
+      <form  method="POST">
+        {% csrf_token %}
+        <div class="input-group mb-3">
+          <input type="text" id="username" name="username" class="form-control" placeholder="Usuario" required>
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-users"></span>
+            </div>
+          </div>
+        </div>
+        <div class="input-group mb-3">
+          <input type="password" class="form-control" placeholder="Contraseña" id="password" name="password" required >
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-lock"></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="social-auth-links text-center mt-2 mb-3">
+          <button  class="btn btn-block btn-primary" type="submit" ><i class="fas fa-door-open mr-2"></i>Iniciar Sesión</button>
+      </div>
+      </form>
+      <p class="mb-1">
+        <center><a href="#">Reestablecer Contraseña</a></center>
+      </p>
+    </div>
+    <!-- /.card-body -->
+  </div>
+  <!-- /.card -->
+
+  <!-- ... (código HTML existente) ... -->
+  <!--Fin del codigo existente-->
+  
+</div>
+<!-- /.login-box -->
+
+<!-- jQuery -->
+<script src="{% static 'plugins/jquery/jquery.min.js' %}"></script>
+<!-- Bootstrap 4 -->
+<script src="{% static 'plugins/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+<!-- AdminLTE App -->
+<script src="{% static 'dist/js/adminlte.min.js' %}"></script>
+
+<!-- Script para cambiar la imagen de fondo según la hora y minutos específicos -->
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    obtenerHoraColombia();
+  });
+
+  function obtenerHoraColombia() {
+    var date = new Date();
+    var options = {
+      timeZone: "America/Bogota",
+      hour: "numeric",
+      minute: "numeric",
+      hour12: false,
+    };
+    var horaColombia = date.toLocaleString("es-CO", options).split(":");
+    var hora = parseInt(horaColombia[0]);
+    var minutos = parseInt(horaColombia[1]);
+    cambiarFondoSegunHoraYMinutos(hora, minutos);
+  }
+
+  function cambiarFondoSegunHoraYMinutos(hora, minutos) {
+    var horaMinutos = hora + ":" + minutos;
+
+    if (horaMinutos === "1:47" || horaMinutos === "1:53" || horaMinutos === "1:42") {
+      // Cambiar a la imagen a las 1:47 am, 1:53 am y 1:42 am.
+      document.body.style.backgroundImage = "url('{% static 'img/tarde.jpg' %}')";
+    } else if (hora >= 5 && hora < 6) {
+      // Cambiar a la imagen de la tarde
+      document.body.style.backgroundImage = "url('{% static 'img/tarde.jpg' %}')";
+    } else {
+      // Cambiar a la imagen de la noche
+      document.body.style.backgroundImage = "url('{% static 'img/noche.jpg' %}')";
+    }
+
+    // Ajustar la propiedad background-size a "cover"
+    document.body.style.backgroundSize = "cover";
+  }
+</script>
+</body>
+</html>
