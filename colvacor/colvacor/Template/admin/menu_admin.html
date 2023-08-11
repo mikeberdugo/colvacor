@@ -1,0 +1,237 @@
+{% load static %}
+<!-- Navbar -->
+<nav class="main-header navbar navbar-expand navbar-white navbar-light">
+    <!-- Left navbar links -->
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+      </li>
+      <li class="nav-item d-none d-sm-inline-block">
+        <a href="" class="nav-link">Inicio</a>
+      </li>
+    </ul>
+
+    <!-- links de menu superior-->
+    <ul class="navbar-nav ml-auto">
+    <li class="nav-item">
+        <a class="nav-link" href="#" role="button">
+          <i class="fas fa-refresh">Actualizar : </i>
+        </a>
+      </li>
+    <li>
+    <a class="nav-item">
+                  <select id="tiempo_refresh" name="tiempo_refresh" class="form-control select2" style="width: 100%;">
+                    <option value="">Cada minuto</option>
+                    <option>Cada 2 Mins</option>
+                    <option>Cada 5 Mins</option>
+                    <option>Cada 7 Mins</option>
+                  </select>
+    </a>
+    </li>
+    <!-- Opcion para pantalla fullscreen -->
+      <li class="nav-item">
+        <a class="nav-link" data-widget="fullscreen" href="#" role="button">
+          <i class="fas fa-expand-arrows-alt"></i>
+        </a>
+      </li>
+      <!-- Opcion para activar modo oscuro -->
+      <li class="nav-item">
+        <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#" role="button">
+          <i class="fas fa-th-large"></i>
+        </a>
+      </li>
+    </ul>
+  </nav>
+  <!-- /.navbar -->
+
+
+
+  <!-- Contenedor de menu -->
+  <aside class="main-sidebar sidebar-dark-primary elevation-4">
+    <!-- Logo -->
+    <a href="home.php" class="brand-link">
+      <img src="{% static 'img/colvacor_mini.png' %}" alt="AdminLTE Logo" class="brand-image" style="opacity: .8">
+      <span class="brand-text font-weight-light"><b> Colvacor </b></span>
+    </a>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <!-- Sidebar user (optional) -->
+      <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+        <div class="image">
+          <img src="{% static 'img/avatar5.png' %}" class="img-circle elevation-2" alt="User Image">
+        </div>
+        <div class="info">
+          <a href="#" class="d-block">Alexander Pierce</a>
+        </div>
+      </div>
+
+    <!-- Sidebar Menu -->
+      <nav class="mt-2">
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+          <!-- Inicio de accesos y opciones del menu -->
+          
+          <!--Inicio de opcion para seleccion de gestiones-->
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-keyboard"></i>
+              <p>
+                Gestiones
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <div class="card card-light collapsed-card">
+
+
+
+              <form method="post" action="">
+                {% csrf_token %}
+                <div class="icheck-success d-inline"><!--Inicio de gestiones-->
+              &nbsp;
+                    <input  type="checkbox" id="check1" name="view1" {% if show_view1 %}checked{% endif %}>
+                    <label for="checkboxSuccess3">
+                      CORE
+                    </label>
+              &nbsp;
+                    <input  type="checkbox" id="check2" name="view2" {% if show_view2 %}checked{% endif %}>
+                    <label for="checkboxSuccess3">
+                      NODO
+                    </label>
+              &nbsp;
+                    <input  type="checkbox" id="check3" name="view3" {% if show_view3 %}checked{% endif %}>
+                    <label for="checkboxSuccess3">
+                      GPON
+                    </label>      
+              </div><!--fin de gestiones-->
+
+              <div class="icheck-success d-inline"><!--Inicio de gestiones 2 -->
+                <br>
+              &nbsp; <input  type="checkbox" id="check4" name="view4" {% if show_view4 %}checked{% endif %}>
+                    <label for="checkboxSuccess3">
+                      TX NAL
+                    </label>
+              &nbsp;
+                    <input  type="checkbox" id="check5" name="view5" {% if show_view5 %}checked{% endif %}>
+                    <label for="checkboxSuccess3">
+                      ADSL
+                    </label>
+              &nbsp;
+                    <input  type="checkbox" id="check6" name="view6" {% if show_view6 %}checked{% endif %}>
+                    <label for="checkboxSuccess3">
+                      TX LOCAL
+                    </label>      
+              </div><!--fin de gestiones 2--> 
+
+              <div class="icheck-success d-inline"><!--Inicio de gestiones 3-->
+                <br>
+                &nbsp;
+                    <input  type="checkbox" id="check7" name="view7" {% if show_view7 %}checked{% endif %}>
+                    <label for="checkboxSuccess3">
+                      IPTV
+                    </label>
+              &nbsp;
+                    <input  type="checkbox" id="check8" name="view8" {% if show_view8 %}checked{% endif %}>
+                    <label for="checkboxSuccess3">
+                      MPLS
+                    </label><br>&nbsp;
+                    <button  type="submit" class="btn btn-md btn-primary btn-xs">Guardar Preferencias</button>
+              &nbsp;     
+              </div><!--fin de gestiones 3--> 
+              </form>
+              
+              
+
+              <div class="card-header"></div></div>
+            </ul>
+          </li>
+          <!--Fin de opcion para seleccion de gestiones-->
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-users"></i>
+              <p>
+                Admin Usuarios
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="admin_usuarios.php" class="nav-link">
+                  <i class="fas fa-user-astronaut"></i>
+                  <p>&nbsp;Gestionar Usuarios</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="nuevo_usuario.php" class="nav-link">
+                  <i class="fas fa-user-plus"></i>
+                  <p> Crear Nuevo Usuario</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-header">Gestion de Alarmas</li> 
+          <li class="nav-item">
+            <a href="alarmas_descartadas.php" class="nav-link">
+              <i class="fas fa-bell-slash"></i>
+              <p> &nbsp; Alarmas Descartadas</p>
+            </a>
+          </li>
+          <li class="nav-item">
+          <a href="casos_reportados.php" class="nav-link">
+              <i class="fas fa-file-export"></i>
+              <p>
+                 &nbsp; Casos Reportados
+              </p>
+            </a>
+          </li> 
+          
+          
+
+          <li class="nav-header">Reporting</li> 
+            <li class="nav-item">
+            <a href="micuenta.php" class="nav-link">
+                <i class="fas fa-file-excel"></i>
+                <p>
+                    &nbsp; Generar Reportes
+                </p>
+                </a>
+            </li> 
+
+            <li class="nav-header">Gestion de Cuenta</li> 
+
+            <li class="nav-item">
+            <a href="micuenta.php" class="nav-link">
+                <i class="fas fa-user"></i>
+                <p>
+                    &nbsp; Mi cuenta
+                </p>
+                </a>
+            </li> 
+
+            <li class="nav-item">
+            <a href="logout.php" class="nav-link">
+                <i class="fas fa-door-open"></i>
+                <p>
+                 Cerrar Sesión
+                </p>
+                </a>
+            </li>
+
+
+            <li class="nav-header">Colvacor Intellisense</li> 
+            <li class="nav-item" name="itemIA" id="itemIA">
+              <a id="vercolaia" name="vercolaia" href="cola_stela.php" class="nav-link">
+                  <i class="fas fa-robot"></i>
+                  <p>
+                    &nbsp; Cola Creación Casos IA
+                  </p>
+                </a>
+              </li> 
+
+
+        </ul>
+      </nav>
+      <!-- /.sidebar-menu -->
+    </div>
+    <!-- /.sidebar -->
+  </aside>
