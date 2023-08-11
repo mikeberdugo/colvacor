@@ -30,165 +30,10 @@
 
                             <!--Contenido pestaña adsl-->
                             <div class="tab-pane fade" id="custom-tabs-one-adsl" role="tabpanel" aria-labelledby="custom-tabs-one-adsl-tab">
+                              {% include './alarmas/adsl.html' %}
 
-                              <!--Fin contenedor de pestañas ADSL-->
-                              <div class="row">
-                                <div class="col-12 col-sm-12">
-                                  <div class="card card-primary card-outline card-tabs">
-                                    <div class="card-header p-0 pt-1 border-bottom-0">
-                                      <ul class="nav nav-tabs" id="custom-tabs-three-tab" role="tablist">
-                                        <li class="nav-item">
-                                          <a class="nav-link" id="custom-tabs-three-alarmasadsl-tab" data-toggle="pill" href="#custom-tabs-three-alarmasadsl" role="tab" aria-controls="custom-tabs-three-alarmasadsl" aria-selected="true">Alarmas</a>
-                                        </li>
-                                        <li class="nav-item">
-                                          <a class="nav-link" id="custom-tabs-three-seguimientoadsl-tab" data-toggle="pill" href="#custom-tabs-three-seguimientoadsl" role="tab" aria-controls="custom-tabs-three-seguimientoadsl" aria-selected="false">Seguimiento</a>
-                                        </li>
-                                        <li class="nav-item">
-                                          <a class="nav-link" id="custom-tabs-three-baseadsl-tab" data-toggle="pill" href="#custom-tabs-three-baseadsl" role="tab" aria-controls="custom-tabs-three-baseadsl" aria-selected="false">Base de Conocimiento</a>
-                                        </li>
-                                        <li class="nav-item">
-                                          <a class="nav-link" id="custom-tabs-three-manttoadsl-tab" data-toggle="pill" href="#custom-tabs-three-manttoadsl" role="tab" aria-controls="custom-tabs-three-manttoadsl" aria-selected="false">Vent. Mantto</a>
-                                        </li>
-                                      </ul>
-                                    </div>
-                                    <div class="card-body">
-                                      <div class="tab-content" id="custom-tabs-three-tabContent">
-
-                                        <!--Inicio pestaña alarmas adsl-->
-                                        <div class="tab-pane fade show active" id="custom-tabs-three-alarmasadsl" role="tabpanel" aria-labelledby="custom-tabs-three-alarmasadsl-tab">
-
-                                          <!--Inicio pestañas alarmas-->
-                                          <div class="row">
-                                            <div class="col-md-7">
-                                              <div class="card card-default" style="width: 100%;display: inline-block;width: 100%;overflow-x: auto;white-space: nowrap">
-                                                <div class="card-header">
-                                                  <h3 class="card-title">
-                                                    <i class="fas fa-exclamation-triangle"></i>
-                                                    Alarmas Detectadas
-                                                  </h3>
-                                                </div>
-                                                <!-- /.card-header -->
-                                                <div class="card-body" style="width: 95%;overflow-x: auto;white-space: nowrap">
-
-                                                  <!--Inicio codigo tablas-->
-                                                  <section class="content">
-                                                    <div class="row">
-                                                      <div class="container-fluid">
-                                                        <table style="font-size: 10px;" id="example2" class="table table-bordered table-hover text-center">
-                                                          <thead>
-                                                            <tr>
-                                                              <th>IM</th>
-                                                              <th>Hora</th>
-                                                              <th>Alarma</th>
-                                                              <th>Equipo</th>
-                                                              <th><i class="fas fa-clock"></i></th>
-                                                              <th>Acciones</th>
-                                                            </tr>
-                                                          </thead>
-                                                          <tbody>
-                                                            <tr>
-                                                                <td><input type="checkbox" name=""></td>
-                                                                <td>prueba</td>
-                                                                <td>datos</td>
-                                                                <td style="font-size: 10PX;"><b>valor</b></td>
-                                                                <td>
-                                                                  <form action="" method="POST" name="form">
-                                                                    <input style="width:50px;border: none;" type="label" class="label text-center" type="text" name="" placeholder="ingrese pago" id="pago" value="<?php
-                                                                                                                                                                                                                    date_default_timezone_set("America/Bogota");
-                                                                                                                                                                                                                    // Definir las dos fechas y horas
-                                                                                                                                                                                                                    $fecha_inicio = date("Y-m-d H:i:s");
-                                                                                                                                                                                                                    $fecha_fin = $dato->hora_inicio;
-                                                                                                                                                                                                                    // Convertir las fechas y horas en formato de tiempo Unix
-                                                                                                                                                                                                                    $inicio_unix = strtotime($fecha_inicio);
-                                                                                                                                                                                                                    $fin_unix = strtotime($fecha_fin);
-                                                                                                                                                                                                                    // Calcular la diferencia en segundos
-                                                                                                                                                                                                                    $diferencia_segundos = $inicio_unix - $fin_unix;
-                                                                                                                                                                                                                    // Calcular los minutos
-                                                                                                                                                                                                                    $minutos = round($diferencia_segundos / 60);
-                                                                                                                                                                                                                    // Calcular los minutos
-                                                                                                                                                                                                                    $segundos = round($diferencia_segundos / 600);
-                                                                                                                                                                                                                    // Mostrar el resultado
-                                                                                                                                                                                                                    echo "$minutos";
-                                                                                                                                                                                                                    ?>">
-                                                                    <input type="hidden" id="total" value="<?php echo $total; ?>">
-                                                                  </form>
-                                                                  <script>
-                                                                    // Obtiene el elemento del cronómetro
-                                                                    var cronometro2 = document.getElementById('pago');
-                                                                    // Obtén el valor del cronómetro como número (suponiendo que sea un campo numérico)
-                                                                    var valorCronometro = parseInt(cronometro2.value);
-                                                                    // Comprueba si el valor es menor o igual a 10
-                                                                    if (valorCronometro <= 10) {
-                                                                      cronometro2.style.color = "red";
-                                                                    }
-                                                                  </script>
-                                                                </td>
-                                                                <td><a href="gestionar.php?id_alarma=<?php echo $dato->id; ?>"><button style="font-size: 10px;" type="button" class="btn btn-success btn-sm"><i class="fa-sharp fa-solid fa-pen-to-square"></i>Gestionar</button></a></td><?php } ?>
-                                                              </tr>
-                                                          </tbody>
-                                                        </table>
-                                                      </div>
-                                                      <!-- /.col -->
-                                                    </div>
-                                                    <!-- /.row -->
-                                                  </section>
-                                                  <!--Fin codigo tablas-->
-                                                </div>
-                                                <!-- /.card-body -->
-                                              </div>
-                                              <!-- /.card -->
-                                            </div>
-                                            <!-- /.col -->
-
-                                            <div class="col-md-5">
-                                              <div class="card card-default" style="width: 100%;display: inline-block;width: 100%;overflow-x: auto;white-space: nowrap">
-                                                <div class="card-header">
-                                                  <h3 class="card-title">
-                                                    <i class="fas fa-bullhorn"></i>
-                                                    Cola de Creación Colvacor Intellisense
-                                                  </h3>
-                                                </div>
-                                                <!-- /.card-header -->
-                                                <div class="card-body" style="width: 95%;overflow-x: auto;white-space: nowrap">
-
-                                                  <!--Inicio cola de creacion-->
-                                                  <table style="font-size: 10px;" id="example1" class="table table-bordered table-hover text-center">
-                                                    <thead style="font-size: 10px;">
-                                                      <tr>
-                                                        <th>Hora</th>
-                                                        <th>Equipo</th>
-                                                        <th>Alarma</th>
-                                                        <th>Acciones</th>
-                                                      </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                      <?php
-                                                      foreach ($equipos1 as $dato) {
-                                                      ?>
-                                                        <tr>
-                                                          <td><?php echo $dato->hora; ?></td>
-                                                          <td><?php echo $dato->equipo; ?></td>
-                                                          <td><?php echo $dato->tipo_alarma; ?></td>
-                                                          <td><a href="ver.php?id_alarma=<?php echo $dato->id_alarma; ?>"><button style="font-size: 10px;" type="button" class="btn btn-success btn-sm"><i class="fa-sharp fa-solid fa-eye-to-square"></i> Ver </button></a></td>
-                                                        </tr>
-
-                                                      <?php } ?>
-
-                                                    </tbody>
-                                                  </table>
-                                                  <!--Fin cola de creacion-->
-
-                                                </div>
-                                                <!-- /.card-body -->
-                                              </div>
-                                              <!-- /.card -->
-                                            </div>
-                                            <!-- /.col -->
-                                          </div>
-                                          <!--Fin pestañas alarmas-->
-
-                                        </div>
-                                        <!--Fin pestaña alarmas adsl-->
+                            </div>
+                            <!--Fin pestaña alarmas adsl-->
 
 
                                         <div class="tab-pane fade" id="custom-tabs-three-seguimientoadsl" role="tabpanel" aria-labelledby="custom-tabs-three-seguimientoadsl-tab">
@@ -196,9 +41,6 @@
                                         </div>
                                         <div class="tab-pane fade" id="custom-tabs-three-baseadsl" role="tabpanel" aria-labelledby="custom-tabs-three-baseadsl-tab">
                                           <div class="container-fluid" style="overflow: auto;">
-                                            <?php
-                                            include('bitacora_reportes.php');
-                                            ?>
                                           </div>
                                         </div>
                                         <div class="tab-pane fade" id="custom-tabs-three-manttoadsl" role="tabpanel" aria-labelledby="custom-tabs-three-manttoadsl-tab">

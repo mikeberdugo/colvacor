@@ -7,7 +7,7 @@
         <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="home.php" class="nav-link">Inicio</a>
+        <a href="" class="nav-link">Inicio</a>
       </li>
     </ul>
 
@@ -82,54 +82,65 @@
             </a>
             <ul class="nav nav-treeview">
               <div class="card card-light collapsed-card">
-              
-              <div class="icheck-success d-inline"><!--Inicio de gestiones-->
-                   &nbsp <input onchange="javascript:showContent()" type="checkbox" id="check1">
+
+
+
+              <form method="post" action="">
+                {% csrf_token %}
+                <div class="icheck-success d-inline"><!--Inicio de gestiones-->
+              &nbsp;
+                    <input  type="checkbox" id="check1" name="view1" {% if show_view1 %}checked{% endif %}>
                     <label for="checkboxSuccess3">
                       CORE
                     </label>
               &nbsp;
-                    <input onchange="javascript:showContent()" type="checkbox" id="check1">
+                    <input  type="checkbox" id="check2" name="view2" {% if show_view2 %}checked{% endif %}>
                     <label for="checkboxSuccess3">
-                      ADSL
+                      NODO
                     </label>
               &nbsp;
-                    <input onchange="javascript:showContent()" type="checkbox" id="check1">
+                    <input  type="checkbox" id="check3" name="view3" {% if show_view3 %}checked{% endif %}>
                     <label for="checkboxSuccess3">
-                      TX LOCAL
+                      GPON
                     </label>      
               </div><!--fin de gestiones-->
 
               <div class="icheck-success d-inline"><!--Inicio de gestiones 2 -->
-                   &nbsp <input onchange="javascript:showContent()" type="checkbox" id="check1">
-                    <label for="checkboxSuccess3">
-                      IPTV
-                    </label>
-              &nbsp;
-                    <input onchange="javascript:showContent()" type="checkbox" id="check1">
-                    <label for="checkboxSuccess3">
-                      MPLS
-                    </label>
-              &nbsp;
-                    <input onchange="javascript:showContent()" type="checkbox" id="check1">
+                <br>
+              &nbsp; <input  type="checkbox" id="check4" name="view4" {% if show_view4 %}checked{% endif %}>
                     <label for="checkboxSuccess3">
                       TX NAL
+                    </label>
+              &nbsp;
+                    <input  type="checkbox" id="check5" name="view5" {% if show_view5 %}checked{% endif %}>
+                    <label for="checkboxSuccess3">
+                      ADSL
+                    </label>
+              &nbsp;
+                    <input  type="checkbox" id="check6" name="view6" {% if show_view6 %}checked{% endif %}>
+                    <label for="checkboxSuccess3">
+                      TX LOCAL
                     </label>      
               </div><!--fin de gestiones 2--> 
 
               <div class="icheck-success d-inline"><!--Inicio de gestiones 3-->
-                   &nbsp <input onchange="javascript:showContent()" type="checkbox" id="check1">
+                <br>
+                &nbsp;
+                    <input  type="checkbox" id="check7" name="view7" {% if show_view7 %}checked{% endif %}>
                     <label for="checkboxSuccess3">
-                      GPON
+                      IPTV
                     </label>
               &nbsp;
-                    <input onchange="javascript:showContent()" type="checkbox" id="check1">
+                    <input  type="checkbox" id="check8" name="view8" {% if show_view8 %}checked{% endif %}>
                     <label for="checkboxSuccess3">
-                      NODO TI
+                      MPLS
                     </label><br>&nbsp;
-                    <button type="button" class="btn btn-md btn-primary btn-xs">Guardar Preferencias</button>
+                    <button  type="submit" class="btn btn-md btn-primary btn-xs">Guardar Preferencias</button>
               &nbsp;     
               </div><!--fin de gestiones 3--> 
+              </form>
+              
+              
 
               <div class="card-header"></div></div>
             </ul>
