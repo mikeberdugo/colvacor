@@ -55,7 +55,7 @@ ROOT_URLCONF = 'colvacor.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['colvacor\Template'],
+        'DIRS': ['colvacor/Template'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -76,8 +76,7 @@ WSGI_APPLICATION = 'colvacor.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        
     }
 }
 

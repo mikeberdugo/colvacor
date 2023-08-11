@@ -16,16 +16,57 @@ def inicio(request):
 
 
 def sistema1(request):
-    return render(request,"sistema1.html")
+    
+    if request.method == 'POST':
+        
+        show_view1 = request.POST.get('view1') == 'on'
+        show_view2 = request.POST.get('view2') == 'on'
+        show_view3 = request.POST.get('view3') == 'on'
+        show_view4 = request.POST.get('view4') == 'on'
+        show_view5 = request.POST.get('view5') == 'on'
+        show_view6 = request.POST.get('view6') == 'on'
+        show_view7 = request.POST.get('view7') == 'on'
+        show_view8 = request.POST.get('view8') == 'on'
+        
+        context = {
+            'show_view1': show_view1,
+            'show_view2': show_view2,
+            'show_view3': show_view3,
+            'show_view4': show_view4,
+            'show_view5': show_view5,
+            'show_view6': show_view6,
+            'show_view7': show_view7,
+            'show_view8': show_view8,
+        }
+    else:
+        context = {
+            'show_view1': True,
+            'show_view2': True,
+            'show_view3': True,
+            'show_view4': True,
+            'show_view5': True,
+            'show_view6': True,
+            'show_view7': True,
+            'show_view8': True,
 
-def grafica_view(request):
-    # Supongamos que estos son los datos para tu gráfica
-    data = {
-        'labels': ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo'],
-        'data': [10, 25, 18, 32, 12],
-    }
+        }
+    return render(request,"sistema1.html" , context)
 
-    data_json = json.dumps(data)
 
-    return render(request, 'grafica.html', {'data_json': data_json})
-    return render(request, 'grafica.html', {'labels': labels, 'data': data})
+def prueba(request):
+    
+    if request.method == 'POST':
+        show_view1 = request.POST.get('view1') == 'on'
+        show_view2 = request.POST.get('view2') == 'on'
+        
+        context = {
+            'show_view1': show_view1,
+            'show_view2': show_view2,
+        }
+    else:
+        context = {
+            'show_view1': False,
+            'show_view2': False,
+        }
+    
+    return render(request,"prueba.html",context)
