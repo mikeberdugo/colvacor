@@ -1,18 +1,91 @@
-<div class="container">
-    <div class="row my-4">
-        <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
-            <div id="chart1" class="chart"></div>
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1></h1>
+          </div>
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="home.php">Inicio</a></li>
+              <li class="breadcrumb-item"><a href="#">Ver Alarma en Cola</a></li>
+            </ol>
+          </div>
         </div>
-        <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
-            <div id="chart2" class="chart"></div>
+      </div><!-- /.container-fluid -->
+    </section>
+  
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-12">
+            <!-- Default box -->
+            <div class="card">
+              <div class="card-header">
+                <h3 class="card-title">Gestión de Operaciones NOC</h3>
+  
+                <div class="card-tools">
+                  
+                </div>
+              </div>
+              <div class="card-body">
+                <!--Contenido-->
+  
+                <table id="example1" class="table table-bordered table-striped text-sm text-center">
+                  <thead>
+                  <tr>
+                    <th>Nombre</th>
+                    <th>Usuario</th>
+                    <th>Cargo</th>
+                    <th>Segmento</th>
+                    <th>Gestion</th>
+                    <th>Acciones</th>
+                  </tr>
+                  </thead>
+                  <tbody class="formulario-eliminar">
+                  <?php
+                    foreach ($equipos1 as $dato) {
+                  ?>
+                    <tr>
+                      <td><?php echo $dato->nombre;?></td>
+                      <td><?php echo $dato->username; ?></td>
+                      <td><?php echo $dato->cargo; ?></td>
+                      <td><?php echo $dato->segmento; ?></td>
+                      <td><?php echo $dato->gestion; ?></td>
+                      <td><a href="modificar_usuario.php?username=<?php echo $dato->username;?>"><button type="button" class="btn btn-info btn-sm"><i class="fa fa-eye"></i> Modificar </button></a>
+                      <a><button onclick="return ConfirmDelete();" type="button" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> Eliminar </button></a></td>
+                    </tr>
+  
+                  <?php } ?>
+                  
+                </tbody>
+                </table>
+  
+                
+                <!--Fin de contenido a mostrar-->
+              </div>
+              <!-- /.card-body -->
+              <div class="card-footer">
+              Gestión de Operaciones Colvacor
+              </div>
+              <!-- /.card-footer-->
+            </div>
+            <!-- /.card -->
+          </div>
         </div>
-    </div>
-    <div class="row my-4">
-        <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
-            <div id="chart3" class="chart"></div>
-        </div>
-        <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
-            <div id="chart4" class="chart"></div>
-        </div>
-    </div>
-</div>
+      </div>
+    </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+  
+  
+  <!-- Control Sidebar -->
+  <aside class="control-sidebar control-sidebar-dark">
+    <!-- Control sidebar content goes here -->
+  </aside>
+  <!-- /.control-sidebar -->
+  </div>
+  

@@ -15,11 +15,20 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from colvacor.views import inicio,sistema1
+from colvacor.views import inicio,sistema1,sistema2,prueba,usuarios,nuevo,user,reportes,alarmas,casos,cerrar
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',inicio),
-    path('sistema1/',sistema1)
-    
+    path('sistema1/',sistema1,name = 'sistema1'),
+    path('sistema2/',sistema2,name = 'sistema2'),
+    path('prueba/',prueba),
+    path('usuarios/',usuarios,name = 'usuarios'),
+    path('nuevo-usuario/',nuevo,name = 'nuevo'),
+    path('alarmas/',alarmas,name = 'alarmas'),
+    path('casos/',casos,name = 'casos'),
+    path('reportes/',reportes,name = 'reportes'),
+    path('user/',user,name = 'user'),
+    path('cerrar/',cerrar,name = 'cerrar'),
 ]

@@ -7,7 +7,7 @@
         <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="" class="nav-link">Inicio</a>
+        <a href="{% url 'sistema1' %}" class="nav-link">Inicio</a>
       </li>
     </ul>
 
@@ -49,7 +49,7 @@
   <!-- Contenedor de menu -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Logo -->
-    <a href="" class="brand-link">
+    <a href="{% url 'sistema1' %}" class="brand-link">
       <img src="{% static 'img/colvacor_mini.png' %}" alt="AdminLTE Logo" class="brand-image" style="opacity: .8">
       <span class="brand-text font-weight-light"><b> Colvacor </b></span>
     </a>
@@ -62,7 +62,7 @@
           <img src="{% static 'img/avatar5.png' %}" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block">Alexander Pierce</a>
+          <a href="" class="d-block">Alexander Pierce</a>
         </div>
       </div>
 
@@ -73,7 +73,7 @@
           
           <!--Inicio de opcion para seleccion de gestiones-->
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="{% url 'sistema1' %}" class="nav-link">
               <i class="nav-icon fas fa-keyboard"></i>
               <p>
                 Gestiones
@@ -147,7 +147,7 @@
           </li>
           <!--Fin de opcion para seleccion de gestiones-->
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="" class="nav-link">
               <i class="nav-icon fas fa-users"></i>
               <p>
                 Admin Usuarios
@@ -156,13 +156,13 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="admin_usuarios.php" class="nav-link">
+                <a href="{% url 'usuarios' %}" class="nav-link">
                   <i class="fas fa-user-astronaut"></i>
                   <p>&nbsp;Gestionar Usuarios</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="nuevo_usuario.php" class="nav-link">
+                <a href="{% url 'nuevo' %}" class="nav-link">
                   <i class="fas fa-user-plus"></i>
                   <p> Crear Nuevo Usuario</p>
                 </a>
@@ -171,13 +171,13 @@
           </li>
           <li class="nav-header">Gestion de Alarmas</li> 
           <li class="nav-item">
-            <a href="alarmas_descartadas.php" class="nav-link">
+            <a href="{% url 'alarmas' %}" class="nav-link">
               <i class="fas fa-bell-slash"></i>
               <p> &nbsp; Alarmas Descartadas</p>
             </a>
           </li>
           <li class="nav-item">
-          <a href="casos_reportados.php" class="nav-link">
+          <a href="{% url 'casos' %}" class="nav-link">
               <i class="fas fa-file-export"></i>
               <p>
                  &nbsp; Casos Reportados
@@ -189,7 +189,7 @@
 
           <li class="nav-header">Reporting</li> 
             <li class="nav-item">
-            <a href="micuenta.php" class="nav-link">
+            <a href="{% url 'reportes' %}" class="nav-link">
                 <i class="fas fa-file-excel"></i>
                 <p>
                     &nbsp; Generar Reportes
@@ -200,7 +200,7 @@
             <li class="nav-header">Gestion de Cuenta</li> 
 
             <li class="nav-item">
-            <a href="micuenta.php" class="nav-link">
+            <a href="{% url 'user' %}" class="nav-link">
                 <i class="fas fa-user"></i>
                 <p>
                     &nbsp; Mi cuenta
@@ -209,7 +209,7 @@
             </li> 
 
             <li class="nav-item">
-            <a href="logout.php" class="nav-link">
+            <a href="{% url 'cerrar' %}" class="nav-link">
                 <i class="fas fa-door-open"></i>
                 <p>
                  Cerrar Sesión
