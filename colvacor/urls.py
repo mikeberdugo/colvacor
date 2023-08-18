@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from colvacor.views import inicio,sistema1,sistema2,prueba,usuarios,nuevo,user,reportes,alarmas,casos,cerrar
+from colvacor.views import inicio,sistema1,sistema2,prueba,usuarios,nuevo,user,reportes,alarmas,casos,cerrar,stela
 
 
 urlpatterns = [
@@ -31,4 +31,5 @@ urlpatterns = [
     path('reportes/',reportes,name = 'reportes'),
     path('user/',user,name = 'user'),
     path('cerrar/',cerrar,name = 'cerrar'),
+    path('stela/',stela,name = 'stela'),
 ]

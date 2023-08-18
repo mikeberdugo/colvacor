@@ -161,7 +161,9 @@ def user(request):
     return render(request,"./admin/vista_usuario.html")
 
 #### plantilla --- out 
-def cerrar(request):    
+def cerrar(request):
     return render(request,"./admin/cerrar.html")
 
 
+def stela(request):    
+    return render(request,"./admin/cola_stela.html")

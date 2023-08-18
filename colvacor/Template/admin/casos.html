@@ -1,1 +1,44 @@
-<h2>caso cerrado </h2>
+{% extends 'plantilla.html' %}
+
+{% block title %}Sistema NOC - Nuevo usuario{% endblock %}
+
+{% block sub-title %}Nuevo Usuario{% endblock %}
+
+{% block content %}
+                <!-- Main content -->
+        <section class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="card-body">
+                        <table id="example1" class="table table-bordered table-striped text-sm text-center">
+                            <thead>
+                            <tr>
+                            <th>INC</th>
+                            <th>Equipo</th>
+                            <th>Hora</th>
+                            <th>Alarma</th>
+                            <th>Gestión</th>
+                            <th>Acciones</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                            <td>inc ></td>
+                                <td>equipo</td>
+                                <td>hora_inicio</td>
+                                <td>tipo_alarma</td>
+                                <td>gestion></td>
+                                <td><a href="ver_creados.php?inc=<?php echo $dato->inc;?>"><button type="button" class="btn btn-success btn-sm"><i class="fa-sharp fa-solid fa-eye-to-square"></i> Ver </button></a></td>
+                            </tr>
+                        </tbody>
+                        </table>
+        
+                        
+                        <!--Fin de contenido a mostrar-->
+                        </div>
+                </div>
+            </div>
+        </section>
+
+
+{% endblock %}

@@ -1,1 +1,37 @@
-<h2>alarmate</h2>
+{% extends 'plantilla.html' %}
+
+{% block title %}Sistema NOC - Nuevo usuario{% endblock %}
+
+{% block sub-title %}Fila de Casos pendientes para creacion por IA Colvacor{% endblock %}
+
+{% block content %}
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+            <div class="card-body">
+                <table style="font-size: 12px;" id="example1" class="table table-bordered table-hover text-center">
+                                        <thead style="font-size: 12px;">
+                                        <tr>
+                                            <th>Hora</th>
+                                            <th>Equipo</th>
+                                            <th>Alarma</th>
+                                            <th>Acciones</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                                <td><a href="recuperar_descartadas.php?id_alarma=<?php echo $dato->id_alarma;?>"><button style="font-size: 12px;" type="button" class="btn btn-warning btn-sm btn_gestionar"><i class="fa-sharp fa-solid fa-eye-to-square"></i> Recuperar </button></a></td>
+                                            </tr>
+                                        </tbody>
+                                        </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </section>
+
+{% endblock %}
