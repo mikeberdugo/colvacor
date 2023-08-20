@@ -1,1 +1,13 @@
-<h2>chao , besos</h2>
+{% extends 'plantilla.html' %}
+{% load static %}
+
+{% block title %}Sistema NOC -  Usuario {% endblock %}
+
+{% block sub-title %}Operador{% endblock %}
+
+{% block content %}
+    <h1>prueba graficas </h1>
+    <div id="grafic" style="height: 300px; width: 300px; margin: 0"  ></div>
+
+    {% include 'admin/script/graficas.html' %}
+{% endblock %}
