@@ -1,16 +1,75 @@
-<div class="icheck-success d-inline"> 
-    &nbsp;
-    <label for="checkbox1">grafica-1:</label>
-    <input type="checkbox" id="checkbox1">
-    &nbsp;
-    <label for="checkbox2">grafica-2:</label>
-    <input type="checkbox" id="checkbox2">
-    &nbsp;
-    <label for="checkbox3">grafica-3:</label>
-    <input type="checkbox" id="checkbox3">
-</div>
+<div class="wrapper">
+    <!-- Inicio del Dashboard -->
+    <div class="row">
+        <div class="col-md-4 col-sm-6 col-12">
+            <a class="text-decoration-none" href="{% url 'alarmas' %}">
+                <div class="info-box">
+                    <span class="info-box-icon bg-success"><i class="fas fa-check-double"></i></span>
+                    <div class="info-box-content">
+                        <span class="info-box-text">Casos Reportados</span>
+                        <span class="badge bg-danger w-100">5</span>
+                    </div>
+                </div>
+            </a>
+        </div>
+    
 
-<div id="grafic-1" style="height: 300px; width: 300px; margin: 0"  >grafica-1</div>
-<div id="grafic-2" style="height: 300px; width: 300px; margin: 0"  >grafica-2</div>
-<div id="grafic-3" style="height: 300px; width: 300px; margin: 0"  >grafica-3</div>
-{% include '../script/graficas.html' %}
+    <div class="col-md-4 col-sm-6 col-12">
+        <a class="text-decoration-none" href="{% url 'alarmas' %}">
+            <div class="info-box">
+                <span class="info-box-icon bg-warning"><i class="fas fa-upload"></i></span>
+                <div class="info-box-content">
+                    <span class="info-box-text">En cola de creación</span>
+                    <span class="badge bg-danger w-100">2</span>
+                </div>
+            </div>
+        </a>
+    </div>
+
+    <div class="col-md-4 col-sm-6 col-12">
+        <a class="text-decoration-none" href="{% url 'alarmas' %}">
+            <div class="info-box">        
+                <span class="info-box-icon bg-info"><i class="fas fa-archive"></i></span>
+                <div class="info-box-content">
+                <span class="info-box-text">Alarmas Descartadas</span>
+                <span class="badge bg-danger w-100">7</span>
+                </div>
+            </div>
+        </a>
+    </div>
+    </div><!--Fin del row que contiene indicadores-->
+
+
+    <div class="container ">
+        <div class="h-25">
+            <div class="d-flex flex-column">
+                <div class="info-box flex-grow-1">
+                    <div class="d-inline"> 
+                        &nbsp;
+                        <label class="m-2" for="chart1Checkbox">grafica-1:</label>
+                        <input type="checkbox" id="chart1Checkbox" checked >
+                        &nbsp;
+                        <label class="m-2" for="chart2Checkbox">grafica-2:</label>
+                        <input type="checkbox" id="chart2Checkbox" checked >
+                        &nbsp;
+                        <label class="m-2" for="chart3Checkbox">grafica-3:</label>
+                        <input type="checkbox" id="chart3Checkbox" checked >
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="container">
+            <div class="row">
+                    <div class="info-box m-2" id="chartContainer1" style="width: 450px; height: 300px;"></div>
+                    <div class="info-box m-2" id="chartContainer2" style="width: 450px; height: 300px;"></div>
+                    <div class="info-box m-2" id="chartContainer3" style="width: 916px; height: 300px;"></div>
+            </div>
+        </div>
+        
+        
+        {% include '../script/graficas.html' %}
+    </div>
+</div>

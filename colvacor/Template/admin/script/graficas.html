@@ -1,200 +1,107 @@
 <script>
-    document.addEventListener("DOMContentLoaded", function() {
-        const checkbox1 = document.getElementById("checkbox1");
-        const checkbox2 = document.getElementById("checkbox2");
-        const checkbox3 = document.getElementById("checkbox3");
+    const chart1Checkbox = document.getElementById('chart1Checkbox');
+    const chartContainer1 = document.getElementById('chartContainer1');
+    let chart1;
 
-        function funcion1() {
-            if (checkbox1.checked) {
-                grafica_2();
-            } 
+    const chart2Checkbox = document.getElementById('chart2Checkbox');
+    const chartContainer2 = document.getElementById('chartContainer2');
+    let chart2;
+
+    const chart3Checkbox = document.getElementById('chart3Checkbox');
+    const chartContainer3 = document.getElementById('chartContainer3');
+    let chart3;
+
+    chart1Checkbox.addEventListener('change', () => {
+        if (chart1Checkbox.checked) {
+            chartContainer1.style.display = 'block';
+        } else {
+            chartContainer1.style.display = 'none';
         }
-
-        function funcion2() {
-            if (checkbox2.checked) {
-                grafica_2();
-            }
-        }
-
-        function funcion3() {
-            if (checkbox3.checked) {
-                grafica_3();
-                // Agrega el código para la Función 3 aquí
-            }
-        }
-
-function grafica_1() {
-    var dom = document.getElementById('grafic-1');
-    var myChart = echarts.init(dom, null, {
-    renderer: 'canvas',
-    useDirtyRect: false
-    });
-    var app = {};
-    var option;
-
-
-    option = {
-    tooltip: {
-    trigger: 'axis',
-    axisPointer: {
-    type: 'shadow'
-    }
-    },
-    grid: {
-    left: '3%',
-    right: '4%',
-    bottom: '3%',
-    containLabel: true
-    },
-    xAxis: [
-    {
-    type: 'category',
-    data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
-    axisTick: {
-    alignWithLabel: true
-    }
-    }
-    ],
-    yAxis: [
-    {
-    type: 'value'
-    }
-    ],
-    series: [
-    {
-    name: 'Direct',
-    type: 'bar',
-    barWidth: '60%',
-    data: [10, 52, 200, 334, 390, 330, 220]
-    }
-    ]
-    };
-
-
-        if (option && typeof option === 'object') {
-        myChart.setOption(option);
-        }
-
-
-        window.addEventListener('resize', myChart.resize);
-    }
-
-function grafica_2() {
-        var dom = document.getElementById('grafic-2');
-        var myChart = echarts.init(dom, null, {
-        renderer: 'canvas',
-        useDirtyRect: false
         });
-        var app = {};
-        var option;
-    
-    
-        option = {
-        tooltip: {
-        trigger: 'axis',
-        axisPointer: {
-        type: 'shadow'
-        }
-        },
-        grid: {
-        left: '3%',
-        right: '4%',
-        bottom: '3%',
-        containLabel: true
-        },
-        xAxis: [
-        {
-        type: 'category',
-        data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
-        axisTick: {
-        alignWithLabel: true
-        }
-        }
-        ],
-        yAxis: [
-        {
-        type: 'value'
-        }
-        ],
-        series: [
-        {
-        name: 'Direct',
-        type: 'bar',
-        barWidth: '60%',
-        data: [10, 52, 200, 334, 390, 330, 220]
-        }
-        ]
-        };
-    
-    
-            if (option && typeof option === 'object') {
-            myChart.setOption(option);
-            }
-    
-    
-            window.addEventListener('resize', myChart.resize);
-        }
 
-function grafica_3() {
-            var dom = document.getElementById('grafic-3');
-            var myChart = echarts.init(dom, null, {
-            renderer: 'canvas',
-            useDirtyRect: false
-            });
-            var app = {};
-            var option;
-        
-        
-            option = {
-            tooltip: {
-            trigger: 'axis',
-            axisPointer: {
-            type: 'shadow'
-            }
-            },
-            grid: {
-            left: '3%',
-            right: '4%',
-            bottom: '3%',
-            containLabel: true
-            },
-            xAxis: [
-            {
+    chart2Checkbox.addEventListener('change', () => {
+        if (chart2Checkbox.checked) {
+            chartContainer2.style.display = 'block';
+        } else {
+            chartContainer2.style.display = 'none';
+        }
+        });
+
+    chart3Checkbox.addEventListener('change', () => {
+        if (chart3Checkbox.checked) {
+            chartContainer3.style.display = 'block';
+        } else {
+            chartContainer3.style.display = 'none';
+        }
+        });
+
+        // Crear las gráfica 1
+        chart1 = echarts.init(chartContainer1);
+        chart1.setOption({
+        title: {
+            text: 'Reportes por mes'
+        },
+        xAxis: {
             type: 'category',
-            data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
-            axisTick: {
-            alignWithLabel: true
-            }
-            }
-            ],
-            yAxis: [
-            {
+            data: ['A', 'B', 'C']
+        },
+        yAxis: {
             type: 'value'
-            }
-            ],
-            series: [
-            {
-            name: 'Direct',
+        },
+        series: [{
             type: 'bar',
-            barWidth: '60%',
-            data: [10, 52, 200, 334, 390, 330, 220]
-            }
-            ]
-            };
-        
-        
-                if (option && typeof option === 'object') {
-                myChart.setOption(option);
+            data: [10, 20, 15]
+        }]
+        });
+    // Crear las gráfica 3
+    chart2 = echarts.init(chartContainer2);
+    chart2.setOption({
+    title: {
+        text: 'Total Descartadas por mes'
+    },
+    xAxis: {
+        type: 'category',
+        data: ['X', 'Y', 'Z']
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [{
+        type: 'line',
+        data: [15, 10, 8]
+    }]
+});
+
+// Crear las gráfica 3 
+        chart3 = echarts.init(chartContainer3);
+        chart3.setOption({
+        title: {
+            text: 'Medicion de Trafico'
+        },
+        xAxis: {
+            type: 'category',
+            boundaryGap: false,
+            data: ['X', 'Y', 'Z']
+        },
+        yAxis: {
+            type: 'value'
+        },
+        tooltip: {
+            trigger: 'axis'
+            },
+        series: [{
+            type: 'line',
+            data: [5, 7, 2],
+            areaStyle: {},
+            markPoint: {
+                data: [
+                    { type: 'max', name: 'Max' },
+                    { type: 'min', name: 'Min' }
+                    ]
                 }
-        
-        
-                window.addEventListener('resize', myChart.resize);
-            }
-
-
-
-        checkbox1.addEventListener("change", funcion1);
-        checkbox2.addEventListener("change", funcion2);
-        checkbox3.addEventListener("change", funcion3);
+        }]
     });
+
+    
+
 </script>
