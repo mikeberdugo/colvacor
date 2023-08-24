@@ -164,6 +164,8 @@ def user(request):
 def cerrar(request):
     return render(request,"./admin/cerrar.html")
 
+def cola(request):    
+    return render(request,"./admin/cola_stela.html")
 
 def stela(request):    
-    return render(request,"./admin/cola_stela.html")
+    return render(request,"./admin/ver_stela.html")

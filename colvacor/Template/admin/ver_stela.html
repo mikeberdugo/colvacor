@@ -1,0 +1,192 @@
+{% extends 'plantilla.html' %}
+
+{% block title %}Sistema NOC - Nuevo usuario{% endblock %}
+
+{% block sub-title %}Ver reporte en cola de creación{% endblock %}
+
+{% block content %}
+<form name="frm" id="frm" class="form" method="post" action=""> 
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                        <h3 class="card-title">Información del Escalamiento</h3>
+                        <div class="card-tools">
+                            <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse"></button>
+                        </div>
+                <!--Inicio de formulario para gestionar incidente-->                
+                </div>
+                <div class="card-body">
+                    <div class="card card-dark">
+                        <div class="card-header">
+                            <h3 class="card-title">Gestión y Reporte de Afectación en </h3>
+                        </div>
+                        <div class="card-body">
+                                <!--formulario 1 -->    <!--formulario 1 -->  
+                                <div class="form-group row"> 
+
+                                    <label for="inputEmail3" class="col-sm-1 col-form-label">Id Alarma</label>
+                                    <div class="col-sm-3">
+                                        <input type="text" class="form-control" id="id_alarma" name="id_alarma"  readonly>
+                                    </div>
+                                    
+                                    
+                                    <label for="inputEmail3" class="col-sm-2 col-form-label">Equipo Afectado</label>
+                                    <div class="col-sm-2">
+                                        <input type="text" class="form-control" id="equipo" name="equipo" readonly>
+                                    </div>
+                                    
+                                    
+                                    <label for="inputEmail3" class="col-sm-2 col-form-label">Hora Afectación</label>
+                                    <div class="col-sm-2">
+                                        <input type="text" class="form-control" id="hora_inicio" name="hora_inicio"  readonly>
+                                    </div>
+                                </div>
+                                <!--formulario 2 -->   
+                                <div class="form-group row"> 
+                                    <label for="inputEmail3" class="col-sm-1 col-form-label">Central</label>
+                                    <div class="col-sm-3">
+                                        <input type="text" class="form-control" id="central" name="central"  readonly>
+                                    </div>
+                                    
+                                    
+                                    <label for="inputEmail3" class="col-sm-2 col-form-label">Clientes Afectados</label>
+                                    <div class="col-sm-2">
+                                        <input type="text" class="form-control" id="clientes1" name="clientes1" readonly>
+                                    </div>
+                                    
+                                    
+                                    <label for="inputEmail3" class="col-sm-2 col-form-label">Tipo Alarma</label>
+                                    <div class="col-sm-2">
+                                        <input type="text" class="form-control" id="tipo_alarma" name="tipo_alarma"  readonly>
+                                    </div>
+                                </div>
+                                <!--formulario 3 -->   
+                                <div class="form-group row">
+                                    <label for="inputEmail3" class="col-sm-1 col-form-label">Tipo de Caso</label>
+                                    <div class="col-sm-3">
+                                        <input type="text" class="form-control" id="tipo_evento" name="tipo_evento"  readonly>
+                                    </div>
+                                    
+                                    
+                                    <label for="inputEmail3" class="col-sm-2 col-form-label">Gestión propietaria</label>
+                                    <div class="col-sm-2">
+                                        <input type="text" class="form-control" id="gestion" name="gestion" readonly>
+                                    </div>
+                                    
+                                    
+                                    <label for="inputEmail3" class="col-sm-2 col-form-label">Hora Afectación</label>
+                                    <div class="col-sm-2">
+                                        <input type="text" class="form-control" id="tipo_alarma" name="tipo_alarma"  readonly>
+                                    </div>
+                                </div>
+                                <hr>
+                                    <center><strong><i class="fas fa-book mr-1"></i> Documentación de INC</strong></center>
+                                <br>
+
+                                <div class="input-group mb-3">
+                                    <label for="inputEmail3" class="col-sm-2 col-form-label">Resumen</label>
+                                    <input type="text" class="form-control rounded-0" id="resumen" name="resumen"  readonly>
+                                    <span class="input-group-append">
+                                        <button type="button" class="btn btn-info btn-flat" onclick="copiarAlPortapapeles();">Copiar</button>
+                                    </span>
+                                </div>
+
+                                <div class="input-group mb-3">
+                                    <label for="inputEmail3" class="col-sm-2 col-form-label">Notas</label>
+                                    <textarea rows="7" type="text" class="form-control rounded-0 fixed-size-textarea" id="plantilla" name="plantilla" readonly> </textarea>
+                                    <span class="input-group-append">
+                                        <button type="button" class="btn btn-info btn-flat" onclick="copiarAlPortapapeles1();">Copiar</button>
+                                    </span>
+                                </div>
+
+                                <div class="input-group mb-3">
+                                    <label for="inputEmail3" class="col-sm-2 col-form-label">Tipo Alarma</label>
+                                    <input type="text" class="form-control rounded-0" id="tipo_evento" name="tipo_evento" readonly>
+                                    <span class="input-group-append">
+                                        <button type="button" class="btn btn-info btn-flat" onclick="copiarAlPortapapeles3();">Copiar</button>
+                                    </span>
+                                </div>
+                                <div class="input-group mb-3">
+                                    <label for="inputEmail3" class="col-sm-2 col-form-label">Hora Afectación</label>
+                                    <input type="text" class="form-control rounded-0" id="hora_inicio" name="hora_inicio"  readonly>
+                                    <span class="input-group-append">
+                                        <button type="button" class="btn btn-info btn-flat" onclick="copiarAlPortapapeles2();">Copiar</button>
+                                    </span>
+                                </div>
+
+                                <div class="input-group mb-3">
+                                    <label for="inputEmail3" class="col-sm-2 col-form-label">Clientes Afectados</label>
+                                    <input type="text" class="form-control rounded-0" id="clientes" name="clientes"  readonly>
+                                    <span class="input-group-append">
+                                        <button type="button" class="btn btn-info btn-flat" onclick="copiarAlPortapapeles4();">Copiar</button>
+                                    </span>
+                                </div>
+
+                                <div class="input-group mb-3">
+                                    <label for="inputEmail3" class="col-sm-2 col-form-label">Documentacion 1</label>
+                                    <input type="text" class="form-control rounded-0" id="docu1" name="docu1"  readonly>
+                                    <span class="input-group-append">
+                                        <button type="button" class="btn btn-info btn-flat" onclick="copiarAlPortapapeles5();">Copiar</button>
+                                    </span>
+                                </div>
+
+                                <div class="input-group mb-3">
+                                    <label for="inputEmail3" class="col-sm-2 col-form-label">Documentacion 2</label>
+                                    <input type="text" class="form-control rounded-0" id="docu2" name="docu2"  readonly>
+                                    <span class="input-group-append">
+                                        <button type="button" class="btn btn-info btn-flat" onclick="copiarAlPortapapeles6();">Copiar</button>
+                                    </span>
+                                </div>
+
+                                <div class="input-group mb-3">
+                                    <label for="inputEmail3" class="col-sm-2 col-form-label">Documentacion 3</label>
+                                    <input type="text" class="form-control rounded-0" id="docu3" name="docu3"  readonly>
+                                    <span class="input-group-append">
+                                        <button type="button" class="btn btn-info btn-flat" onclick="copiarAlPortapapeles7();">Copiar</button>
+                                    </span>
+                                </div>
+
+                                <div class="input-group mb-3">
+                                    <label for="inputEmail3" class="col-sm-2 col-form-label">Documentacion 4</label>
+                                    <input type="text" class="form-control rounded-0" id="docu4" name="docu4"  readonly>
+                                    <span class="input-group-append">
+                                        <button type="button" class="btn btn-info btn-flat" onclick="copiarAlPortapapeles8();">Copiar</button>
+                                    </span>
+                                </div>
+
+                                <div class="input-group mb-3">
+                                    <label for="inputEmail3" class="col-sm-3 col-form-label">Hora de Creacion Remedy</label>
+                                    <input type="text" class="form-control rounded-0" id="hora_reporte" name="hora_reporte" value="">
+                                    <span class="input-group-append">
+                                    </span>
+                                </div>
+
+                                <div class="input-group mb-3">
+                                    <label for="inputEmail3" class="col-sm-3 col-form-label">Incidente Generado</label>
+                                    <input type="text" class="form-control rounded-0" id="inc" name="inc" value="">
+                                    <span class="input-group-append">
+                                    </span>
+                                </div>
+
+                                <div id="actions" class="row">
+                                    <div class="col-lg-12">
+                                        <div class="btn-group w-100">
+                                            <a href="home.php" class="btn btn-success">
+                                                <span>Guardar Incidente y Notificar usuarios</span>
+                                            </a>  
+                                        </div>
+                                    </div>
+                                </div>
+
+                                    
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>    
+</form>
+{% include 'admin/script/copiados.html' %}
+{% endblock %}

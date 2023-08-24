@@ -2,7 +2,7 @@
     <!-- Inicio del Dashboard -->
     <div class="row">
         <div class="col-md-4 col-sm-6 col-12">
-            <a class="text-decoration-none" href="{% url 'alarmas' %}">
+            <a class="text-decoration-none" href="{% url 'casos' %}">
                 <div class="info-box">
                     <span class="info-box-icon bg-success"><i class="fas fa-check-double"></i></span>
                     <div class="info-box-content">
@@ -15,7 +15,7 @@
     
 
     <div class="col-md-4 col-sm-6 col-12">
-        <a class="text-decoration-none" href="{% url 'alarmas' %}">
+        <a class="text-decoration-none" href="{% url 'cola' %}">
             <div class="info-box">
                 <span class="info-box-icon bg-warning"><i class="fas fa-upload"></i></span>
                 <div class="info-box-content">
@@ -46,13 +46,13 @@
                 <div class="info-box flex-grow-1">
                     <div class="d-inline"> 
                         &nbsp;
-                        <label class="m-2" for="chart1Checkbox">grafica-1:</label>
+                        <label class="m-2" for="chart1Checkbox">Reportes por mes:</label>
                         <input type="checkbox" id="chart1Checkbox" checked >
                         &nbsp;
-                        <label class="m-2" for="chart2Checkbox">grafica-2:</label>
+                        <label class="m-2" for="chart2Checkbox">Total Descartadas por mes:</label>
                         <input type="checkbox" id="chart2Checkbox" checked >
                         &nbsp;
-                        <label class="m-2" for="chart3Checkbox">grafica-3:</label>
+                        <label class="m-2" for="chart3Checkbox">Medicion de Trafico:</label>
                         <input type="checkbox" id="chart3Checkbox" checked >
                     </div>
                 </div>
