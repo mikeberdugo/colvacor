@@ -14,3 +14,6 @@ from django.core.asgi import get_asgi_application
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'colvacor.settings')
 
 application = get_asgi_application()
+#python manage.py inspectdb --database=nombre_basedatos --user=nombre_usuario --password=contraseña > models.py
+#db_empresa
+#python manage.py inspectdb --database=db_empresa --user=root --password=berdugo13 > models.py

@@ -1,216 +1,31 @@
-<?php
-include '../conexion/conexion.php';
-$sentencia = $bd->query("SELECT * FROM reportes ORDER BY hora ASC");
-$equipos1 = $sentencia->fetchAll(PDO::FETCH_OBJ);
-?>
-
 <!DOCTYPE html>
-<html lang="es">
+<html>
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Home | Panel de Control</title>
-
-  <!-- Google Font: Source Sans Pro -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="../../plugins/fontawesome-free/css/all.min.css">
-  <!-- DataTables -->
-  <link rel="stylesheet" href="../../plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
-  <link rel="stylesheet" href="../../plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
-  <link rel="stylesheet" href="../../plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
-  <!-- Theme style -->
-  <link rel="stylesheet" href="../../dist/css/adminlte.min.css">
+    <title>Alarmas</title>
 </head>
-<body class="hold-transition sidebar-mini sidebar-collapse">
-<div class="wrapper">
-  <!-- Navbar -->
-
- <?php 
- include('menu_admin.php');
- ?> 
-
-  <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
-    <!-- Content Header (Page header) -->
-    <section class="content-header">
-      <div class="container-fluid">
-        <div class="row mb-2">
-          <div class="col-sm-6">
-            <h1></h1>
-          </div>
-          <div class="col-sm-6">
-            <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="home.php">Inicio</a></li>
-              <li class="breadcrumb-item"><a href="#">Ver Alarma en Cola</a></li>
-            </ol>
-          </div>
-        </div>
-      </div><!-- /.container-fluid -->
-    </section>
-
-    <!-- Main content -->
-    <section class="content">
-      <div class="container-fluid">
-        <div class="row">
-          <div class="col-12">
-            <!-- Default box -->
-            <div class="card">
-              <div class="card-header">
-                <h3 class="card-title">Gestión de Operaciones NOC</h3>
-
-                <div class="card-tools">
-                  
-                </div>
-              </div>
-              <div class="card-body">
-                <!--Contenido-->
-
-                <div class="card card-primary">
-              <div class="card-header">
-                <h3 class="card-title"><i class="fa fa-user-plus" aria-hidden="true"></i> Registrar Nuevo Usuario</h3>
-              </div>
-              <!-- /.card-header -->
-              <!-- form start -->
-              <form action="guardar_nuevo_usuario.php" method="POST">
-                <div class="card-body">
-                  <div class="form-group">
-                    <label for="exampleInputEmail1">Nombre</label>
-                    <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Ingrese un nombre y dos apellidos" required>
-                  </div>
-                
-                  <div class="form-group">
-                    <label for="exampleInputPassword1">Cargo</label>
-                    <select class="form-control" id="cargo" name="cargo" required>
-                      <option>Admin</option>
-                      <option>Operador</option>
-                      <option>Reporting</option>
-                    </select>
-                  </div>
-
-                  <div class="form-group">
-                    <label for="exampleInputPassword1">Segmento</label>
-                    <select class="form-control" id="segmento" name="segmento" required>
-                      <option>Colvatel</option>
-                      <option>ETB</option>
-                    </select>
-                  </div>
-
-
-                  <div class="form-group">
-                    <label for="exampleInputPassword1">Gestión</label>
-                    <select class="form-control" id="gestion" name="gestion" required>
-                      <option>ADSL</option>
-                      <option>MPLS</option>
-                      <option>CORE</option>
-                      <option>NODO</option>
-                      <option>GPON</option>
-                      <option>IPTV</option>
-                      <option>TX LOCAL</option>
-                      <option>TX NACIONAL</option>
-                      <option>MULTISKILL</option>
-                    </select>
-                  </div>
-
-
-                  <div class="form-group">
-                    <label for="exampleInputPassword1">Correo</label>
-                    <input type="text" class="form-control" id="correo" name="correo" placeholder="Ingrese un correo" required>
-                  </div>
-
-                  <div class="row">
-                  <div class="col-6">
-                    <label for="exampleInputPassword1">Nuevo Nombre de Usuario</label>
-                    <input type="text" class="form-control" id="username" name="username" placeholder="Digite el nombre de usuario deseado" required>
-                  </div>
-                  <div class="col-6">
-                    <label for="exampleInputPassword1">Contraseña</label>
-                    <input type="text" class="form-control" id="clave" name="clave" placeholder="Ingrese la contraseña deseada" required>
-                  </div>
-                </div>
-              
-               
-                </div>
-                <!-- /.card-body -->
-
-                <div class="card-footer">
-                  <button type="submit" class="btn btn-primary"><i class="fa fa-check" aria-hidden="true"></i> Guardar Nuevo Usuario</button>
-                  <a href="nuevo_usuario.php"><button class="btn btn-secondary">Cancelar</button></a>
-                  </aside>
-                </div>
-              </form>
-            </div>
-
-                
-                <!--Fin de contenido a mostrar-->
-              </div>
-              <!-- /.card-body -->
-              <div class="card-footer">
-              Gestión de Operaciones Colvacor
-              </div>
-              <!-- /.card-footer-->
-            </div>
-            <!-- /.card -->
-          </div>
-        </div>
-      </div>
-    </section>
-    <!-- /.content -->
-  </div>
-  <!-- /.content-wrapper -->
-
-  <footer class="main-footer">
-    <div class="float-right d-none d-sm-block">
-      <b>Version</b> 3.2.0
-    </div>
-    <strong>Colvatel &copy; 2023 <a href="https://colvatel.com">Colvacore</a>.</strong> Todos los derechos reservados.
-  </footer>
-
-  <!-- Control Sidebar -->
-  <aside class="control-sidebar control-sidebar-dark">
-    <!-- Control sidebar content goes here -->
-  </aside>
-  <!-- /.control-sidebar -->
-</div>
-<!-- ./wrapper -->
-
-<!-- jQuery -->
-<script src="../../plugins/jquery/jquery.min.js"></script>
-<!-- Bootstrap 4 -->
-<script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-<!-- DataTables  & Plugins -->
-<script src="../../plugins/datatables/jquery.dataTables.min.js"></script>
-<script src="../../plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
-<script src="../../plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
-<script src="../../plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
-<script src="../../plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
-<script src="../../plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
-<script src="../../plugins/jszip/jszip.min.js"></script>
-<script src="../../plugins/pdfmake/pdfmake.min.js"></script>
-<script src="../../plugins/pdfmake/vfs_fonts.js"></script>
-<script src="../../plugins/datatables-buttons/js/buttons.html5.min.js"></script>
-<script src="../../plugins/datatables-buttons/js/buttons.print.min.js"></script>
-<script src="../../plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
-<!-- AdminLTE App -->
-<script src="../../dist/js/adminlte.min.js"></script>
-<!-- AdminLTE for demo purposes -->
-<script src="../../dist/js/demo.js"></script>
-<!-- Page specific script -->
-<script>
-  $(function () {
-    $("#example1").DataTable({
-      "responsive": true, "lengthChange": false, "autoWidth": false,
-    }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
-    $('#example2').DataTable({
-      "paging": true,
-      "lengthChange": false,
-      "searching": false,
-      "ordering": true,
-      "info": true,
-      "autoWidth": false,
-      "responsive": true,
-    });
-  });
-</script>
+<body>
+    <h1>Lista de Alarmas</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Equipo</th>
+                <th>Tipo de Alarma</th>
+                <th>Hora de Inicio</th>
+                <th>Central</th>
+                <th>Clientes</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for alarm in alarma %}
+            <tr>
+                <td>{{ alarm.equipo }}</td>
+                <td>{{ alarm.tipo_alarma }}</td>
+                <td>{{ alarm.hora_inicio }}</td>
+                <td>{{ alarm.central }}</td>
+                <td>{{ alarm.clientes }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 </body>
 </html>

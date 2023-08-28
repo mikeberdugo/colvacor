@@ -15,12 +15,26 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <!-- Theme style -->
     <link rel="stylesheet" href="{% static 'dist/css/adminlte.min.css' %} ">
+    <link rel="icon" type="image/png" href="{% static 'img/favi.png' %}">
       <!-- Agrega la referencia a Bootstrap CSS -->
     <style>
       /* Aplica un tamaño fijo al textarea */
       .fixed-size-textarea {
           resize: none; /* Evita que el usuario pueda redimensionar el textarea */
       }
+    
+      @media (max-width: 768px) {
+        .mt-sm-1 {
+            margin-top: 0.50rem !important;
+        }
+      }
+
+      @media (min-width: 768px) {
+        .mt-sm-1 {
+            margin-top: 0rem !important;
+        }
+      }
+
   </style>
 
     <title>{% block title %}Mi Sitio{% endblock %}</title>

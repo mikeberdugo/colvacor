@@ -1,17 +1,50 @@
 from django.shortcuts import render, redirect
-
-
+from django.core.mail import send_mail
+from django.conf import settings
+from colvacor.models import Alarmas,Usuarios
 #### loging 
+
+### prueba de alarmas 
+
+def alarmas_view(request):
+    alarma = Alarmas.objects.all()
+    return render(request, 'prueba.html', {'alarma': alarma})
+#### prueba correo 
+
+
+def enviar_correo(request):
+    if request.method == 'POST':
+        subject = request.POST.get('subject')
+        message = request.POST.get('message')
+        from_email = settings.EMAIL_HOST_USER
+        recipient_list = [request.POST.get('recipient_email')]
+
+        send_mail(subject, message, from_email, recipient_list)
+        return render(request, 'correo_enviado.html')
+
+    return render(request, 'formulario_correo.html')
+
+
 def inicio(request):
     error_message = []
+    aux = True 
     if request.method == 'POST':
         username = request.POST['username']
         password = request.POST['password']
-        if username == 'admin' and password == 'admin' : 
-            return redirect(sistema1)
-        else :
+        users = Usuarios.objects.all()
+        for user in users :             
+            if user.username == username and user.clave == password : 
+                return redirect(sistema1)
+                aux = True
+            else :
+                aux = False
+        if aux == False : 
             error_message.append( "Nombre de usuario o contraseña incorrectos.")
     return render(request,"index.html",{'error_message': error_message})
+
+
+def resta(request):
+    return render(request ,'reestablecer.html')
 
 ### sistema 1 y gestion de vistas 
 def sistema1(request):
@@ -142,8 +175,9 @@ def nuevo(request):
     return render(request,"./admin/nuevo_usuario.html")
 
 #### plantilla --- alarmas descartadas 
-def alarmas(request):    
-    return render(request,"./admin/alarma.html")
+def alarmas(request):  
+    alarma = Alarmas.objects.all()
+    return render(request,"./admin/alarma.html",{'alarma': alarma})
 
 
 #### plantilla --- casos reportados  
