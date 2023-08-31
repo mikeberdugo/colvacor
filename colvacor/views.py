@@ -33,8 +33,6 @@ def inicio(request):
         username = request.POST['username']
         password = request.POST['password']
         users = Usuarios.objects.all()
-        
-        
         for user in users :             
             if user.username == username and  check_password(password, user.clave) : 
                 return redirect(sistema1)
