@@ -1,10 +1,31 @@
-input_filename = "./models.py"
-output_filename = "./models2.py"
+import smtplib
+from email.mime.text import MIMEText
+from email.mime.multipart import MIMEMultipart
 
-with open(input_filename, "rb") as input_file:
-    content = input_file.read()
+# Datos del remitente
+remitente = 'Notificaciones_colvacor@hotmail.com'
+contraseña = 'Bogota.30'
 
-content_without_nulls = content.replace(b'\x00', b'')
+# Datos del destinatario
+destinatario = 'manuel.david.13.b@gmail.com'
 
-with open(output_filename, "wb") as output_file:
-    output_file.write(content_without_nulls)
+# Configurar el mensaje
+mensaje = MIMEMultipart()
+mensaje['From'] = remitente
+mensaje['To'] = destinatario
+mensaje['Subject'] = 'prueba'
+
+cuerpo = 'estas mal '
+
+mensaje.attach(MIMEText(cuerpo, 'plain'))
+
+# Conectar y enviar el correo
+try:
+    servidor = smtplib.SMTP('smtp.live.com', 25)  # Para Hotmail/Outlook
+    servidor.starttls()
+    servidor.login(remitente, contraseña)
+    servidor.sendmail(remitente, destinatario, mensaje.as_string())
+    servidor.quit()
+    print("Correo enviado exitosamente")
+except Exception as e:
+    print("Error al enviar el correo:", str(e))

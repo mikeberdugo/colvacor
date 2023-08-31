@@ -2,8 +2,76 @@
 
 {% block title %}Sistema NOC - Usuarios {% endblock %}
 
-{% block sub-title %}Prueba Usuarios{% endblock %}
+{% block sub-title %}Vista de administración Usuarios{% endblock %}
 
 {% block content %}
-    <h3>hola mundo </h3>
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                <div class="card-body">
+                    <table style="font-size: 12px;" id="example1" class="table table-bordered table-hover text-center">
+                                            <thead style="font-size: 12px;">
+                                            <tr>
+                                                <th>Nombre</th>
+                                                <th>Cargo</th>
+                                                <th>Gestion</th>
+                                                <th>Correo</th>
+                                                <th>Codigo ETV</th>
+                                                <th>Acciones</th>
+                                                </tr>
+                                                </thead>
+                                                
+                                                <tbody>
+                                                    {% for user in users %}
+                                                    <tr>
+                                                        <td>{{ user.nombre }}</td>
+                                                        <td>{{ user.cargo }}</td>
+                                                        <td>{{ user.gestion }}</td>
+                                                        <td>{{ user.correo }}</td>
+                                                        <td>{{ user.cod_etb }}</td>
+                                                        <td>
+                                                            <a class="btn btn-warning btn-sm btn_gestionar" href="#">Modificar</a>
+                                                            &nbsp;
+                                                            <button type="button" class="btn btn-danger btn-sm btn_gestionar" data-toggle="modal" data-target="#exampleModalCenter{{ user.id }}" >
+                                                            Eliminar 
+                                                            </button>  
+                                                        </td>
+                                                    </tr>
+                                                        <!-- Modal -->
+                                                            <div class="modal fade" id="exampleModalCenter{{ user.id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                                                    <div class="modal-content">
+                                                                        <div class="modal-header">
+                                                                            <h5 class="modal-title" id="exampleModalLongTitle">Confirmacion</h5>
+                                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                <span aria-hidden="true">&times;</span>
+                                                                            </button>
+                                                                        </div>
+                                                                        <div class="modal-body">
+                                                                            ¿Está seguro que desea eliminar al usuario "{{ user.nombre }}"?
+                                                                        </div>
+                                                                        <div class="modal-footer">
+                                                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                                                                            <a href="{% url 'eliminar-usuario' user_id=user.id %}" class="btn btn-primary">Confirmar</a>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                    {% endfor %}
+                                                    
+                                                </tbody>
+                                            </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </section>
+
+        <!-- Button trigger modal -->
+
+    
+    <!-- Modal -->
+
+    
 {% endblock %}

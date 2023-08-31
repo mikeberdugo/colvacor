@@ -36,4 +36,5 @@ urlpatterns = [
     path('alarma2/', alarmas_view, name='alarmas2'),
     path('resta/', resta, name='reestablecer'),
     path('mail/', enviar_correo),
+    path('eliminar-usuario/<int:user_id>/',eliminar_usuario, name='eliminar-usuario')
 ]

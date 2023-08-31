@@ -1,7 +1,8 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect ,get_object_or_404
 from django.core.mail import send_mail
 from django.conf import settings
 from colvacor.models import Alarmas,Usuarios
+from django.contrib.auth.hashers import make_password, check_password
 #### loging 
 
 ### prueba de alarmas 
@@ -32,8 +33,10 @@ def inicio(request):
         username = request.POST['username']
         password = request.POST['password']
         users = Usuarios.objects.all()
+        
+        
         for user in users :             
-            if user.username == username and user.clave == password : 
+            if user.username == username and  check_password(password, user.clave) : 
                 return redirect(sistema1)
                 aux = True
             else :
@@ -123,43 +126,6 @@ def sistema2(request):
     return render(request,"sistema1.html" , context)
 
 
-def sistema3(request):
-    
-    if request.method == 'POST':
-        
-        show_view1 = request.POST.get('view1') == 'on'
-        show_view2 = request.POST.get('view2') == 'on'
-        show_view3 = request.POST.get('view3') == 'on'
-        show_view4 = request.POST.get('view4') == 'on'
-        show_view5 = request.POST.get('view5') == 'on'
-        show_view6 = request.POST.get('view6') == 'on'
-        show_view7 = request.POST.get('view7') == 'on'
-        show_view8 = request.POST.get('view8') == 'on'
-        
-        context = {
-            'show_view1': show_view1,
-            'show_view2': show_view2,
-            'show_view3': show_view3,
-            'show_view4': show_view4,
-            'show_view5': show_view5,
-            'show_view6': show_view6,
-            'show_view7': show_view7,
-            'show_view8': show_view8,
-        }
-    else:
-        context = {
-            'show_view1': True,
-            'show_view2': True,
-            'show_view3': True,
-            'show_view4': True,
-            'show_view5': True,
-            'show_view6': True,
-            'show_view7': True,
-            'show_view8': True,
-
-        }
-    return render(request,"sistema1.html" , context)
-
 
 #### plantilla --- prueba 
 def prueba(request):    
@@ -167,11 +133,33 @@ def prueba(request):
 
 
 #### plantilla ---  gestion de usuario 
-def usuarios(request):    
-    return render(request,"./admin/admin_usuarios.html")
+def usuarios(request): 
+    users = Usuarios.objects.all()    
+    return render(request,"./admin/admin_usuarios.html",{'users': users})
+
+def eliminar_usuario(request, user_id):
+    user = get_object_or_404(Usuarios, id=user_id)
+    user.delete()
+    return redirect(usuarios)
 
 #### plantilla --- nuevo 
-def nuevo(request):    
+def nuevo(request): 
+    if request.method == 'POST':
+        name = request.POST['name']
+        cargo = request.POST['cargo']
+        segmento = request.POST['segmento']
+        gestion = request.POST['gestion']
+        correo = request.POST['correo']
+        user = request.POST['user']
+        clave = request.POST['clave']
+        hashed_password = make_password(clave)        
+        nuevo_usuario = Usuarios(nombre=name,cargo =cargo,gestion = gestion,segmento=segmento , correo = correo , username = user,tipo_usuario = '1' ,cod_etb = '2020B',clave = hashed_password  )
+        nuevo_usuario.save()
+        
+    else : 
+        print('no llego nada')
+    # nuevo_producto = Producto(nombre=nombre, precio=precio)
+    # nuevo_producto.save()
     return render(request,"./admin/nuevo_usuario.html")
 
 #### plantilla --- alarmas descartadas 
