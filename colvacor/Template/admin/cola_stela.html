@@ -15,12 +15,15 @@
             </tr>
         </thead>
         <tbody>
+            {% for cola in colas  %}
             <tr>
-                <td>$dato</td>
-                <td>$dato</td>
-                <td>$dato</td>
-                <td><a href="{% url 'stela' %}"><button style="font-size: 10px;" type="button" class="btn btn-success btn-sm"><i class="fa-sharp fa-solid fa-eye-to-square"></i> Gestionar </button></a></td>
+                <td>{{ cola.hora }}</td>
+                <td>{{ cola.equipo }}</td>
+                <td>{{ cola.tipo_alarma }}</td>
+                <td><a href="{% url 'stela' cola_id=cola.id %}"><button style="font-size: 10px;" type="button" class="btn btn-success btn-sm"><i class="fa-sharp fa-solid fa-eye-to-square"></i> Gestionar </button></a></td>
             </tr>
+            {% endfor %}
         </tbody>
+        
     </table>
 {% endblock %}

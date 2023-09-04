@@ -31,7 +31,7 @@
                                                         <td>{{ user.correo }}</td>
                                                         <td>{{ user.cod_etb }}</td>
                                                         <td>
-                                                            <a class="btn btn-warning btn-sm btn_gestionar" href="#">Modificar</a>
+                                                            <a class="btn btn-warning btn-sm btn_gestionar" href="{% url 'modificar' user_id=user.id %}">Modificar</a>
                                                             &nbsp;
                                                             <button type="button" class="btn btn-danger btn-sm btn_gestionar" data-toggle="modal" data-target="#exampleModalCenter{{ user.id }}" >
                                                             Eliminar 
