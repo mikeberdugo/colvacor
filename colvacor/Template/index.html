@@ -37,11 +37,9 @@
         </div>
         <div class="card-body">
           <p class="login-box-msg">Ingrese sus credenciales de acceso</p>
-            {% if error_message %}
                 {% for message in error_message %}
                     <p id="alerta" class="alert alert-danger" > {{ message }}</p>
                 {% endfor %}
-            {% endif %}
           <form  method="POST">
             {% csrf_token %}
             <div class="input-group mb-3">

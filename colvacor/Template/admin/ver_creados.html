@@ -1,0 +1,77 @@
+
+{% extends 'plantilla.html' %}
+{% load static %}
+
+{% block title %}Sistema NOC -  Usuario {% endblock %}
+
+{% block sub-title %}Operador{% endblock %}
+
+{% block content %}
+<div class="container">
+    <form  name="frm" id="frm" class="form" method="post" action="">
+                            
+                            <div class="mb-3 row">
+                                <label for="inputPassword" class="col-sm-3 col-form-label">ID Reporte</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" id="id" name="id" value="{{ reporte.id_alarma }}" readonly/>
+                                </div>
+                            </div>
+
+                            <div class="mb-3 row">
+                                <label for="inputPassword" class="col-sm-3 col-form-label">Equipo</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" id="equipo" name="equipo" value="{{ reporte.equipo }}" readonly/>
+                                </div>
+                            </div>
+
+                            <div class="mb-3 row">
+                                <label for="inputPassword" class="col-sm-3 col-form-label">Hora Afectación</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" id="hora_inicio" name="hora_inicio"value="{{ reporte.hora_inicio }}" readonly/>
+                                </div>
+                            </div>
+
+                            <div class="mb-3 row">
+                                <label for="inputPassword" class="col-sm-3 col-form-label">Tipo Alarma</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" id="tipo_alarma" name="tipo_alarma" value="{{ reporte.tipo_alarma }}" readonly/>
+                                </div>
+                            </div>
+
+                            <div class="mb-3 row">
+                                <label for="inputPassword" class="col-sm-3 col-form-label">Reportado por:</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" id="user" name="user" value="{{ reporte.usuario }}" readonly/>
+                                </div>
+                            </div>
+
+                            <div class="mb-3 row">
+                                <label for="inputPassword" class="col-sm-3 col-form-label">Central</label>
+                                <div class="col-sm-9">
+                                    <input type="text" id="central" name="central" class="form-control" value="{{ reporte.central }}" readonly/>
+                                </div>
+                            </div>
+
+                            <div class="mb-3 row">
+                                <label for="inputPassword" class="col-sm-3 col-form-label">Clientes Afectados</label>
+                                <div class="col-sm-9">
+                                  <input type="text" id="clientes" name="clientes" class="form-control"  value="{{ reporte.clientes }}" readonly/>
+                                </div>
+                            </div>
+
+                            <div class="mb-3 row">
+                                <label for="inputPassword" class="col-sm-3 col-form-label">Documentacion y seguimiento</label>
+                                <div class="col-sm-9">
+                                  <textarea type="text" id="docu1" name="docu1" class="form-control" >en esta parte del form, se relaciona toda la documentacion de remedy por parte de los grupos y personas que gestionan el caso
+                                </textarea>
+                                </div>
+                            </div>
+                            <div class="col" style="display: flex;  justify-content: right;">
+                                <a href="{% url 'casos' %}"><button type="button" class="btn btn-default">Volver</button></a>
+                            </div>
+                            </form>
+
+    </div>
+
+{% endblock %}
+

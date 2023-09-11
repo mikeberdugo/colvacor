@@ -20,7 +20,7 @@
                 <td>{{ cola.hora }}</td>
                 <td>{{ cola.equipo }}</td>
                 <td>{{ cola.tipo_alarma }}</td>
-                <td><a href="{% url 'stela' cola_id=cola.id %}"><button style="font-size: 10px;" type="button" class="btn btn-success btn-sm"><i class="fa-sharp fa-solid fa-eye-to-square"></i> Gestionar </button></a></td>
+                <td><a href="{% url 'stela' cola_id=cola.id %}" style="font-size: 12px;" class="btn btn-success btn-sm fa-sharp fa-solid fa-eye-to-square" >Crear</a></td>
             </tr>
             {% endfor %}
         </tbody>

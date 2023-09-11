@@ -1,0 +1,62 @@
+{% extends 'plantilla.html' %}
+
+{% block title %}Sistema NOC - Descartada{% endblock %}
+
+{% block sub-title %}Ver alarma descartada  numero {{ descartada.id_alarma }}{% endblock %}
+
+{% block content %}
+    <form method="POST">
+        <div class="card-body">
+            <div class="row">
+            <div class="col-6">
+                <label for="exampleInputPassword1">Hora</label>
+                <input type="text" class="form-control" id="hora_inicio" name="hora_inicio" value="{{descartada.hora_inicio}}" placeholder="Digite el nombre de usuario deseado" >
+            </div>
+            <div class="col-6">
+                <label for="exampleInputPassword1">Equipo</label>
+                <input type="text" class="form-control" id="equipo" name="equipo" value="{{descartada.equipo}}">
+            </div>
+            </div>
+
+            <div class="row">
+            <div class="col-6">
+                <label for="exampleInputPassword1">Tipo Alarma</label>
+                <input type="text" class="form-control" id="tipo_alarma" name="tipo_alarma" value="{{descartada.tipo_alarma}}">
+            </div>
+            <div class="col-6">
+                <label for="exampleInputPassword1">Usuario Descarte</label>
+                <input type="text" class="form-control" id="usuario" name="usuario" value="{{descartada.usuario}}">
+            </div>
+            </div>
+
+            <div class="row">
+            <div class="col-6">
+                <label for="exampleInputPassword1">Motivo Descarte</label>
+                <input type="text" class="form-control" id="motivo_descarte" name="motivo_descarte" value="{{descartada.motivo_descarte}}">
+            </div>
+            <div class="col-6">
+                <label for="exampleInputPassword1">Clientes Afectados</label>
+                <input type="text" class="form-control" id="clientes" name="clientes" value="{{descartada.clientes}}">
+            </div>
+            </div>
+
+            <div class="row">
+            <div class="col-6">
+                <label for="exampleInputPassword1">Central</label>
+                <input type="text" class="form-control" id="central" name="central" value="{{descartada.central}}">
+            </div>
+            <div class="col-6">
+                <label for="exampleInputPassword1">Hora Descarte</label>
+                <input type="text" class="form-control" id="hora_descarte" name="hora-descarte" value="{{descartada.hora_descarte}}">
+            </div>
+            </div>
+        </div>
+
+        <div class="card-footer text-center">
+            <button type="submit" class="btn btn-success"><i class="fa fa-check" aria-hidden="true"></i> Confirmar Recuperación</button> &nbsp
+            <a href="{% url 'alarmas' %}" class="btn btn-secondary" >Cancelar y volver</a>
+        </aside>
+        </div>
+    </form>
+
+{% endblock %}

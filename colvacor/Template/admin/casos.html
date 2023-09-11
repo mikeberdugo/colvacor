@@ -1,8 +1,10 @@
 {% extends 'plantilla.html' %}
 
-{% block title %}Sistema NOC - Nuevo usuario{% endblock %}
+<!-- {% url 'usuarios' %} -->
 
-{% block sub-title %}Nuevo Usuario{% endblock %}
+{% block title %}Sistema NOC - Casos Reportados{% endblock %}
+
+{% block sub-title %}Casos Reportados{% endblock %}
 
 {% block content %}
                 <!-- Main content -->
@@ -22,15 +24,16 @@
                             </tr>
                             </thead>
                             <tbody>
+                            {% for reporte in reportes  %}
                             <tr>
-                            <td>inc ></td>
-                                <!-- ver_creados.php?inc=<?php echo $dato->inc;?> > <![endif]-->
-                                <td>equipo</td>
-                                <td>hora_inicio</td>
-                                <td>tipo_alarma</td>
-                                <td>gestion></td>
-                                <td><a href=""><button type="button" class="btn btn-success btn-sm"><i class="fa-sharp fa-solid fa-eye-to-square"></i> Ver </button></a></td>
+                                <td>{{ reporte.inc }} </td>
+                                <td>{{ reporte.equipo }} </td>
+                                <td>{{ reporte.hora_inicio }} </td>
+                                <td>{{ reporte.tipo_alarma }} </td>
+                                <td>{{ reporte.gestion }} </td>
+                                <td><a href="{% url 'caso' reporte_id=reporte.id %}"><button type="button" class="btn btn-success btn-sm"><i class="fa-sharp fa-solid fa-eye-to-square"></i> Ver </button></a></td>
                             </tr>
+                            {% endfor %}
                         </tbody>
                         </table>
         

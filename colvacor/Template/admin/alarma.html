@@ -1,6 +1,6 @@
 {% extends 'plantilla.html' %}
 
-{% block title %}Sistema NOC - Nuevo usuario{% endblock %}
+{% block title %}Sistema NOC - Alarmas Descartadas{% endblock %}
 
 {% block sub-title %}Alarmas Descartadas{% endblock %}
 
@@ -20,12 +20,17 @@
                                             </tr>
                                             </thead>
                                             <tbody>
-                                                <tr>
-                                                <td></td>
-                                                <td></td>
-                                                <td></td>
-                                                <td><a href="recuperar_descartadas.php?id_alarma=<?php echo $dato->id_alarma;?>"><button style="font-size: 12px;" type="button" class="btn btn-warning btn-sm btn_gestionar"><i class="fa-sharp fa-solid fa-eye-to-square"></i> Recuperar </button></a></td>
-                                            </tr>
+                                                <!-- <td><?php echo $dato->hora_inicio; ?></td>
+                                                <td><?php echo $dato->equipo; ?></td>
+                                                <td><?php echo $dato->tipo_alarma; ?></td> -->
+                                                {% for descartada in descartadas  %}
+                                                    <tr>
+                                                        <td>{{ descartada.hora_inicio }}</td>
+                                                        <td>{{ descartada.equipo }}</td>
+                                                        <td>{{ descartada.tipo_alarma }}</td>
+                                                        <td><a href="{% url 'descartada' descartada_id=descartada.id %}" style="font-size: 12px;" class="btn btn-warning btn-sm btn_gestionar fa-sharp fa-solid fa-eye-to-square" >Recuperar</a></td>
+                                                    </tr>
+                                                {% endfor %}
                                         </tbody>
                                         </table>
                         </div>

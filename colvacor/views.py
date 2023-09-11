@@ -1,16 +1,19 @@
 from django.shortcuts import render, redirect ,get_object_or_404
 from django.core.mail import send_mail
 from django.conf import settings
-from colvacor.models import Alarmas,Usuarios,ColaCreacion
+from colvacor.models import *
 from django.contrib.auth.hashers import make_password, check_password
-#### loging 
 
-### prueba de alarmas 
+### modulos personales
+from django.contrib.auth import login
+#### loging
+
+### prueba de alarmas
 
 def alarmas_view(request):
     alarma = Alarmas.objects.all()
     return render(request, 'prueba.html', {'alarma': alarma})
-#### prueba correo 
+#### prueba correo
 
 
 def enviar_correo(request):
@@ -28,111 +31,63 @@ def enviar_correo(request):
 
 def inicio(request):
     error_message = []
-    aux = True 
     if request.method == 'POST':
         username = request.POST['username']
         password = request.POST['password']
-        users = Usuarios.objects.all()
-        for user in users :             
-            if user.username == username and  check_password(password, user.clave) : 
-                return redirect(sistema1)
-                aux = True
-            else :
-                aux = False
-        if aux == False : 
-            error_message.append( "Nombre de usuario o contraseña incorrectos.")
-    return render(request,"index.html",{'error_message': error_message})
-
+        try:
+            user = Usuarios.objects.get(username=username)            
+            if user is not None :
+                if check_password(password, user.clave):  # Verifica la contraseña encriptada
+                    #login(request, user)
+                    return redirect('sistema1')
+                else:
+                    error_message.append("contraseña incorrecta.")
+        except : 
+            error_message.append( "Nombre de usuario incorrecto" )
+    return render(request, "index.html", {'error_message': error_message})
 
 def resta(request):
     return render(request ,'reestablecer.html')
 
-### sistema 1 y gestion de vistas 
+
+### sistema 1 y gestion de vistas
 def sistema1(request):
-    
+    # Define un diccionario con las claves y sus valores iniciales
+    views = {}
     if request.method == 'POST':
-        
-        show_view1 = request.POST.get('view1') == 'on'
-        show_view2 = request.POST.get('view2') == 'on'
-        show_view3 = request.POST.get('view3') == 'on'
-        show_view4 = request.POST.get('view4') == 'on'
-        show_view5 = request.POST.get('view5') == 'on'
-        show_view6 = request.POST.get('view6') == 'on'
-        show_view7 = request.POST.get('view7') == 'on'
-        show_view8 = request.POST.get('view8') == 'on'
-        
-        context = {
-            'show_view1': show_view1,
-            'show_view2': show_view2,
-            'show_view3': show_view3,
-            'show_view4': show_view4,
-            'show_view5': show_view5,
-            'show_view6': show_view6,
-            'show_view7': show_view7,
-            'show_view8': show_view8,
-        }
+        # Recorre las vistas de 1 a 8 y actualiza el diccionario
+        for i in range(1, 9):
+            view_key = f'show_view{i}'
+            views[view_key] = request.POST.get(f'view{i}') == 'on'
     else:
-        context = {
-            'show_view1': True,
-            'show_view2': True,
-            'show_view3': True,
-            'show_view4': True,
-            'show_view5': True,
-            'show_view6': True,
-            'show_view7': True,
-            'show_view8': True,
-
-        }
-    return render(request,"sistema1.html" , context)
-
-
-def sistema2(request):
+        # Si no es una solicitud POST, establece todos los valores en True
+        for i in range(1, 9):
+            view_key = f'show_view{i}'
+            views[view_key] = True
     
-    if request.method == 'POST':
-        
-        show_view1 = request.POST.get('view1') == 'on'
-        show_view2 = request.POST.get('view2') == 'on'
-        show_view3 = request.POST.get('view3') == 'on'
-        show_view4 = request.POST.get('view4') == 'on'
-        show_view5 = request.POST.get('view5') == 'on'
-        show_view6 = request.POST.get('view6') == 'on'
-        show_view7 = request.POST.get('view7') == 'on'
-        show_view8 = request.POST.get('view8') == 'on'
-        
-        context = {
-            'show_view1': show_view1,
-            'show_view2': show_view2,
-            'show_view3': show_view3,
-            'show_view4': show_view4,
-            'show_view5': show_view5,
-            'show_view6': show_view6,
-            'show_view7': show_view7,
-            'show_view8': show_view8,
-        }
-    else:
-        context = {
-            'show_view1': True,
-            'show_view2': True,
-            'show_view3': True,
-            'show_view4': True,
-            'show_view5': True,
-            'show_view6': True,
-            'show_view7': True,
-            'show_view8': True,
-
-        }
-    return render(request,"sistema1.html" , context)
+    views['desc'] = Descartadas.objects.count()
+    views['caso'] = Reportes.objects.count()
+    views['cola'] = ColaCreacion.objects.count()
+    context = views  # Usa el diccionario como contexto
+    
+    alarmas = Alarmas.objects.all()
+    colaCreacion = ColaCreacion.objects.all()
+    
+    return render(request, "sistema1.html", {'context' :context ,'alarmas': alarmas, 'colaCreacion': colaCreacion})
 
 
+def gestion(request,alarma_id):
+    alarma = Alarmas.objects.get(pk=alarma_id)
+    return render(request,"./admin/gestionar.html",{'alarma': alarma})
 
-#### plantilla --- prueba 
-def prueba(request):    
-    return render(request,"plantilla.html")
+#### plantilla --- prueba
+def prueba(request):
+    return render(request,"prueba.html")
 
 
-#### plantilla ---  gestion de usuario 
-def usuarios(request): 
-    users = Usuarios.objects.all()    
+#### plantilla ---  gestion de usuario
+def usuarios(request):
+    users = Usuarios.objects.all()
     return render(request,"./admin/admin_usuarios.html",{'users': users})
 
 def eliminar_usuario(request, user_id):
@@ -141,7 +96,7 @@ def eliminar_usuario(request, user_id):
     return redirect(usuarios)
 
 def modifica_usuario(request, user_id):
-    
+
     user = Usuarios.objects.get(pk=user_id)
     if request.method == 'POST':
         user.nombre = request.POST['nombre']
@@ -156,8 +111,8 @@ def modifica_usuario(request, user_id):
         return redirect(usuarios)
     return render(request,"./admin/modificar.html",{'user': user})
 
-#### plantilla --- nuevo 
-def nuevo(request): 
+#### plantilla --- nuevo
+def nuevo(request):
     if request.method == 'POST':
         name = request.POST['name']
         cargo = request.POST['cargo']
@@ -166,51 +121,59 @@ def nuevo(request):
         correo = request.POST['correo']
         user = request.POST['user']
         clave = request.POST['clave']
-        hashed_password = make_password(clave)        
+        hashed_password = make_password(clave)
         nuevo_usuario = Usuarios(nombre=name,cargo =cargo,gestion = gestion,segmento=segmento , correo = correo , username = user,tipo_usuario = '1' ,cod_etb = '2020B',clave = hashed_password  )
         nuevo_usuario.save()
-        
-    else : 
+
+    else :
         print('no llego nada')
     # nuevo_producto = Producto(nombre=nombre, precio=precio)
     # nuevo_producto.save()
     return render(request,"./admin/nuevo_usuario.html")
 
-#### plantilla --- alarmas descartadas 
-def alarmas(request):  
-    alarma = Alarmas.objects.all()
-    return render(request,"./admin/alarma.html",{'alarma': alarma})
+#### plantilla --- alarmas descartadas
+def alarmas(request):
+    descartadas = Descartadas.objects.all()
+    return render(request,"./admin/alarma.html",{'descartadas': descartadas})
 
 
-#### plantilla --- casos reportados  
-def casos(request):    
-    return render(request,"./admin/casos.html")
+def alarmas_descartadas(request,descartada_id):
+    descartada = Descartadas.objects.get(pk=descartada_id)
+    return render(request,"./admin/descartada.html",{'descartada': descartada})
+
+#### plantilla --- casos reportados
+def casos(request):
+    reportes = Reportes.objects.all()
+    return render(request,"./admin/casos.html",{'reportes': reportes})
+
+def caso(request,reporte_id):
+    reporte = Reportes.objects.get(pk=reporte_id)#caso_id
+    return render(request,"./admin/ver_creados.html",{'reporte': reporte})
 
 
-#### plantilla --- generar un reporte  
-def reportes(request):    
+#### plantilla --- generar un reporte
+def reportes(request):
     return render(request,"./admin/generar.html")
 
 
-#### plantilla --- user 
-def user(request):    
+#### plantilla --- user
+def user(request):
     return render(request,"./admin/vista_usuario.html")
 
-#### plantilla --- out 
+#### plantilla --- out
 def cerrar(request):
     return render(request,"./admin/cerrar.html")
 
-### las colas de estela y el almacenamiento nuevo 
+### las colas de estela y el almacenamiento nuevo
 
 
-def cola(request):   
+def cola(request):
     colas = ColaCreacion.objects.all()
-    
     return render(request,"./admin/cola_stela.html",{'colas': colas})
 
 def stela(request,cola_id):
-    cola = ColaCreacion.objects.get(pk=cola_id) 
-    
+    cola = ColaCreacion.objects.get(pk=cola_id)#caso_id
+
     mensaje = (
         f"FALLA SOBRE: {cola.tipo_equipo} {cola.equipo}, DE CENTRAL {cola.central}, "
         f"RED ERICSSON 180K\nHORA DE ALARMA: {cola.hora_inicio}\nDESCRIPCIÓN DEL EVENTO: "

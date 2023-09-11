@@ -59,8 +59,13 @@
                         <div class="col-sm-3">
                             <input class="form-control" type="text" id="cod_etb" name="cod_etb" value="{{ user.cod_etb }}"><br>
                         </div>
-                    </div>   
-                    <button class="btn btn-success btn-block" type="submit" >Guardar Cambios</button>
+                    </div> 
+                    <div class="card-footer text-center">
+                        <button class="btn btn-success " type="submit" >Guardar Cambios</button>
+                        <a href="{% url 'usuarios' %}" class="btn btn-secondary" >Cancelar y volver</a>
+                    </aside>
+                    </div>
+                    
                 </form>
             </div>
         </div>

@@ -1,0 +1,149 @@
+
+{% extends 'plantilla.html' %}
+{% load static %}
+
+{% block title %}Sistema NOC - Gestionar {% endblock %}
+
+{% block sub-title %}Gestionar{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="container">
+        <form  name="frm" id="frm" class="form" method="post" >
+            {% csrf_token %}
+                                <div class="mb-3 row">
+                                    <label for="inputPassword" class="col-sm-3 col-form-label">ID Reporte</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control" id="id" name="id" value="{{ alarma.id }}" readonly/>
+                                    </div>
+                                </div>
+    
+                                <div class="mb-3 row">
+                                    <label for="inputPassword" class="col-sm-3 col-form-label">Equipo</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control" id="equipo" name="equipo" value="{{ alarma.equipo }}" readonly/>
+                                    </div>
+                                </div>
+    
+                                <div class="mb-3 row">
+                                    <label for="inputPassword" class="col-sm-3 col-form-label">Hora Afectación</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control" id="hora_inicio" name="hora_inicio" value="{{ alarma.hora_inicio }}" readonly/>
+                                    </div>
+                                </div>
+                                <div class="mb-3 row">
+                                    <label for="inputPassword" class="col-sm-3 col-form-label">Tipo Alarma</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control" id="tipo_alarma" name="tipo_alarma" value="{{ alarma.tipo_alarma }}" readonly/>
+                                    </div>
+                                </div>
+                                <div class="mb-3 row">
+                                    <label for="inputPassword" class="col-sm-3 col-form-label">Central</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" id="central" name="central" class="form-control" value="{{ alarma.central }}" readonly/>
+                                    </div>
+                                </div>
+                                
+                                <div class="mb-3 row">
+                                    <label for="inputPassword" class="col-sm-3 col-form-label">Clientes Afectados</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" id="clientes" name="clientes" class="form-control"  value="{{ alarma.clientes }}" readonly/>
+                                    </div>
+                                </div>
+                                
+                                <div class="mb-3 row">
+                                    <label for="inputPassword" class="col-sm-3 col-form-label">Documentacion 1</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" id="docu1" name="docu1" class="form-control" value="ADSL: Se evidencia equipo alarmado en gestor" />
+                                    </div>
+                                </div>
+    
+                                <div class="mb-3 row">
+                                    <label for="inputPassword" class="col-sm-3 col-form-label">Documentacion 2</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" id="docu2" name="docu2" class="form-control"  value="ADSL: Se realizan pruebas de equipo sobre la red metro,equipo no responde" />
+                                    </div>
+                                </div>
+    
+                                <div class="mb-3 row">
+                                    <label for="inputPassword" class="col-sm-3 col-form-label">Documentacion 3</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" id="docu3" name="docu3" class="form-control"  value="ADSL: Se realizan pruebas de equipo sobre la red metro, interface UP, No aprende MACS" />
+                                    </div>
+                                </div>
+                                <div class="col" style="display: flex;  justify-content: right;">
+                                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modaldescartar">Descartar Alarma</button>&nbsp;
+                                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#ModalContingencia">Crear por Contingencia</button>&nbsp;
+                                    <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#ModalIncidente" >Crear Incidente</button>&nbsp;
+                                </div>  
+                        </form>
+                    </div>
+                </div>
+
+
+
+    <!-- Modal 1: Descartar Alarma -->
+    <div class="modal fade" id="modaldescartar" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Confirmación para Descartar Alarma</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    ¿Está seguro de que desea descartar esta alarma?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-danger">Descartar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+<!-- Modal 2: Crear por Contingencia -->
+<div class="modal fade" id="ModalContingencia" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Confirmación para Crear por Contingencia</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                ¿Está seguro de que desea crear por contingencia?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-success">Crear por Contingencia</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal 3: Crear Incidente -->
+<div class="modal fade" id="ModalIncidente" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Confirmación para Crear Incidente</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                ¿Está seguro de que desea crear un incidente?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-warning">Crear Incidente</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+    {% endblock %}
