@@ -4,15 +4,31 @@ from django.conf import settings
 from colvacor.models import *
 from django.contrib.auth.hashers import make_password, check_password
 
+### imagen 
+from django.conf import settings
+from django.core.files.storage import default_storage
+from django.core.files.base import ContentFile
+from PIL import Image
+import uuid
+
 ### modulos personales
 from django.contrib.auth import login
 #### loging
 
+import random
+import string
+
+def texto_aleatorio(max_length):
+    caracteres = string.ascii_letters + string.digits
+    longitud = random.randint(1, max_length)
+    texto = ''.join(random.choice(caracteres) for _ in range(longitud))
+    return texto
 ### prueba de alarmas
 
 def alarmas_view(request):
+    context = request.session.get('context', {})
     alarma = Alarmas.objects.all()
-    return render(request, 'prueba.html', {'alarma': alarma})
+    return render(request, 'prueba.html', {'context' :context,'alarma': alarma})
 #### prueba correo
 
 
@@ -31,6 +47,11 @@ def enviar_correo(request):
 
 def inicio(request):
     error_message = []
+    views = {}
+    context = request.session.get('context', {})
+    print(context)
+    
+    
     if request.method == 'POST':
         username = request.POST['username']
         password = request.POST['password']
@@ -39,6 +60,17 @@ def inicio(request):
             if user is not None :
                 if check_password(password, user.clave):  # Verifica la contraseña encriptada
                     #login(request, user)
+                    for i in range(1, 9):
+                        view_key = f'show_view{i}'
+                        views[view_key] = True
+                    nombre_completo = user.nombre
+                    nombres = nombre_completo.split(" ")
+                    views['user_id'] = user.id
+                    views['primer_nombre'] = nombres[0]
+                    views['ultimo_nombre'] = nombres[2]
+                    
+                    context = views  # Usa el diccionario como contexto
+                    request.session['context'] = context                    
                     return redirect('sistema1')
                 else:
                     error_message.append("contraseña incorrecta.")
@@ -52,23 +84,21 @@ def resta(request):
 
 ### sistema 1 y gestion de vistas
 def sistema1(request):
+    
+    context = request.session.get('context', {})    
     # Define un diccionario con las claves y sus valores iniciales
     views = {}
     if request.method == 'POST':
         # Recorre las vistas de 1 a 8 y actualiza el diccionario
         for i in range(1, 9):
             view_key = f'show_view{i}'
-            views[view_key] = request.POST.get(f'view{i}') == 'on'
-    else:
-        # Si no es una solicitud POST, establece todos los valores en True
-        for i in range(1, 9):
-            view_key = f'show_view{i}'
-            views[view_key] = True
+            context[view_key] = request.POST.get(f'view{i}') == 'on'
     
-    views['desc'] = Descartadas.objects.count()
-    views['caso'] = Reportes.objects.count()
-    views['cola'] = ColaCreacion.objects.count()
-    context = views  # Usa el diccionario como contexto
+    context['desc'] = Descartadas.objects.count()
+    context['caso'] = Reportes.objects.count()
+    context['cola'] = ColaCreacion.objects.count()
+    #context = views  # Usa el diccionario como contexto
+    request.session['context'] = context
     
     alarmas = Alarmas.objects.all()
     colaCreacion = ColaCreacion.objects.all()
@@ -77,8 +107,9 @@ def sistema1(request):
 
 
 def gestion(request,alarma_id):
+    context = request.session.get('context', {})
     alarma = Alarmas.objects.get(pk=alarma_id)
-    return render(request,"./admin/gestionar.html",{'alarma': alarma})
+    return render(request,"./admin/gestionar.html",{'context' :context ,'alarma': alarma})
 
 #### plantilla --- prueba
 def prueba(request):
@@ -87,8 +118,9 @@ def prueba(request):
 
 #### plantilla ---  gestion de usuario
 def usuarios(request):
+    context = request.session.get('context', {})
     users = Usuarios.objects.all()
-    return render(request,"./admin/admin_usuarios.html",{'users': users})
+    return render(request,"./admin/admin_usuarios.html",{'context' :context,'users': users})
 
 def eliminar_usuario(request, user_id):
     user = get_object_or_404(Usuarios, id=user_id)
@@ -96,7 +128,7 @@ def eliminar_usuario(request, user_id):
     return redirect(usuarios)
 
 def modifica_usuario(request, user_id):
-
+    context = request.session.get('context', {})#'context' :context,
     user = Usuarios.objects.get(pk=user_id)
     if request.method == 'POST':
         user.nombre = request.POST['nombre']
@@ -109,10 +141,11 @@ def modifica_usuario(request, user_id):
         user.cod_etb = request.POST['cod_etb']
         user.save()  # Guarda los cambios en la base de datos
         return redirect(usuarios)
-    return render(request,"./admin/modificar.html",{'user': user})
+    return render(request,"./admin/modificar.html",{'context' :context,'user': user})
 
 #### plantilla --- nuevo
 def nuevo(request):
+    context = request.session.get('context', {})#'context' :context,
     if request.method == 'POST':
         name = request.POST['name']
         cargo = request.POST['cargo']
@@ -129,17 +162,19 @@ def nuevo(request):
         print('no llego nada')
     # nuevo_producto = Producto(nombre=nombre, precio=precio)
     # nuevo_producto.save()
-    return render(request,"./admin/nuevo_usuario.html")
+    return render(request,"./admin/nuevo_usuario.html",{'context' :context})
 
 #### plantilla --- alarmas descartadas
 def alarmas(request):
+    context = request.session.get('context', {})#'context' :context,
     descartadas = Descartadas.objects.all()
-    return render(request,"./admin/alarma.html",{'descartadas': descartadas})
+    return render(request,"./admin/alarma.html",{'context' :context,'descartadas': descartadas})
 
 
 def alarmas_descartadas(request,descartada_id):
+    context = request.session.get('context', {})#'context' :context,
     descartada = Descartadas.objects.get(pk=descartada_id)
-    return render(request,"./admin/descartada.html",{'descartada': descartada})
+    return render(request,"./admin/descartada.html",{'context' :context,'descartada': descartada})
 
 #### plantilla --- casos reportados
 def casos(request):
@@ -158,7 +193,38 @@ def reportes(request):
 
 #### plantilla --- user
 def user(request):
-    return render(request,"./admin/vista_usuario.html")
+    context = request.session.get('context', {})#'context' :context,
+    user_id = context['user_id']  
+    user = Usuarios.objects.get(pk=user_id)
+    return render(request,"./admin/vista_usuario.html",{'context' :context,'user':user})
+
+def cambio_numero(request):
+    if request.method == 'POST':
+        nnu = request.POST['nuevo_numero']
+        user_id = request.POST['user_id']
+        user = Usuarios.objects.get(pk=user_id)
+        user.numero_telefono = nnu
+        user.save()
+        return redirect('user')
+    
+def imagen(request):
+    if request.method == 'POST' :    
+        imagen = request.FILES.get('imagen')
+        if imagen:
+            user_id = request.POST['user_id']
+            user = Usuarios.objects.get(pk=user_id)
+            nombre_archivo = texto_aleatorio(12)
+            name = nombre_archivo + '.jpg'
+            user.imagen_usuario = nombre_archivo
+            user.save()
+            ruta_destino = f'{settings.MEDIA_ROOT}{name}'
+            print(ruta_destino)
+            with open(ruta_destino, 'wb') as archivo_destino:
+                for chunk in imagen.chunks():
+                    archivo_destino.write(chunk)
+            # Guarda la imagen en la ubicación especificada
+            return redirect('user')
+        
 
 #### plantilla --- out
 def cerrar(request):

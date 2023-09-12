@@ -7,7 +7,7 @@
                     <span class="info-box-icon bg-success"><i class="fas fa-check-double"></i></span>
                     <div class="info-box-content">
                         <span class="info-box-text">Casos Reportados</span>
-                        <span class="badge bg-danger w-100">{{ caso }}</span>
+                        <span class="badge bg-danger w-100">{{ context.caso }}</span>
                     </div>
                 </div>
             </a>
@@ -20,7 +20,7 @@
                 <span class="info-box-icon bg-warning"><i class="fas fa-upload"></i></span>
                 <div class="info-box-content">
                     <span class="info-box-text">En cola de creación</span>
-                    <span class="badge bg-danger w-100">{{ cola }}</span>
+                    <span class="badge bg-danger w-100">{{ context.cola }}</span>
                 </div>
             </div>
         </a>
@@ -32,7 +32,7 @@
                 <span class="info-box-icon bg-info"><i class="fas fa-archive"></i></span>
                 <div class="info-box-content">
                 <span class="info-box-text">Alarmas Descartadas</span>
-                <span class="badge bg-danger w-100">{{ desc }}</span>
+                <span class="badge bg-danger w-100">{{ context.desc }}</span>
                 </div>
             </div>
         </a>

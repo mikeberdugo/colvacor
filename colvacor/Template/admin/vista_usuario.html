@@ -13,11 +13,25 @@
             <div class="card mb-10">
                 <div class="card-body text-center">
                 <div class="rounded-circle img-fluid">
-                        <img src="{% static '/img/avatar_hm.png' %} " alt="imagen empleado" width="125" height="125" >
+                    <img src="{% static 'img/' %}{{ user.imagen_usuario }}.jpg" alt="imagen empleado" width="135" height="135">
+                    <!-- <input class="form-control form-control-sm" id="id_imagen" name="imagen" accept="image/*" type="file"> -->
                 </div>
-                <h5 class="my-3">John Smith</h5>
-                <p class="text-muted mb-3">Full Stack Developer</p>
-                <p class="text-muted mb-3">Bay Area, San Francisco, CA</p>
+                <div class="mt-2">
+                    <p>URL base de archivos estáticos: {{ static }}</p>
+                    <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#exampleModalCenter" >
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-pencil" width="28" height="28" viewBox="0 0 24 24" stroke-width="1" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                            <path d="M4 20h4l10.5 -10.5a1.5 1.5 0 0 0 -4 -4l-10.5 10.5v4" />
+                            <path d="M13.5 6.5l4 4" />
+                        </svg>
+                        Editar imagen
+                    </button>  
+                </div>
+                <div class="mt-2" >
+                    <h5>{{ context.primer_nombre }} {{ context.ultimo_nombre }}</h5>
+                    <p class="text-muted mb-3">Operador</p>
+                </div>
+                
                 </div>
             </div>
             </div>
@@ -30,7 +44,7 @@
                         <p class="mb-1">Nombre : </p>
                         </div>
                         <div class="col-sm-9">
-                        <p class="text-muted mb-0">Johnatan Smith</p>
+                        <p class="text-muted mb-0">{{ user.nombre }}</p>
                         </div>
                     </div>
                     <hr>
@@ -39,7 +53,7 @@
                         <p class="mb-1">Correo</p>
                         </div>
                         <div class="col-sm-9">
-                        <p class="text-muted mb-0">example@example.com</p>
+                        <p class="text-muted mb-0">{{ user.correo }}</p>
                         </div>
                     </div>
                     <hr>
@@ -47,8 +61,17 @@
                         <div class="col-sm-3">
                         <p class="mb-0">Celular</p>
                         </div>
-                        <div class="col-sm-9">
-                        <p class="text-muted mb-0">(097) 234-5678</p>
+                        <div class="col-sm-7 m-0">
+                            <input class="text-muted mb-0 form-control"  type="text" name="telefono" value="{{ user.numero_telefono }}" readonly>
+                        </div>
+                        <div class="col-sm-1 m-0">
+                            <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#ModalNumero" >
+                                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-pencil" width="28" height="28" viewBox="0 0 24 24" stroke-width="1" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                    <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                                    <path d="M4 20h4l10.5 -10.5a1.5 1.5 0 0 0 -4 -4l-10.5 10.5v4" />
+                                    <path d="M13.5 6.5l4 4" />
+                                </svg>
+                            </button>  
                         </div>
                     </div>
                     <hr>
@@ -57,7 +80,7 @@
                         <p class="mb-0">ID ETB</p>
                         </div>
                         <div class="col-sm-9">
-                        <p class="text-muted mb-0">(098) 765-4321</p>
+                        <p class="text-muted mb-0">{{ user.cod_etb }}</p>
                         </div>
                     </div>
                     <hr>
@@ -66,7 +89,7 @@
                         <p class="mb-0">Gestion</p>
                         </div>
                         <div class="col-sm-9">
-                        <p class="text-muted mb-0">Bay Area, San Francisco, CA</p>
+                        <p class="text-muted mb-0">{{ user.gestion }}</p>
                         </div>
                     </div>
                     </div>
@@ -80,4 +103,79 @@
         </div>
         </div>
     </section>
+
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content ">
+                <div class="modal-header">
+                    <h5 class="modal-title modal-primary" id="exampleModalLongTitle">Cargue la imagen </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form aname="frm1" id="frm1" class="form" method="POST" enctype="multipart/form-data"  action="{% url 'imagen' %}" >
+                {% csrf_token %}
+                    <div class="modal-body">
+                        busque el la imagen que desea cargar 
+                        <div dir=rtl class="file-loading">
+                            <input name="imagen" id="imagen" type="file" accept="image/*" >
+                        </div>
+                        <div >
+                            <input type="text"  id="user_id" name="user_id" value="{{ user.id }}"  style="display: none;"  readonly>
+                        </div>
+                        
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                        <button type="submit" class="btn btn-success">Guardar Cambio</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="ModalNumero" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content ">
+                <div class="modal-header">
+                    <h5 class="modal-title modal-primary" id="exampleModalLongTitle">Cambio de Numero</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form name="frm2" id="frm2" class="form" method="POST"  action="{% url 'cambio_numero' %}" > 
+                    {% csrf_token %}
+                <div class="modal-body">
+
+                    
+                        <div class="form-group row"> 
+                            <label for="nuevo_numero" class="col-sm-5 col-form-label" >Ingrese Nuevo Numero  :</label>
+                            <div class="col-sm-5">
+                                <input type="text" class="form-control" id="nuevo_numero" name="nuevo_numero"  >
+                            </div>
+                            <div >
+                                <input type="text"  id="user_id" name="user_id" value="{{ user.id }}"  style="display: none;"  readonly>
+                            </div>
+                        </div>                  
+                    
+                    
+                </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                        <button type="submit" class="btn btn-success">Guardar Cambio</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        $(document).ready(function() {
+            $("#input-b8").fileinput({
+                rtl: true,
+                dropZoneEnabled: false,
+                allowedFileExtensions: ["jpg", "png", "gif"]
+            });
+        });
+    </script>
 {% endblock %}

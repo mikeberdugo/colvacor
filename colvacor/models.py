@@ -102,7 +102,9 @@ class Usuarios(models.Model):
     clave = models.CharField(max_length=244)
     tipo_usuario = models.CharField(max_length=44)
     cod_etb = models.CharField(max_length=20)
-
+    imagen_usuario = models.CharField(max_length=255)
+    numero_telefono = models.CharField(max_length=10)
+    
     class Meta:
         app_label = 'colvacor'
         db_table = 'usuarios'

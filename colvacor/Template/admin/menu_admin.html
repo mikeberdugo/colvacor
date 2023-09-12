@@ -62,7 +62,7 @@
           <img src="{% static 'img/avatar5.png' %}" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="" class="d-block">Alexander Pierce</a>
+          <a href="{% url 'user' %}" class="d-block">{{ context.primer_nombre }} {{ context.ultimo_nombre }}</a>
         </div>
       </div>
 
@@ -88,17 +88,17 @@
                 {% csrf_token %}
                 <div class="icheck-success d-inline"><!--Inicio de gestiones-->
               &nbsp;
-                    <input  type="checkbox" id="check1" name="view1" {% if show_view1 %}checked{% endif %}>
+                    <input  type="checkbox" id="check1" name="view1" {% if context.show_view1 %}checked{% endif %}>
                     <label for="check1">
                       CORE
                     </label>
               &nbsp;
-                    <input  type="checkbox" id="check2" name="view2" {% if show_view2 %}checked{% endif %}>
+                    <input  type="checkbox" id="check2" name="view2" {% if context.show_view2 %}checked{% endif %}>
                     <label for="check2">
                       NODO
                     </label>
               &nbsp;
-                    <input  type="checkbox" id="check3" name="view3" {% if show_view3 %}checked{% endif %}>
+                    <input  type="checkbox" id="check3" name="view3" {% if context.show_view3 %}checked{% endif %}>
                     <label for="check3">
                       GPON
                     </label>      
@@ -106,17 +106,17 @@
 
               <div class="icheck-success d-inline"><!--Inicio de gestiones 2 -->
                 <br>
-              &nbsp; <input  type="checkbox" id="check4" name="view4" {% if show_view4 %}checked{% endif %}>
+              &nbsp; <input  type="checkbox" id="check4" name="view4" {% if context.show_view4 %}checked{% endif %}>
                     <label for="check4">
                       TX NAL
                     </label>
               &nbsp;
-                    <input  type="checkbox" id="check5" name="view5" {% if show_view5 %}checked{% endif %}>
+                    <input  type="checkbox" id="check5" name="view5" {% if context.show_view5 %}checked{% endif %}>
                     <label for="check5">
                       ADSL
                     </label>
               &nbsp;
-                    <input  type="checkbox" id="check6" name="view6" {% if show_view6 %}checked{% endif %}>
+                    <input  type="checkbox" id="check6" name="view6" {% if context.show_view6 %}checked{% endif %}>
                     <label for="check6">
                       TX LOCAL
                     </label>      
@@ -125,12 +125,12 @@
               <div class="icheck-success d-inline"><!--Inicio de gestiones 3-->
                 <br>
                 &nbsp;
-                    <input  type="checkbox" id="check7" name="view7" {% if show_view7 %}checked{% endif %}>
+                    <input  type="checkbox" id="check7" name="view7" {% if context.show_view7 %}checked{% endif %}>
                     <label for="check7">
                       IPTV
                     </label>
               &nbsp;
-                    <input  type="checkbox" id="check8" name="view8" {% if show_view8 %}checked{% endif %}>
+                    <input  type="checkbox" id="check8" name="view8" {% if context.show_view8 %}checked{% endif %}>
                     <label for="check8">
                       MPLS
                     </label><br>&nbsp;
