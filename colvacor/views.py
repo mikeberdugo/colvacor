@@ -218,7 +218,7 @@ def imagen(request):
             user.imagen_usuario = nombre_archivo
             user.save()
             ruta_destino = f'{settings.MEDIA_ROOT}{name}'
-            print(ruta_destino)
+            #print(settings.)
             with open(ruta_destino, 'wb') as archivo_destino:
                 for chunk in imagen.chunks():
                     archivo_destino.write(chunk)
