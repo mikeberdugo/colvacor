@@ -35,7 +35,8 @@ class ColaCreacion(models.Model):
     docu2 = models.CharField(max_length=240)
     docu3 = models.CharField(max_length=240)
     docu4 = models.CharField(max_length=244, blank=True, null=True)
-
+    recuperada = models.CharField(max_length=240)
+    
     class Meta:
         app_label = 'colvacor'
         db_table = 'cola_creacion'
@@ -86,6 +87,16 @@ class Reportes(models.Model):
     docu1 = models.CharField(max_length=244)
     docu2 = models.CharField(max_length=250)
     docu3 = models.CharField(max_length=250)
+    docu4 = models.CharField(max_length=250)
+    grupo_asignado = models.CharField(max_length=250)
+    cat_niv_1 = models.CharField(max_length=250)
+    cat_niv_2 = models.CharField(max_length=250)
+    cat_niv_3 = models.CharField(max_length=250)
+    hora  = models.DateTimeField()
+    hora_asignacion = models.CharField(max_length=250)
+    
+
+
 
     class Meta:
         app_label = 'colvacor'
