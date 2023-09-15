@@ -1,21 +1,16 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Enviar Correo</title>
-</head>
-<body>
-    <h1>Enviar Correo</h1>
-    <form method="post">
-        {% csrf_token %}
-        <label for="recipient_email">Correo del destinatario:</label>
-        <input type="email" id="recipient_email" name="recipient_email" required><br>
-        <label for="subject">Asunto:</label>
-        <input type="text" id="subject" name="subject" required><br>
-        <label for="message">Mensaje:</label>
-        <textarea id="message" name="message" required></textarea><br>
-        <button type="submit">Enviar</button>
-    </form>
-</body>
-</html>
+            <html lang="en">
+            <head>
+                <meta charset="UTF-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <title>Correo de Notificacion </title>
+            </head>
+            <body>
+                <h1>Enviar Correo</h1>
+                <p>Se ha creado el {{ cola.inc }} con impacto alto en la gestion ADSL</p>
+                <p>Se genera reporte a las {{ cola.hora_inicio }}, y se crea el incidente correspondiente en remedy siendo las {{ cola.hora }}, con una afectacion de {{ cola.clientes }} clientes.</p>
+                <p>Esta es una notificación automatica de Colvacor Intellisense, por favor no responda este correo.</p>
+                <p>Ingrese a https://remedyti.etb.com.co/arsys/forms/remedyapp/SHR%3ALandingConsole/ para consultar el caso mencionado.</p>
+                <p>Cordialmente Colvacor</p>       
+            </body>
+            </html>

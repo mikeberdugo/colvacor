@@ -4,6 +4,8 @@ from django.conf import settings
 from colvacor.models import *
 from django.contrib.auth.hashers import make_password, check_password
 from datetime import datetime
+from .forms import EmailForm
+from django.template.loader import render_to_string
 
 ### imagen 
 from django.conf import settings
@@ -38,11 +40,10 @@ def enviar_correo(request):
         subject = request.POST.get('subject')
         message = request.POST.get('message')
         from_email = settings.EMAIL_HOST_USER
-        recipient_list = [request.POST.get('recipient_email')]
+        recipient_list = ['mdberdugo@personalsoft.com','manuel.david.13.b@gmail.com']
 
         send_mail(subject, message, from_email, recipient_list)
-        return render(request, 'correo_enviado.html')
-
+        #return render(request, 'correo_enviado.html')
     return render(request, 'formulario_correo.html')
 
 
@@ -82,8 +83,7 @@ def resta(request):
 
 
 ### sistema 1 y gestion de vistas
-def sistema1(request):
-    
+def sistema1(request):    
     context = request.session.get('context', {})    
     # Define un diccionario con las claves y sus valores iniciales
     views = {}
@@ -278,6 +278,15 @@ def stela(request,cola_id):
         user.delete()
         cola.recuperada = 'SI'
         cola.save()
+        subject = 'Creacion Incidencia  - Impacto alto ADSL'
+        message = ''
+        from_email = settings.EMAIL_HOST_USER
+        
+        html_message =  render_to_string('formulario_correo.html',{'cola':cola})
+        
+        #'noc_etb_adsl_eda@etb.com.co','francoby.perezg@gmail.com',
+        recipient_list = ['manuel.david.13.b@gmail.com']
+        send_mail(subject, message, from_email, recipient_list,fail_silently=False,html_message=html_message)
         return redirect('cola')
     
         #nuevo_usuario = Usuarios(nombre=name,cargo =cargo,gestion = gestion,segmento=segmento , correo = correo , username = user,tipo_usuario = '1' ,cod_etb = '2020B',clave = hashed_password  )
