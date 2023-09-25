@@ -36,7 +36,7 @@
           <img src="{% static 'img/colvalogo.png' %}" alt="Logo compañia" width="50%x" >
         </div>
         <div class="card-body">
-          <p class="login-box-msg">Ingrese correo para el envio de Cambio de contraseña </p>
+          <p class="login-box-msg">Restablecer contraseña</p>
             {% if error_message %}
                 {% for message in error_message %}
                     <p class="alert alert-danger" > {{ message }}</p>
@@ -46,13 +46,23 @@
             {% csrf_token %}
             
             <div class="input-group mb-3">
-              <input type="correo" class="form-control" placeholder="Correo de Validacion " id="correo" name="correo" required >
+              <input type="password" class="form-control" placeholder="Nueva contraseña" id="password1" name="password1" required >
               <div class="input-group-append">
                 <div class="input-group-text">
-                  <span class="fas fa-at"></span>
+                  <span class="fas fa-lock"></span>
                 </div>
               </div>
             </div>
+
+            <div class="input-group mb-3">
+                <input type="password" class="form-control" placeholder="Confirmacion Nueva contraseña" id="password2" name="password2" required >
+                <div class="input-group-append">
+                  <div class="input-group-text">
+                    <span class="fas fa-lock"></span>
+                  </div>
+                </div>
+              </div>
+    
             <div class="social-auth-links text-center mt-2 mb-3">
               <button  class="btn btn-block btn-primary" type="submit" >Restablecer</button>
           </div>

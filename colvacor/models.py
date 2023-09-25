@@ -115,6 +115,7 @@ class Usuarios(models.Model):
     cod_etb = models.CharField(max_length=20)
     imagen_usuario = models.CharField(max_length=255)
     numero_telefono = models.CharField(max_length=10)
+    token = models.CharField(max_length=12)
     
     class Meta:
         app_label = 'colvacor'

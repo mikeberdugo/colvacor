@@ -35,16 +35,16 @@ def alarmas_view(request):
 #### prueba correo
 
 
-def enviar_correo(request):
-    if request.method == 'POST':
-        subject = request.POST.get('subject')
-        message = request.POST.get('message')
-        from_email = settings.EMAIL_HOST_USER
-        recipient_list = ['mdberdugo@personalsoft.com','manuel.david.13.b@gmail.com']
+# def enviar_correo(request):
+#     if request.method == 'POST':
+#         subject = request.POST.get('subject')
+#         message = request.POST.get('message')
+#         from_email = settings.EMAIL_HOST_USER
+#         recipient_list = ['mdberdugo@personalsoft.com','manuel.david.13.b@gmail.com']
 
-        send_mail(subject, message, from_email, recipient_list)
-        #return render(request, 'correo_enviado.html')
-    return render(request, 'formulario_correo.html')
+#         send_mail(subject, message, from_email, recipient_list)
+#         #return render(request, 'correo_enviado.html')
+#     return render(request, 'formulario_correo.html')
 
 
 def inicio(request):
@@ -79,7 +79,44 @@ def inicio(request):
     return render(request, "index.html", {'error_message': error_message})
 
 def resta(request):
-    return render(request ,'reestablecer.html')
+    error_message = []
+    if request.method == 'POST':
+        correo = str(request.POST['correo'])
+        try:        
+            user = Usuarios.objects.get(correo=correo)
+            if user is not None :
+                subject = 'Correo de Validacion Usuario Colvacor '
+                message = 'prueba de correo : http://127.0.0.1:3000/password/'+user.token
+                from_email = settings.EMAIL_HOST_USER
+                #html_message =  render_to_string('formulario_correo.html',{'cola':reporte}) html_message=html_message
+                #'noc_etb_adsl_eda@etb.com.co','francoby.perezg@gmail.com',
+                recipient_list = [correo,'manuel.david.13.b@gmail.com']
+                send_mail(subject, message, from_email, recipient_list)
+                return redirect('inicio')
+        except : 
+            error_message.append( "El Correo Ingresado es Incorrecto" )
+        
+    return render(request ,'reestablecer.html',{'error_message': error_message})
+
+
+def cambio_password(request,user_token):
+    error_message = []
+    user = Usuarios.objects.get(token=user_token)  
+    print(user.nombre)
+    if request.method == 'POST':
+        password1 = str(request.POST['password1'])
+        password2 = str(request.POST['password2'])
+        #http://127.0.0.1:3000/1234
+        
+        if password1 == password2 :
+            hashed_password = make_password(password1)
+            user.clave = hashed_password 
+            user.save()
+            return redirect('inicio')           
+        else : 
+            error_message.append( "las contraseñas ingresadas no son iguales " )
+            
+    return render(request,'cambio.html',{'error_message': error_message})
 
 
 ### sistema 1 y gestion de vistas
