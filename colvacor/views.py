@@ -95,14 +95,16 @@ def sistema1(request):
     
     context['desc'] = Descartadas.objects.count()
     context['caso'] = Reportes.objects.count()
-    context['cola'] = ColaCreacion.objects.count()
+    context['cola'] = ColaCreacion.objects.filter(recuperada='NO').count()
     #context = views  # Usa el diccionario como contexto
     request.session['context'] = context
     
     alarmas = Alarmas.objects.all()
-    colaCreacion = ColaCreacion.objects.all()
+    colaCreacion = ColaCreacion.objects.filter(recuperada='NO')
     
     return render(request, "sistema1.html", {'context' :context ,'alarmas': alarmas, 'colaCreacion': colaCreacion})
+
+
 
 
 def gestion(request,alarma_id):
@@ -110,9 +112,19 @@ def gestion(request,alarma_id):
     alarma = Alarmas.objects.get(pk=alarma_id)
     return render(request,"./admin/gestionar.html",{'context' :context ,'alarma': alarma})
 
+def incidente(request,alarma_id):
+    alarma = Alarmas.objects.get(pk=alarma_id)
+    #docu3
+    inciden = ColaCreacion(id_alarma = alarma.id , inc ='' , tipo_alarma = alarma.tipo_alarma , hora_inicio = alarma.hora_inicio , 
+                    central = alarma.central,clientes = alarma.clientes)
+    inciden.save()
+    return redirect('sistema1')
+    
 #### plantilla --- prueba
 def prueba(request):
     return render(request,"prueba.html")
+
+
 
 
 #### plantilla ---  gestion de usuario
@@ -156,12 +168,42 @@ def nuevo(request):
         hashed_password = make_password(clave)
         nuevo_usuario = Usuarios(nombre=name,cargo =cargo,gestion = gestion,segmento=segmento , correo = correo , username = user,tipo_usuario = '1' ,cod_etb = '2020B',clave = hashed_password  )
         nuevo_usuario.save()
-
-    else :
-        print('no llego nada')
+        return redirect(usuarios)
     # nuevo_producto = Producto(nombre=nombre, precio=precio)
     # nuevo_producto.save()
     return render(request,"./admin/nuevo_usuario.html",{'context' :context})
+
+
+def correos(request):    
+    context = request.session.get('context', {})
+    core =  Correos.objects.filter(gestion='CORE') 
+    node =  Correos.objects.filter(gestion='NODO') 
+    gpon =  Correos.objects.filter(gestion='GPON') 
+    txnal = Correos.objects.filter(gestion='TX NAL')
+    adsl =  Correos.objects.filter(gestion='ADSL') 
+    txlocal = Correos.objects.filter(gestion='TX LOCAL')
+    iptv = Correos.objects.filter(gestion='IPTV')
+    mpls = Correos.objects.filter(gestion='MPLS')
+    
+    return render(request,"./admin/correos.html",{'context' :context,'core':core,'node':node , 'gpon':gpon ,'txnal' : txnal ,'adsl':adsl, 'txlocal':txlocal , 'iptv':iptv , 'mpls':mpls})
+
+
+def nuevo_correo(request):
+    context = request.session.get('context', {})#'context' :context,
+    if request.method == 'POST':
+        gestion = request.POST['gestion']
+        correo = request.POST['correo']
+        nuevoCorreo =  Correos(gestion = gestion , correo = correo )
+        nuevoCorreo.save()
+        return redirect(correos)
+        
+    return render(request,"./admin/nuevocorreo.html",{'context' :context})
+
+
+def eliminar_correo(request,mail_id):
+    correo = get_object_or_404(Correos, id=mail_id)
+    correo.delete()
+    return redirect(correos)
 
 #### plantilla --- alarmas descartadas
 def alarmas(request):
@@ -269,7 +311,7 @@ def stela(request,cola_id):
         tipo_escalamiento = request.POST['tipo_escalamiento']
         inc = request.POST['inc']
         hora_actual = datetime.now()
-        reporte = Reportes(id_alarma = id_alarma , inc = inc, equipo  = equipo , tipo_alarma = tipo_alarma , central = central ,gestion = gestion , clientes = clientes1 , 
+        reporte = Reportes(id_alarma = id_alarma , inc = inc, equipo  = equipo , tipo_alarma = tipo_alarma , central = central ,gestion = gestion , clientes = clientes, 
                     tipo_evento = tipo_evento ,usuario = usuario , tipo_escalamiento = tipo_escalamiento , hora_inicio = hora_inicio ,
                     docu1= docu1 , docu2= docu2 ,docu3= docu3 ,docu4= docu4 , grupo_asignado = Grupo_reporte , hora_asignacion =  hora_reporte , hora_ult_act =hora_actual ,
                     hora = hora )
@@ -278,14 +320,14 @@ def stela(request,cola_id):
         user.delete()
         cola.recuperada = 'SI'
         cola.save()
-        subject = 'Creacion Incidencia  - Impacto alto ADSL'
+        subject = 'Creacion Incidencia '+str(cola.inc) +  ' - Impacto alto ADSL'
         message = ''
         from_email = settings.EMAIL_HOST_USER
         
-        html_message =  render_to_string('formulario_correo.html',{'cola':cola})
+        html_message =  render_to_string('formulario_correo.html',{'cola':reporte})
         
         #'noc_etb_adsl_eda@etb.com.co','francoby.perezg@gmail.com',
-        recipient_list = ['manuel.david.13.b@gmail.com']
+        recipient_list = ['noc_etb_adsl_eda@etb.com.co','francoby.perezg@gmail.com','manuel.david.13.b@gmail.com']
         send_mail(subject, message, from_email, recipient_list,fail_silently=False,html_message=html_message)
         return redirect('cola')
     

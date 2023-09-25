@@ -119,3 +119,12 @@ class Usuarios(models.Model):
     class Meta:
         app_label = 'colvacor'
         db_table = 'usuarios'
+        
+
+class Correos(models.Model):
+    gestion = models.CharField(max_length=255)
+    correo = models.CharField(max_length=255)
+    class Meta:
+        app_label = 'colvacor'
+        db_table = 'correos'
+

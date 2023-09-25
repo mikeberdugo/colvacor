@@ -1,0 +1,50 @@
+{% extends 'plantilla.html' %}
+
+{% block title %}Sistema NOC - Gestion De Correos - Nuevo Correo {% endblock %}
+
+{% block sub-title %}Correo de validacion de alarma por gestion - Nuevo Correo {% endblock %}
+
+{% block content %}
+    <form method="POST">
+        {% csrf_token %}
+        
+        <div class="form-group row">
+            <label for="gestion" class="col-sm-2 col-form-label">Gestión</label>
+            <div class="col-sm-2">
+                <select class="form-control" id="gestion" name="gestion" required>
+                    <option value="ADSL" >ADSL</option>
+                    <option value="MPLS" >MPLS</option>
+                    <option value="CORE" >CORE</option>
+                    <option value="NODO" >NODO</option>
+                    <option value="GPON" >GPON</option>
+                    <option value="IPTV" >IPTV</option>
+                    <option value="TX LOCAL" >TX LOCAL</option>
+                    <option value="TX NACIONAL" >TX NACIONAL</option>
+                    <option value="MULTISKILL" >MULTISKILL</option>
+                </select>
+            </div>
+
+            <label for="correo" class="col-sm-1 col-form-label">Correo</label>
+            <div class="col-sm-4">
+                <input type="email" class="form-control" id="correo" name="correo" required >
+            </div>
+            
+        </div>
+
+        <div class="from-group row">
+
+            <div class="col-sm-3  mt-sm-1">
+                
+            </div>
+
+
+            <div class="col-sm-3  mt-sm-2">
+                <button class="btn btn-success btn-block" type="submit" >Agregar Correo</button>
+            </div>
+
+            <div class="col-sm-3  mt-sm-2 ">
+                <a href="{% url 'correos'%}"  class="btn btn-danger btn-block" >Cancelar </a>
+            </div>
+        </div>
+    </form>
+{% endblock %}
