@@ -1,0 +1,60 @@
+<script>
+    const formulario1 = document.getElementById('miFormulario1');
+    const fechaFinal1 = document.getElementById('fechaFinal1');
+    const descargaBtn1 = document.getElementById('descargaBtn1');
+    
+    formulario.addEventListener('input', function() {
+        const fechaActual1 = new Date();
+        const fechaFinalValue1 = new Date(fechaFinal.value);
+        
+        if (fechaFinalValue1 > fechaActual1 ) {
+            descargaBtn1.disabled = true;
+            alert('La Fecha Final no puede ser MAYOR que la fecha actual.');
+            return;
+        } else {
+            descargaBtn1.disabled = false;
+        }
+    });
+</script>
+
+
+<script>
+    const formulario2 = document.getElementById('miFormulario2');
+    const fechaFinal2 = document.getElementById('fechaFinal2');
+    const descargaBtn2 = document.getElementById('descargaBtn2');
+    
+    formulario.addEventListener('input', function() {
+        const fechaActual2 = new Date();
+        const fechaFinalValue2 = new Date(fechaFinal.value);
+        
+        if (fechaFinalValue2 > fechaActual2 ) {
+            descargaBtn2.disabled = true;
+            alert('La Fecha Final no puede ser MAYOR que la fecha actual.');
+            return;
+        } else {
+            descargaBtn2.disabled = false;
+        }
+    });
+</script>
+
+
+
+
+<script>
+    const formulario3 = document.getElementById('miFormulario3');
+    const fechaFinal3 = document.getElementById('fechaFinal3');
+    const descargaBtn3 = document.getElementById('descargaBtn3');
+    
+    formulario.addEventListener('input', function() {
+        const fechaActual3 = new Date();
+        const fechaFinalValue3 = new Date(fechaFinal.value);
+        
+        if (fechaFinalValue3 > fechaActual3 ) {
+            descargaBtn3.disabled = true;
+            alert('La Fecha Final no puede ser MAYOR que la fecha actual.');
+            return;
+        } else {
+            descargaBtn3.disabled = false;
+        }
+    });
+</script>

@@ -25,11 +25,13 @@ urlpatterns = [
     path('gestion/<int:alarma_id>',gestion,name='gestion'),
     path('prueba/',prueba),
     path('usuarios/',usuarios,name = 'usuarios'),
-    path('nuevo-usuario/',nuevo,name = 'nuevo'),
+    path('usuarios/nuevo-usuario/',nuevo,name = 'nuevo'),
+    path('usuarios/modifciar/<int:user_id>/',modifica_usuario, name = 'modificar'),
+    path('usuarios/eliminar-usuario/<int:user_id>/',eliminar_usuario, name='eliminar-usuario'),
     path('alarmas/',alarmas,name = 'alarmas'),
-    path('alarma-descartada/<int:descartada_id>/',alarmas_descartadas, name='descartada'),
+    path('alarmas/descartada/<int:descartada_id>/',alarmas_descartadas, name='descartada'),
     path('casos/',casos,name = 'casos'),
-    path('caso/<int:reporte_id>/',caso,name = 'caso'),
+    path('casos/caso/<int:reporte_id>/',caso,name = 'caso'),
     path('reportes/',reportes,name = 'reportes'),
     path('user/',user,name = 'user'),
     path('cambio/', cambio_numero, name='cambio_numero'),
@@ -44,6 +46,5 @@ urlpatterns = [
     path('alarma2/', alarmas_view, name='alarmas2'),
     path('resta/', resta, name='reestablecer'),
     path('password/<str:user_token>',cambio_password),
-    path('modifciar/<int:user_id>/',modifica_usuario, name = 'modificar'),
-    path('eliminar-usuario/<int:user_id>/',eliminar_usuario, name='eliminar-usuario')
+    
 ]
