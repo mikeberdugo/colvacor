@@ -42,9 +42,8 @@
                     <p class="alert alert-danger" > {{ message }}</p>
                 {% endfor %}
             {% endif %}
-          <form  method="POST">
-            {% csrf_token %}
-            
+          <form  method="POST" >
+            {% csrf_token %}            
             <div class="input-group mb-3">
               <input type="correo" class="form-control" placeholder="Correo de Validacion " id="correo" name="correo" required >
               <div class="input-group-append">

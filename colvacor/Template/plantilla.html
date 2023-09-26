@@ -13,6 +13,7 @@
     <link rel="stylesheet" href=" {% static 'plugins/datatables-responsive/css/responsive.bootstrap4.min.css' %}">
     <link rel="stylesheet" href=" {% static 'plugins/datatables-buttons/css/buttons.bootstrap4.min.css' %}">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    
   <!-- Theme style -->
     <link rel="stylesheet" href="{% static 'dist/css/adminlte.min.css' %} ">
     <link rel="icon" type="image/png" href="{% static 'img/colvalogo.png' %}">
@@ -170,7 +171,38 @@
     recargarVista();
 </script>
 
+                <!-- Modal de Bootstrap -->
+                <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                  <div class="modal-dialog modal-dialog-centered" role="document">
+                      <div class="modal-content">
+                          <div class="modal-header">
+                              <h5 class="modal-title" id="exampleModalLongTitle">Confirmación</h5>
+                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                  <span aria-hidden="true">&times;</span>
+                              </button>
+                          </div>
+                          <div class="modal-body">
+                              ¿Está seguro de que desea Salir del sistema ?
+                          </div>
+                          <div class="modal-footer">
+                              <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                              <a href="{% url 'cerrar' %}" class="btn btn-primary">Confirmar</a>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+
+                <!-- Script adicional para manejar el cierre del modal -->
+  <script>
+    // Cierra el modal cuando se hace clic en el botón Cancelar o fuera del modal
+    $('#myModal').on('hidden.bs.modal', function () {
+        // Restablece el modal
+        $('#myModal').modal('hide');
+    });
+</script>
+
 </body>
+
 </html>
 
 

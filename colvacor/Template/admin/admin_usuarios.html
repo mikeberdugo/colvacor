@@ -34,7 +34,7 @@
                                                             <a class="btn btn-warning btn-sm btn_gestionar" href="{% url 'modificar' user_id=user.id %}">Modificar</a>
                                                             &nbsp;
                                                             <button type="button" class="btn btn-danger btn-sm btn_gestionar" data-toggle="modal" data-target="#exampleModalCenter{{ user.id }}" >
-                                                            Eliminar 
+                                                                Eliminar  &nbsp; <span class="fas  fa-user-times"></span>
                                                             </button>  
                                                         </td>
                                                     </tr>
@@ -54,6 +54,7 @@
                                                                         <div class="modal-footer">
                                                                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
                                                                             <a href="{% url 'eliminar-usuario' user_id=user.id %}" class="btn btn-primary">Confirmar</a>
+                                                                            
                                                                         </div>
                                                                     </div>
                                                                 </div>

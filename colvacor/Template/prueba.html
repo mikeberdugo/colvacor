@@ -1,92 +1,50 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejemplo de Modal Bootstrap</title>
+    <!-- Agrega los enlaces a Bootstrap CSS, jQuery y Popper.js -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <title>Botones y Modales</title>
 </head>
 <body>
-
-<div class="container mt-5">
-    <form method="post">
-        <div class="form-group">
-            <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modaldescartar">Descartar Alarma</button>
-        </div>
-        <div class="form-group">
-            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#ModalContingencia">Crear por Contingencia</button>
-        </div>
-        <div class="form-group">
-            <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#ModalIncidente">Crear Incidente</button>
-        </div>
-    </form>
-</div>
-
-<!-- Modal 1: Descartar Alarma -->
-<div class="modal fade" id="modaldescartar" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle">Confirmación para Descartar Alarma</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                ¿Está seguro de que desea descartar esta alarma?
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                <button type="button" class="btn btn-danger">Descartar</button>
+    <!-- Enlace para abrir el modal -->
+    <a class="nav-link" data-toggle="modal" data-target="#myModal">
+        <i class="fas fa-toggle-off"></i>
+        <p>
+            &nbsp;Cerrar Sesión
+        </p> 
+    </a>
+    
+    <!-- Modal de Bootstrap -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Confirmación</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    ¿Está seguro de que desea cerrar sesión?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <a href="#" class="btn btn-primary">Confirmar</a>
+                </div>
             </div>
         </div>
     </div>
-</div>
 
-<!-- Modal 2: Crear por Contingencia -->
-<div class="modal fade" id="ModalContingencia" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle">Confirmación para Crear por Contingencia</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                ¿Está seguro de que desea crear por contingencia?
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                <button type="button" class="btn btn-success">Crear por Contingencia</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- Modal 3: Crear Incidente -->
-<div class="modal fade" id="ModalIncidente" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle">Confirmación para Crear Incidente</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                ¿Está seguro de que desea crear un incidente?
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                <button type="button" class="btn btn-warning">Crear Incidente</button>
-            </div>
-        </div>
-    </div>
-</div>
-
+    <!-- Script adicional para manejar el cierre del modal -->
+    <script>
+        // Cierra el modal cuando se hace clic en el botón Cancelar o fuera del modal
+        $('#myModal').on('hidden.bs.modal', function () {
+            // Restablece el modal
+            $('#myModal').modal('hide');
+        });
+    </script>
 </body>
 </html>

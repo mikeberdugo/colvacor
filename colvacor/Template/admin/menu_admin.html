@@ -15,7 +15,7 @@
     <ul class="navbar-nav ml-auto">
     <li class="nav-item">
         <a class="nav-link" href="#" role="button">
-          <i class="fas fa-refresh">Actualizar : </i>
+          <i class="fas fa-refresh"><i class="fas fa-spinner"></i>&nbsp;Actualizar : </i>
         </a>
       </li>
     <li>
@@ -169,7 +169,7 @@
               </li>
               <li class="nav-item">
                 <a href="{% url 'correos' %}" class="nav-link">
-                  <i class="fas fa-industry "></i>
+                  <i class="fas fa-envelope "></i>
                   <p>&nbsp;Gestionar De Correos</p>
                 </a>
               </li>
@@ -215,12 +215,14 @@
             </li> 
 
             <li class="nav-item">
-            <a href="{% url 'cerrar' %}" class="nav-link">
-                <i class="fas fa-door-open"></i>
+              
+            <a class="nav-link" data-toggle="modal" data-target="#myModal" >
+                <i class="fas fa-toggle-off"></i>
                 <p>
-                 Cerrar Sesión
-                </p>
+                  &nbsp;Cerrar Sesión
+                </p> 
                 </a>
+
             </li>
 
 
@@ -240,4 +242,5 @@
       <!-- /.sidebar-menu -->
     </div>
     <!-- /.sidebar -->
+
   </aside>

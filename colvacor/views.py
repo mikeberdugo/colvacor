@@ -15,7 +15,8 @@ from PIL import Image
 import uuid
 
 ### modulos personales
-from django.contrib.auth import login
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth import login, logout,authenticate
 #### loging
 
 import random
@@ -55,6 +56,7 @@ def inicio(request):
     if request.method == 'POST':
         username = request.POST['username']
         password = request.POST['password']
+        user2 = authenticate(username=username, password=password)
         try:
             user = Usuarios.objects.get(username=username)            
             if user is not None :
@@ -74,7 +76,9 @@ def inicio(request):
                     return redirect('sistema1')
                 else:
                     error_message.append("contraseña incorrecta.")
-        except : 
+        except Exception as e:
+    # Captura la excepción y la almacena en la variable 'e'
+            print(f"Se produjo un error: {str(e)}")  # Imprime el mensaje de error 
             error_message.append( "Nombre de usuario incorrecto" )
     return render(request, "index.html", {'error_message': error_message})
 
@@ -309,8 +313,12 @@ def imagen(request):
 
 #### plantilla --- out
 def cerrar(request):
-    #context = request.session.get('context', {}) # 'context' :context ,
-    return render(request,"./admin/cerrar.html")
+    context = request.session.get('context', {})#'context' :context,
+    context.clear()
+    print(context)
+    request.session['context'] = context   
+    print(request.session['context'])
+    return redirect('inicio')
 
 ### las colas de estela y el almacenamiento nuevo
 
