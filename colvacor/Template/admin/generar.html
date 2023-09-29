@@ -15,15 +15,15 @@
                                                 </div>
     
     
-                                                <form>
+                                                <form id="miFormulario1">
                                                     <div class="card-body">
                                                         <div class="form-group">
-                                                            <label for="exampleInputEmail1">Fecha Inicial</label>
-                                                            <input type="date" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+                                                            <label for="fechaInicial1">Fecha Inicial</label>
+                                                            <input type="date" class="form-control" id="fechaInicial1" placeholder="Enter email">
                                                         </div>
                                                         <div class="form-group">
-                                                            <label for="exampleInputPassword1">Fecha Final</label>
-                                                            <input type="date" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                                                            <label for="fechaFinal1">Fecha Final</label>
+                                                            <input type="date" class="form-control" id="fechaFinal1" placeholder="Password">
                                                         </div>
                                                         <div class="form-group">
                                                             <label for="exampleInputFile">Segmento del Reporte</label>
@@ -40,7 +40,7 @@
                                                     </div>
     
                                                     <div class="card-footer">
-                                                        <button type="submit" class="btn btn-info" style="color:#fff;">Descarga</button>
+                                                        <button type="submit" class="btn btn-info"  id="descargaBtn1" style="color:#fff;">Descarga</button>
                                                     </div>
                                                 </form>
                                             </div>
@@ -57,15 +57,15 @@
                                                 </div>
     
     
-                                                <form>
+                                                <form id="miFormulario2">
                                                     <div class="card-body">
                                                         <div class="form-group">
-                                                            <label for="exampleInputEmail1">Fecha Inicial</label>
-                                                            <input type="date" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+                                                            <label for="fechaInicial2">Fecha Inicial</label>
+                                                            <input type="date" class="form-control" id="fechaInicial2"   placeholder="Enter email">
                                                         </div>
                                                         <div class="form-group">
-                                                            <label for="exampleInputPassword1">Fecha Final</label>
-                                                            <input type="date" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                                                            <label for="fechaFinal2">Fecha Final</label>
+                                                            <input type="date" class="form-control" id="fechaFinal2" placeholder="Password">
                                                         </div>
                                                         <div class="form-group">
                                                             <label for="exampleInputFile">Segmento del Reporte</label>
@@ -88,7 +88,7 @@
                                                     </div>
     
                                                     <div class="card-footer">
-                                                        <button type="submit" class="btn btn-primary">Descarga</button>
+                                                        <button type="submit" class="btn btn-primary" id="descargaBtn2" >Descarga</button>
                                                     </div>
                                                 </form>
                                             </div>
@@ -106,15 +106,15 @@
                                                 </div>
     
     
-                                                <form id="miFormulario">
+                                                <form id="miFormulario3">
                                                     <div class="card-body">
                                                         <div class="form-group">
-                                                            <label for="fechaInicial">Fecha Inicial</label>
-                                                            <input type="date" class="form-control" id="fechaInicial" required>
+                                                            <label for="fechaInicial3">Fecha Inicial</label>
+                                                            <input type="date" class="form-control" id="fechaInicial3" required>
                                                         </div>
                                                         <div class="form-group">
-                                                            <label for="fechaFinal">Fecha Final</label>
-                                                            <input type="date" class="form-control" id="fechaFinal" required>
+                                                            <label for="fechaFinal3">Fecha Final</label>
+                                                            <input type="date" class="form-control" id="fechaFinal3" required>
                                                         </div>
                                                         <div class="form-group">
                                                             <label for="segmento">Segmento del Reporte</label>
@@ -136,34 +136,12 @@
                                                     </div>
                                                 
                                                     <div class="card-footer">
-                                                        <button type="submit" class="btn btn-primary" id="descargaBtn">Descarga</button>
+                                                        <button type="submit" class="btn btn-primary" id="descargaBtn3">Descarga</button>
                                                     </div>
                                                 </form>
                                             </div>
     
                                         </div>
 </div>
-
-<script>
-    const formulario = document.getElementById('miFormulario');
-    const fechaInicial = document.getElementById('fechaInicial');
-    const fechaFinal = document.getElementById('fechaFinal');
-    const descargaBtn = document.getElementById('descargaBtn');
-    
-    formulario.addEventListener('input', function() {
-        const fechaActual = new Date();
-        const fechaInicialValue = new Date(fechaInicial.value);
-        const fechaFinalValue = new Date(fechaFinal.value);
-        
-        if (fechaFinalValue > fechaActual) {
-            descargaBtn.disabled = true;
-            alert('La Fecha Final no puede ser MAYOR que la fecha actual.');
-            return;
-        } else {
-            descargaBtn.disabled = false;
-        }
-    });
-</script>
-
-
+{% include 'admin/script/fechas.html' %}
 {% endblock %}

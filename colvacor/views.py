@@ -373,7 +373,7 @@ def stela(request,cola_id):
         
         #'noc_etb_adsl_eda@etb.com.co','francoby.perezg@gmail.com',
         recipient_list = ['noc_etb_adsl_eda@etb.com.co','francoby.perezg@gmail.com','manuel.david.13.b@gmail.com']
-        send_mail(subject, message, from_email, recipient_list,fail_silently=False,html_message=html_message)
+        #send_mail(subject, message, from_email, recipient_list,fail_silently=False,html_message=html_message)
         return redirect('cola')
     
         #nuevo_usuario = Usuarios(nombre=name,cargo =cargo,gestion = gestion,segmento=segmento , correo = correo , username = user,tipo_usuario = '1' ,cod_etb = '2020B',clave = hashed_password  )
