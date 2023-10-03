@@ -2,6 +2,8 @@
 
 librarys : 
 1) pip install mysqlclient
+2) pip install uuid 
+
 
 comandos utilizados : 
 
