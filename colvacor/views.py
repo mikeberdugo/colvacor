@@ -243,7 +243,7 @@ def nuevo_correo(request):
     return render(request,"./admin/nuevocorreo.html",{'context' :context})
 
 
-def eliminar_correo(request,mail_id):
+def eliminar_correo(mail_id):
     correo = get_object_or_404(Correos, id=mail_id)
     correo.delete()
     return redirect(correos)

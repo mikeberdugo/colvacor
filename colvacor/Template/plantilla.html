@@ -144,33 +144,7 @@
     });
   </script>
 
-<script>
-    function recargarVista() {
-        var selectTiempo = document.getElementById("tiempo_refresh");
-        
-        // Obtiene el valor almacenado en localStorage
-        var tiempoGuardado = localStorage.getItem("tiempoSeleccionado");
 
-        // Si hay un valor almacenado, selecciónalo
-        if (tiempoGuardado) {
-            selectTiempo.value = tiempoGuardado;
-        }
-
-        selectTiempo.addEventListener("change", function() {
-            var tiempoSeleccionado = selectTiempo.value;
-            
-            // Almacena la selección en localStorage
-            localStorage.setItem("tiempoSeleccionado", tiempoSeleccionado);
-
-            // Establece el temporizador de recarga
-            setTimeout(function() {
-                location.reload();
-            }, tiempoSeleccionado * 1000);
-        });
-    }
-
-    recargarVista();
-</script>
 
                 <!-- Modal de Bootstrap -->
                 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">

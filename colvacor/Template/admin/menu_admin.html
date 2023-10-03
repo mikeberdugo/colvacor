@@ -14,14 +14,14 @@
     <!-- links de menu superior-->
     <ul class="navbar-nav ml-auto">
     <li class="nav-item">
-        <a class="nav-link" href="#" role="button">
+        <a class="nav-link" href="" role="button">
           <i class="fas fa-refresh"><i class="fas fa-spinner"></i>&nbsp;Actualizar : </i>
         </a>
       </li>
     <li>
     <a class="nav-item">
           <select id="tiempo_refresh" name="tiempo_refresh" class="form-control select2" style="width: 100%;">
-            <option value="60">Cada minuto</option>
+            <option value="60" selected >Cada minuto</option>
             <option value="120">Cada 2 minutos</option>
             <option value="300">Cada 5 minutos</option>
             <option value="420">Cada 7 minutos</option>
@@ -264,3 +264,31 @@
     <!-- /.sidebar -->
 
   </aside>
+  <script>
+    function recargarVista() {
+        var selectTiempo = document.getElementById("tiempo_refresh");
+        
+        // Obtiene el valor almacenado en localStorage
+        var tiempoGuardado = localStorage.getItem("tiempoSeleccionado");
+
+        // Si hay un valor almacenado, selecciónalo
+        if (tiempoGuardado) {
+            selectTiempo.value = tiempoGuardado;
+        }
+
+        selectTiempo.addEventListener("change", function() {
+            var tiempoSeleccionado = selectTiempo.value;
+            
+            // Almacena la selección en localStorage
+            localStorage.setItem("tiempoSeleccionado", tiempoSeleccionado);
+
+            // Establece el temporizador de recarga
+            setTimeout(function() {
+                location.reload();
+                console.log("Hola, esto se mostrará en la consola del navegador.");
+            }, tiempoSeleccionado * 1000);
+        });
+    }
+
+    recargarVista();
+</script>
