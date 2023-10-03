@@ -13,6 +13,7 @@ from django.core.files.storage import default_storage
 from django.core.files.base import ContentFile
 from PIL import Image
 import uuid
+from django.db.models import Q
 
 ### modulos personales
 from django.contrib.auth.decorators import login_required
@@ -21,6 +22,7 @@ from django.contrib.auth import login, logout,authenticate
 
 import random
 import string
+import datetime
 
 def texto_aleatorio(max_length):
     caracteres = string.ascii_letters + string.digits
@@ -328,7 +330,7 @@ def cola(request):
     colas = ColaCreacion.objects.filter(recuperada='NO')
     return render(request,"./admin/cola_stela.html",{'context' :context ,'colas': colas})
 
-def stela(request,cola_id):
+def creacion_stela(request,cola_id):
     context = request.session.get('context', {}) # 'context' :context ,
     cola = ColaCreacion.objects.get(pk=cola_id)#caso_id
     if request.method == 'POST':
@@ -393,3 +395,12 @@ def stela(request,cola_id):
         f"\nVOBO INGENIERO: Lizeth Vacca"
     )
     return render(request,"./admin/ver_stela.html",{'context' :context ,'mensaje': mensaje, 'cola': cola})
+
+
+def actualiza_stela(request):
+    context = request.session.get('context', {})
+    reportes =  Reportes.objects.filter(cliente__isnull=True, solucion__isnull=True) | \
+                        Reportes.objects.filter(cliente__exact='', solucion__exact='')
+        
+    # Formatea la hora como HH:MM:SS
+    return render(request,"./admin/actualiza_stela.html",{'context' :context , 'reportes' : reportes })

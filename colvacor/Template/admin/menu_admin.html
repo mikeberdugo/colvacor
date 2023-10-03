@@ -175,22 +175,34 @@
               </li>
             </ul>
           </li>
-          <li class="nav-header">Gestion de Alarmas</li> 
+
+
           <li class="nav-item">
-            <a href="{% url 'alarmas' %}" class="nav-link">
-              <i class="fas fa-bell-slash"></i>
-              <p> &nbsp; Alarmas Descartadas</p>
-            </a>
-          </li>
-          <li class="nav-item">
-          <a href="{% url 'casos' %}" class="nav-link">
-              <i class="fas fa-file-export"></i>
+            <a href="" class="nav-link">
+              <i class="nav-icon fas fa-cube"></i>
               <p>
-                 &nbsp; Casos Reportados
+                  Gestion de Alarmas  
+                <i class="fas fa-angle-left right"></i>
               </p>
             </a>
-          </li> 
-          
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{% url 'alarmas' %}" class="nav-link">
+                  <i class="fas fa-bell-slash"></i>
+                  <p> &nbsp; Alarmas Descartadas</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{% url 'casos' %}" class="nav-link">
+                  <i class="fas fa-file-export"></i>
+                  <p>
+                      &nbsp; Casos Reportados
+                  </p>
+                </a>
+              </li>
+            </ul>
+          </li>
+
           
 
           <li class="nav-header">Reporting</li> 
@@ -231,11 +243,19 @@
               <a id="vercolaia" name="vercolaia" href="{% url 'cola' %}" class="nav-link">
                   <i class="fas fa-robot"></i>
                   <p>
-                    &nbsp; Cola Creación Casos IA
+                    &nbsp;Creación Casos IA
                   </p>
                 </a>
               </li> 
 
+              <li class="nav-item" name="itemIA" id="itemIA">
+                <a id="vercolaia" name="vercolaia" href="{% url 'actualiza_stela' %}" class="nav-link">
+                    <i class="fas fa-robot"></i>
+                    <p>
+                      &nbsp; Actualizacion Casos IA 
+                    </p>
+                  </a>
+                </li> 
 
         </ul>
       </nav>

@@ -41,8 +41,11 @@ urlpatterns = [
     path('correos/eliminar/<int:mail_id>/',eliminar_correo,name = 'eliminarcorreo'),
     path('cerrar/',cerrar,name = 'cerrar'),
     path('cola/',cola,name = 'cola'),
+    path('cola/generar/<int:cola_id>/',creacion_stela,name = 'stela'),
+    path('cola/actualzar/',actualiza_stela,name = 'actualiza_stela'),
     path('incidente/<int:alarma_id>',incidente,name = 'incidente'),
-    path('stela/<int:cola_id>/',stela,name = 'stela'),
+    
+    
     path('alarma2/', alarmas_view, name='alarmas2'),
     path('resta/', resta, name='reestablecer'),
     path('password/<str:user_token>',cambio_password),

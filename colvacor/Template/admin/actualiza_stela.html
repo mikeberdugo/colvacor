@@ -1,0 +1,30 @@
+{% extends 'plantilla.html' %}
+
+{% block title %}Sistema NOC - IA Colvacor{% endblock %}
+
+{% block sub-title %}Fila de Casos pendientes para Actualizacion por IA Colvacor{% endblock %}
+
+{% block content %}
+    <table style="font-size: 10px;" id="example1" class="table table-bordered table-hover text-center">
+        <thead style="font-size: 10px;">
+            <tr>
+                <th>Hora</th>
+                <th>Equipo</th>
+                <th>Alarma</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for reporte in reportes  %}
+            <tr>
+                <td>{{ reporte.hora }}</td>
+                <td>{{ reporte.equipo }}</td>
+                <td>{{ reporte.tipo_alarma }}</td>
+                <td><a href="" style="font-size: 12px;" class="btn btn-success btn-sm fa-sharp fa-solid fa-eye-to-square" >Actualuzar </td>
+            </tr>
+            <!--[if IE]><![endif]-->
+            {% endfor %}
+        </tbody>
+        
+    </table>
+{% endblock %}
