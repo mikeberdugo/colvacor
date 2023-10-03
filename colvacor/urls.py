@@ -43,6 +43,7 @@ urlpatterns = [
     path('cola/',cola,name = 'cola'),
     path('cola/generar/<int:cola_id>/',creacion_stela,name = 'stela'),
     path('cola/actualzar/',actualiza_stela,name = 'actualiza_stela'),
+    path('cola/actualzar/reporte/<int:reporte_id>',guarda_stela,name = 'guarda_stela'),
     path('incidente/<int:alarma_id>',incidente,name = 'incidente'),
     
     

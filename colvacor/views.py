@@ -404,3 +404,21 @@ def actualiza_stela(request):
         
     # Formatea la hora como HH:MM:SS
     return render(request,"./admin/actualiza_stela.html",{'context' :context , 'reportes' : reportes })
+
+def guarda_stela(request,reporte_id):
+    context = request.session.get('context', {})
+    reporte =  Reportes.objects.get(pk=reporte_id)
+    
+    mensaje = (
+        f"FALLA SOBRE:{reporte.equipo}, DE CENTRAL {reporte.central}, "
+        f"RED ERICSSON 180K\nHORA DE ALARMA: {reporte.hora_inicio}\nDESCRIPCIÓN DEL EVENTO: "
+        f"EQUIPO ECN330 SE OBSERVA ALARMADO EN GESTIÓN Y NO RESPONDE PRUEBAS DE CONECTIVIDAD."
+        f"\nRED: RED ERICSSON 180K.\nENLACE O EQUIPO AFECTADO (NEMÓNICO O SERVICIO): {reporte.equipo}"
+        f"\nZONA DE EVENTO: {reporte.central}\nDIRECCIÓN: \nIP: \nCLIENTE: ADSL \nNO. CLIENTES AFECTADOS:"
+        f" {reporte.clientes}\nAFECTACIÓN (TOTAL/PARCIAL): TOTAL \nSÍNTOMA: CLIENTES NO SINCRONIZAN "
+        f"\nPRUEBAS REALIZADAS: EQUIPO ECN330 SE OBSERVA ALARMADO EN GESTIÓN Y NO RESPONDE PRUEBAS DE CONECTIVIDAD."
+        f" INTERFAZ SOBRE LA RED METRO SE ENCUENTRA; DOWN, NO APRENDE MACS. . PERSONAL DE CODENSA   "
+        f"NO REPORTA FALLAS Y/O MANTENIMIENTOS DE ENERGÍA EN EL SECTOR \nDIAGNÓSTICO: POSIBLE FALLA DE EQUIPO ECN330 "
+        f"\nVOBO INGENIERO: Lizeth Vacca"
+    )
+    return render(request,"./admin/vista_actualiza_stela.html",{'context' :context ,'mensaje': mensaje, 'reporte' : reporte })

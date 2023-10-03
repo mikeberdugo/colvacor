@@ -20,7 +20,7 @@
                 <td>{{ reporte.hora }}</td>
                 <td>{{ reporte.equipo }}</td>
                 <td>{{ reporte.tipo_alarma }}</td>
-                <td><a href="" style="font-size: 12px;" class="btn btn-success btn-sm fa-sharp fa-solid fa-eye-to-square" >Actualuzar </td>
+                <td><a href="{% url 'guarda_stela' reporte_id=reporte.id %}" style="font-size: 12px;" class="btn btn-success btn-sm fa-sharp fa-solid fa-eye-to-square" >Actualuzar </td>
             </tr>
             <!--[if IE]><![endif]-->
             {% endfor %}
