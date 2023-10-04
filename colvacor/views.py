@@ -7,6 +7,8 @@ from datetime import datetime
 from .forms import EmailForm
 from django.template.loader import render_to_string
 
+
+
 ### imagen 
 from django.conf import settings
 from django.core.files.storage import default_storage
@@ -357,11 +359,11 @@ def creacion_stela(request,cola_id):
         hora_reporte = request.POST['hora_reporte']
         tipo_escalamiento = request.POST['tipo_escalamiento']
         inc = request.POST['inc']
-        hora_actual = datetime.now()
+        hora_actual = 'hpra'
         reporte = Reportes(id_alarma = id_alarma , inc = inc, equipo  = equipo , tipo_alarma = tipo_alarma , central = central ,gestion = gestion , clientes = clientes, 
                     tipo_evento = tipo_evento ,usuario = usuario , tipo_escalamiento = tipo_escalamiento , hora_inicio = hora_inicio ,
                     docu1= docu1 , docu2= docu2 ,docu3= docu3 ,docu4= docu4 , grupo_asignado = Grupo_reporte , hora_asignacion =  hora_reporte , hora_ult_act =hora_actual ,
-                    hora = hora )
+                    hora = hora , )
         reporte.save()
         user = get_object_or_404(Alarmas, id=cola.id_alarma)
         user.delete()
@@ -374,8 +376,8 @@ def creacion_stela(request,cola_id):
         html_message =  render_to_string('formulario_correo.html',{'cola':reporte})
         
         #'noc_etb_adsl_eda@etb.com.co','francoby.perezg@gmail.com',
-        recipient_list = ['noc_etb_adsl_eda@etb.com.co','francoby.perezg@gmail.com','manuel.david.13.b@gmail.com']
-        #send_mail(subject, message, from_email, recipient_list,fail_silently=False,html_message=html_message)
+        recipient_list = ['manuel.david.13.b@gmail.com']
+        send_mail(subject, message, from_email, recipient_list,fail_silently=False,html_message=html_message)
         return redirect('cola')
     
         #nuevo_usuario = Usuarios(nombre=name,cargo =cargo,gestion = gestion,segmento=segmento , correo = correo , username = user,tipo_usuario = '1' ,cod_etb = '2020B',clave = hashed_password  )

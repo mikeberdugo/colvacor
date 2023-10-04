@@ -4,7 +4,7 @@ from django.db import models
 class Alarmas(models.Model):
     equipo = models.CharField(max_length=245)
     tipo_alarma = models.CharField(max_length=245)
-    hora_inicio = models.DateTimeField()
+    hora_inicio = models.CharField(max_length=250)
     central = models.CharField(max_length=244)
     clientes = models.CharField(max_length=244)
 
@@ -150,9 +150,8 @@ class Reportes(models.Model):
     hora  = models.CharField(max_length=250)
     hora_ult_act = models.CharField(max_length=250)
     hora_asignacion = models.CharField(max_length=250)
-    
-
-
+    tecnologia = models.CharField(max_length=250)
+    descripcion_incidencia = models.CharField(max_length=250)
 
     class Meta:
         app_label = 'colvacor'

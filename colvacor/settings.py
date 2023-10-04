@@ -77,8 +77,8 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 
 # Credenciales de correo electrónico de Hotmail (outlook.com)
-EMAIL_HOST_USER = 'notificaciones_colvacor@hotmail.com'
-EMAIL_HOST_PASSWORD = 'Bogota.30'
+EMAIL_HOST_USER = 'francoby.perezg@colvatel.com.co'
+EMAIL_HOST_PASSWORD = 'Colvatel$2022'
 
 WSGI_APPLICATION = 'colvacor.wsgi.application'
 
