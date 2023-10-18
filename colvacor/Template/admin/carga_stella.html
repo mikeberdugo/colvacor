@@ -1,0 +1,26 @@
+{% extends 'plantilla.html' %}
+{% load static %}
+
+{% block title %}Sistema NOC -  Carga stela {% endblock %}
+
+{% block sub-title %}Operador{% endblock %}
+
+{% block content %}
+
+    
+
+
+<form name="frm1" id="frm1" class="form" method="POST" enctype="multipart/form-data" >
+    {% csrf_token %}
+        <div class="modal-body">
+            <div dir=rtl class="file-loading">
+                <input name="archivo" id="archivo" type="file"  accept=".xlsx, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet">
+            </div>            
+        </div>
+        <div class="modal-footer">
+            <button type="submit" class="btn btn-success">Guardar</button>
+        </div>
+</form>
+
+
+{% endblock %}

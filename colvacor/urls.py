@@ -45,8 +45,7 @@ urlpatterns = [
     path('cola/actualzar/',actualiza_stela,name = 'actualiza_stela'),
     path('cola/actualzar/reporte/<int:reporte_id>',guarda_stela,name = 'guarda_stela'),
     path('incidente/<int:alarma_id>',incidente,name = 'incidente'),
-    
-    
+    path('carga/', carga_stela, name='carga'),
     path('alarma2/', alarmas_view, name='alarmas2'),
     path('resta/', resta, name='reestablecer'),
     path('password/<str:user_token>',cambio_password),

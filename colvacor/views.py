@@ -399,6 +399,10 @@ def creacion_stela(request,cola_id):
     return render(request,"./admin/ver_stela.html",{'context' :context ,'mensaje': mensaje, 'cola': cola})
 
 
+def carga_stela(request):
+    context = request.session.get('context', {})
+    return render(request,"./admin/carga_stella.html",{'context' :context })
+
 def actualiza_stela(request):
     context = request.session.get('context', {})
     reportes =  Reportes.objects.filter(cliente__isnull=True, solucion__isnull=True) | \
