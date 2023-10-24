@@ -2,7 +2,9 @@
 
 librarys : 
 1) pip install mysqlclient
-2) pip install uuid 
+2) pip install uuid
+3) pip install django
+4) pip install django adminlte 
 
 
 comandos utilizados : 
