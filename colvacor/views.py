@@ -401,7 +401,14 @@ def creacion_stela(request,cola_id):
 
 def carga_stela(request):
     context = request.session.get('context', {})
+    
     return render(request,"./admin/carga_stella.html",{'context' :context })
+
+
+def mensaje_stela(request):
+    context = request.session.get('context', {})
+    return render(request,"./admin/w_estela.html",{'context' :context })
+
 
 def actualiza_stela(request):
     context = request.session.get('context', {})

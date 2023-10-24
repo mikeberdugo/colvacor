@@ -168,3 +168,21 @@
         campoInput.blur();
     }
 </script>
+
+
+<script type="text/javascript">
+    function copiarAlPortapapeles10() {
+        /* Obtener el campo de entrada */
+        var campoInput = document.getElementById("plantilla_notificacion");
+
+        /* Seleccionar el texto del campo de entrada */
+        campoInput.select();
+        campoInput.setSelectionRange(0, 99999); /* Para dispositivos móviles */
+
+        /* Copiar el texto al portapapeles */
+        document.execCommand("copy");
+
+        /* Deseleccionar el texto del campo de entrada */
+        campoInput.blur();
+    }
+</script>
