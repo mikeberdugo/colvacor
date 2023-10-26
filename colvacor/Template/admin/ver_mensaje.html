@@ -1,0 +1,61 @@
+{% extends 'plantilla.html' %}
+{% load static %}
+
+{% block title %}Sistema NOC -  mensajes {% endblock %}
+
+{% block sub-title %}stella{% endblock %}
+
+{% block content %}
+<table style="font-size: 10px;" id="example1" class="table table-bordered table-hover text-center">
+    <thead style="font-size: 10px;">
+        <tr>
+            <th>Hora</th>
+            <th>Equipo</th>
+            <th>Alarma</th>
+            <th>copiado</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for reporte in reportes  %}
+        <tr>
+            <td>{{ reporte.hora }}</td>
+            <td>{{ reporte.equipo }}</td>
+            <td>{{ reporte.tipo_alarma }}</td>
+            <td> <button type="button" style="font-size: 12px;" class="btn btn-info btn-sm fa-sharp fa-solid fa-eye-to-square copy-comment"  data-comment=" Se ha creado el caso {inc} con impacto Alto del equipo Incidente:{inc} Clientes afectados:{clientes} Hora de Inicio afectación:{hora_inicio} Gestión que reporta el INC:{gestion} Grupo Asignado:{grupo_asignado} Esta es una notificación automática de Colvacor Intellisense" >Copiar</button> </td>
+            <td>
+                <a href="{% url 'mensaje_stela' mensaje_id=reporte.id %}" style="font-size: 12px;" class="btn btn-success btn-sm fa-sharp fa-solid fa-eye-to-square" > 
+                    <i class="fas fa-bell"></i> 
+                </a>
+            </td>
+            
+        </tr>
+        {% endfor %}
+    </tbody>
+    
+</table>
+        
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const copyButtons = document.querySelectorAll(".copy-comment");
+    
+        copyButtons.forEach(button => {
+            button.addEventListener("click", function () {
+                const comment = this.getAttribute("data-comment");
+    
+                const textArea = document.createElement("textarea");
+                textArea.value = comment;
+    
+                document.body.appendChild(textArea);
+                textArea.select();
+                document.execCommand("copy");
+                document.body.removeChild(textArea);
+            });
+        });
+    });
+    </script>
+    
+
+
+{% endblock %}

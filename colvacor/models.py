@@ -152,6 +152,7 @@ class Reportes(models.Model):
     hora_asignacion = models.CharField(max_length=250)
     tecnologia = models.CharField(max_length=250)
     descripcion_incidencia = models.CharField(max_length=250)
+    notificado = models.CharField(max_length=250)
 
     class Meta:
         app_label = 'colvacor'

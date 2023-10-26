@@ -396,6 +396,16 @@ def creacion_stela(request,cola_id):
         f"NO REPORTA FALLAS Y/O MANTENIMIENTOS DE ENERGÍA EN EL SECTOR \nDIAGNÓSTICO: POSIBLE FALLA DE EQUIPO ECN330 "
         f"\nVOBO INGENIERO: Lizeth Vacca"
     )
+    
+# Se ha creado el caso {inc} con impacto Alto del equipo
+# Incidente:{inc}
+# Clientes afectados:{clientes}
+# Hora de Inicio afectación:{hora_inicio}
+# Gestión que reporta el INC:{gestion}
+# Grupo Asignado:{grupo_asignado}
+# Esta es una notificación automática de Colvacor Intellisense
+    
+
     return render(request,"./admin/ver_stela.html",{'context' :context ,'mensaje': mensaje, 'cola': cola})
 
 
@@ -405,9 +415,21 @@ def carga_stela(request):
     return render(request,"./admin/carga_stella.html",{'context' :context })
 
 
-def mensaje_stela(request):
+def ver_mensaje(request):
     context = request.session.get('context', {})
-    return render(request,"./admin/w_estela.html",{'context' :context })
+    reportes = Reportes.objects.filter(notificado__exact='NO')
+    
+    
+    return render(request,"./admin/ver_mensaje.html",{'context' :context,'reportes':reportes})
+
+
+
+def mensaje_stela(request,mensaje_id):
+    context = request.session.get('context', {})
+    report = Reportes.objects.get(pk=mensaje_id)
+    report.notificado = 'SI'
+    report.save()
+    return redirect('ver_mensaje')
 
 
 def actualiza_stela(request):
