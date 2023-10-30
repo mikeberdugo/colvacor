@@ -72,13 +72,13 @@ TEMPLATES = [
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
 # Configuración del servidor SMTP de Hotmail (outlook.com)
-EMAIL_HOST = 'smtp.office365.com'
+EMAIL_HOST = 'mail.esmeraldasminambmag.com.co'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 
 # Credenciales de correo electrónico de Hotmail (outlook.com)
-EMAIL_HOST_USER = 'francoby.perezg@colvatel.com.co'
-EMAIL_HOST_PASSWORD = 'Colvatel$2022'
+EMAIL_HOST_USER = 'notificaciones_colvacor@esmeraldasminambmag.com.co'
+EMAIL_HOST_PASSWORD = 'Colombia.2023'
 
 WSGI_APPLICATION = 'colvacor.wsgi.application'
 

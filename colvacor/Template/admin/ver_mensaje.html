@@ -22,7 +22,7 @@
             <td>{{ reporte.hora }}</td>
             <td>{{ reporte.equipo }}</td>
             <td>{{ reporte.tipo_alarma }}</td>
-            <td> <button type="button" style="font-size: 12px;" class="btn btn-info btn-sm fa-sharp fa-solid fa-eye-to-square copy-comment"  data-comment=" Se ha creado el caso {inc} con impacto Alto del equipo Incidente:{inc} Clientes afectados:{clientes} Hora de Inicio afectación:{hora_inicio} Gestión que reporta el INC:{gestion} Grupo Asignado:{grupo_asignado} Esta es una notificación automática de Colvacor Intellisense" >Copiar</button> </td>
+            <td> <button type="button" style="font-size: 12px;" class="btn btn-info btn-sm fa-sharp fa-solid fa-eye-to-square copy-comment"  data-comment=" Se ha creado el caso {{ reporte.inc }} con impacto Alto del equipo :{{ reporte.equipo }} \r\nIncidente: {{ reporte.inc }} \r\nClientes afectados:{{ reporte.clientes }} \r\nHora de Inicio afectación:{{ reporte.hora_inicio }} \r\nGestión que reporta el INC:{{ reportes.gestion }} \r\nGrupo Asignado:{{ reportes.grupo_asignado }}  \r\n_Esta es una notificación automática de Colvacor Intellisense_" >Copiar</button> </td>
             <td>
                 <a href="{% url 'mensaje_stela' mensaje_id=reporte.id %}" style="font-size: 12px;" class="btn btn-success btn-sm fa-sharp fa-solid fa-eye-to-square" > 
                     <i class="fas fa-bell"></i> 
@@ -44,8 +44,11 @@
             button.addEventListener("click", function () {
                 const comment = this.getAttribute("data-comment");
     
+                // Reemplazar \r\n con saltos de línea reales
+                const commentWithLineBreaks = comment.replace(/\\r\\n/g, '\r\n');
+    
                 const textArea = document.createElement("textarea");
-                textArea.value = comment;
+                textArea.value = commentWithLineBreaks;
     
                 document.body.appendChild(textArea);
                 textArea.select();
@@ -54,8 +57,8 @@
             });
         });
     });
-    </script>
     
+</script>
 
 
 {% endblock %}
