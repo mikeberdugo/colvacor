@@ -40,10 +40,10 @@
                 <section class="content">
   <div class="row">
     <div class="container-fluid">
-      <table  style="font-size: 10px;" id="example2" class="table table-bordered table-hover text-center">
+      <table  style="font-size: 10px;" id="example" class="table table-bordered table-hover text-center"  >
         <thead>
           <tr>
-            <th>IM</th>
+            <th>IN</th>
             <th>Hora</th>
             <th>Alarma</th>
             <th>Equipo</th>
@@ -55,11 +55,11 @@
           <!--[if IE] alarmas <![endif]-->
           {% for alarma in alarmas %}
           <tr>
-            <td><input type="checkbox" name=""></td>
-            <td>{{ alarma.hora_inicio|date:"H:i" }}</td>
-            <td>{{ alarma.tipo_alarma }}</td>
-            <td style="font-size: 10PX;"><b>{{ alarma.equipo }}</b></td>
-            <td>{{ alarma.equipo }}</td>
+            <td ><input type="checkbox" class="checkbox"></td>
+            <td>{{ alarma.Event_Time}}</td>
+            <td>{{ alarma.Node_Name }}</td>
+            <td style="font-size: 10PX;"><b>{{ alarma.Node_Name }}</b></td>
+            <td>{{ alarma.Node_Name }}</td>
             <td><a href="{% url 'gestion' alarma_id=alarma.id %}"><button style="font-size: 10px;" type="button" class="btn btn-success btn-sm"><i class="fa-sharp fa-solid fa-pen-to-square"></i>Gestionar</button></a></td><?php } ?>
           </tr>
           {% endfor %}
@@ -91,7 +91,7 @@
                 <div class="card-body" style="width: 95%;overflow-x: auto;white-space: nowrap">
 
                     <!--Inicio cola de creacion-->
-                    <table style="font-size: 10px;" id="example1" class="table table-bordered table-hover text-center">
+                    <table style="font-size: 10px;" id="example1" class="table table-bordered table-hover text-center" >
                       <thead style="font-size: 10px;">
                       <tr>
                         <th>Hora</th>
@@ -145,3 +145,22 @@
     </div>
   </div>
 </div>
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+      const checkboxes = document.querySelectorAll(".checkbox");
+      const eliminarSeleccionados = document.getElementById("eliminarSeleccionados");
+
+      checkboxes.forEach(function(checkbox) {
+          checkbox.addEventListener("change", function() {
+              const checkedCheckboxes = document.querySelectorAll(".checkbox:checked");
+
+              if (checkedCheckboxes.length > 0) {
+                  eliminarSeleccionados.style.display = "block";
+                  eliminarSeleccionados.style.opacity = 1; // Hacerlo visible
+              } else {
+                  eliminarSeleccionados.style.opacity = 0; // Hacerlo invisible
+              }
+          });
+      });
+  });
+</script>

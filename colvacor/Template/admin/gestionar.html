@@ -14,40 +14,40 @@
                                 <div class="mb-3 row">
                                     <label for="inputPassword" class="col-sm-3 col-form-label">ID Reporte</label>
                                     <div class="col-sm-9">
-                                        <input type="text" class="form-control" id="id" name="id" value="{{ alarma.id }}" readonly/>
+                                        <input type="text" class="form-control" id="id" name="id" value="{{ alarma.Event_ID }}" readonly/>
                                     </div>
                                 </div>
     
                                 <div class="mb-3 row">
                                     <label for="inputPassword" class="col-sm-3 col-form-label">Equipo</label>
                                     <div class="col-sm-9">
-                                        <input type="text" class="form-control" id="equipo" name="equipo" value="{{ alarma.equipo }}" readonly/>
+                                        <input type="text" class="form-control" id="equipo" name="equipo" value="{{ alarma.Node_Name }}" readonly/>
                                     </div>
                                 </div>
     
                                 <div class="mb-3 row">
                                     <label for="inputPassword" class="col-sm-3 col-form-label">Hora Afectación</label>
                                     <div class="col-sm-9">
-                                        <input type="text" class="form-control" id="hora_inicio" name="hora_inicio" value="{{ alarma.hora_inicio }}" readonly/>
+                                        <input type="text" class="form-control" id="hora_inicio" name="hora_inicio" value="{{ alarma.Event_Time }}" readonly/>
                                     </div>
                                 </div>
                                 <div class="mb-3 row">
                                     <label for="inputPassword" class="col-sm-3 col-form-label">Tipo Alarma</label>
                                     <div class="col-sm-9">
-                                        <input type="text" class="form-control" id="tipo_alarma" name="tipo_alarma" value="{{ alarma.tipo_alarma }}" readonly/>
+                                        <input type="text" class="form-control" id="tipo_alarma" name="tipo_alarma" value="{{ alarma.Event_Message }}" readonly/>
                                     </div>
                                 </div>
                                 <div class="mb-3 row">
                                     <label for="inputPassword" class="col-sm-3 col-form-label">Central</label>
                                     <div class="col-sm-9">
-                                        <input type="text" id="central" name="central" class="form-control" value="{{ alarma.central }}" readonly/>
+                                        <input type="text" id="central" name="central" class="form-control" value="{{ equipo.central }}" readonly/>
                                     </div>
                                 </div>
                                 
                                 <div class="mb-3 row">
                                     <label for="inputPassword" class="col-sm-3 col-form-label">Clientes Afectados</label>
                                     <div class="col-sm-9">
-                                        <input type="text" id="clientes" name="clientes" class="form-control"  value="{{ alarma.clientes }}" readonly/>
+                                        <input type="text" id="clientes" name="clientes" class="form-control"  value="{{ equipo.clientes }}" readonly/>
                                     </div>
                                 </div>
                                 

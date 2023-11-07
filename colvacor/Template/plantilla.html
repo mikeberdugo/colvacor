@@ -38,6 +38,28 @@
 
   </style>
 
+  <style>
+    /* Estilo de la tabla */
+    .table {
+        width: 60%;
+        margin: 20px auto;
+    }
+
+    /* Estilo de los checkboxes */
+    .checkbox-container {
+        display: inline-block;
+        margin-right: 10px;
+    }
+
+    /* Estilo del botón "Eliminar Seleccionados" */
+    #eliminarSeleccionados {
+        display: none;
+        transition: opacity 0.3s ease-in-out;
+        margin: 20px 0;
+        opacity: 0; /* Inicialmente invisible */
+    }
+</style>
+
     <title>{% block title %}Mi Sitio{% endblock %}</title>
 </head>
 <body>

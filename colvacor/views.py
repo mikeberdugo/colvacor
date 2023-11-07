@@ -21,7 +21,7 @@ from django.db.models import Q
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login, logout,authenticate
 #### loging
-
+import pandas as pd
 import random
 import string
 import datetime
@@ -155,7 +155,12 @@ def sistema1(request):
 def gestion(request,alarma_id):
     context = request.session.get('context', {}) # 'context' :context ,
     alarma = Alarmas.objects.get(pk=alarma_id)
-    return render(request,"./admin/gestionar.html",{'context' :context ,'alarma': alarma})
+    try:
+        equipo = Equipos.objects.get(nemonico=alarma.Node_Name)
+    except Equipos.DoesNotExist:
+        equipo = {'central':'ERROR - Equipo no encontrado - comuniquese con gestion ', 'clientes':'ERROR - Equipo no encontrado - comuniquese con gestion '}
+
+    return render(request,"./admin/gestionar.html",{'context' :context ,'alarma': alarma , 'equipo' :equipo})
 
 def incidente(request,alarma_id):
     alarma = Alarmas.objects.get(pk=alarma_id)
@@ -412,14 +417,24 @@ def creacion_stela(request,cola_id):
 def carga_stela(request):
     context = request.session.get('context', {})
     
+    if request.method == 'POST':
+        archivo_excel = request.FILES['archivo']
+        if archivo_excel.name.endswith('.xls') or archivo_excel.name.endswith('.xlsx'):
+            df = pd.read_excel(archivo_excel)
+            for index, row in df.iterrows():
+                Event_ID = row['Event ID']
+                Severity = row['Severity']
+                Event_Time = row['Event Time']
+                Node_Name = row['Node Name']
+                Event_Message = row['Event Message']
+                Alarmas.objects.create(Event_ID=Event_ID, Severity=Severity, Event_Time=Event_Time, Node_Name=Node_Name, Event_Message=Event_Message)
+                
     return render(request,"./admin/carga_stella.html",{'context' :context })
 
 
 def ver_mensaje(request):
     context = request.session.get('context', {})
     reportes = Reportes.objects.filter(notificado__exact='NO')
-    
-    
     return render(request,"./admin/ver_mensaje.html",{'context' :context,'reportes':reportes})
 
 

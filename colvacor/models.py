@@ -1,12 +1,13 @@
 from django.db import models
+from django.utils.text import slugify
 
 
 class Alarmas(models.Model):
-    equipo = models.CharField(max_length=245)
-    tipo_alarma = models.CharField(max_length=245)
-    hora_inicio = models.CharField(max_length=250)
-    central = models.CharField(max_length=244)
-    clientes = models.CharField(max_length=244)
+    Event_ID = models.CharField(max_length=250)
+    Severity = models.CharField(max_length=250)
+    Event_Time = models.CharField(max_length=250)
+    Node_Name = models.CharField(max_length=250)
+    Event_Message = models.CharField(max_length=3000)
 
     class Meta:
         app_label = 'colvacor'
