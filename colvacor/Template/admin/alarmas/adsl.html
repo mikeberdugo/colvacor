@@ -1,10 +1,10 @@
-<div class="row">
+<div class="col">
   <div class="col-12 col-sm-12">
-    <div class="card card-dark card-outline card-tabs">
+    <div class="card card-dark card-outline card-tabs mb-3">
       <div class="card-header p-0 pt-1 border-bottom-0">
         <ul class="nav nav-tabs" id="custom-tabs-three-tab" role="tablist">
           <li class="nav-item">
-            <a class="nav-link" id="custom-tabs-three-alarmasadsl-tab" data-toggle="pill" href="#custom-tabs-three-alarmasadsl" role="tab" aria-controls="custom-tabs-three-alarmasadsl" aria-selected="true">Alarmas</a>
+            <a class="nav-link active" id="custom-tabs-three-alarmasadsl-tab" data-toggle="pill" href="#custom-tabs-three-alarmasadsl" role="tab" aria-controls="custom-tabs-three-alarmasadsl" aria-selected="true">Alarmas</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" id="custom-tabs-three-seguimientoadsl-tab" data-toggle="pill" href="#custom-tabs-three-seguimientoadsl" role="tab" aria-controls="custom-tabs-three-seguimientoadsl" aria-selected="false">Seguimiento</a>
@@ -19,113 +19,94 @@
       </div>
       <div class="card-body">
         <div class="tab-content" id="custom-tabs-three-tabContent">
-          
-        <!--Inicio pestaña alarmas adsl-->
+          <!--Inicio pestaña alarmas adsl-->
           <div class="tab-pane fade show active" id="custom-tabs-three-alarmasadsl" role="tabpanel" aria-labelledby="custom-tabs-three-alarmasadsl-tab">
-
-          <!--Inicio pestañas alarmas-->
-          <div class="row">
-            <div class="col">
-              <div class="card ccard-dark card-tabs" style="width: 100%;display: inline-block;width: 100%;overflow-x: auto;white-space: nowrap">
-                <div class="card-header">
-                  <h3 class="card-title">
-                    <i class="fas fa-exclamation-triangle"></i>
-                    Alarmas Detectadas
-                  </h3>
+            <!--Inicio pestañas alarmas-->
+            <div class="row">
+              <div class="col">
+                <div class="card card-dark card-tabs" style="width: 100%;display: inline-block;width: 100%;overflow-x: auto;white-space: nowrap">
+                  <div class="card-header">
+                    <h3 class="card-title">
+                      <i class="fas fa-exclamation-triangle"></i>
+                      Alarmas Detectadas
+                    </h3>
+                  </div>
+                  <div class="card-body" style="width: 95%;overflow-x: auto;white-space: nowrap">
+                    <!--Inicio codigo tablas-->
+                    <section class="content">
+                      <div class="row">
+                        <div class="container-fluid">
+                          <table style="font-size: 10px;" id="alarmas-adsl" class="table table-bordered table-hover text-center">
+                            <thead>
+                              <tr>
+                                <th>IN</th>
+                                <th>Hora</th>
+                                <th>Alarma</th>
+                                <th>Equipo</th>
+                                <th><i class="fas fa-clock"></i></th>
+                                <th>Acciones</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <!--[if IE] alarmas <![endif]-->
+                              {% for alarma in alarmas %}
+                              <tr>
+                                <td><input type="checkbox" class="checkbox"></td>
+                                <td>{{ alarma.Event_Time}}</td>
+                                <td>{{ alarma.Node_Name }}</td>
+                                <td style="font-size: 10PX;"><b>{{ alarma.Node_Name }}</b></td>
+                                <td>{{ alarma.Node_Name }}</td>
+                                <td><a href="{% url 'gestion' alarma_id=alarma.id %}"><button style="font-size: 10px;" type="button" class="btn btn-success btn-sm"><i class="fa-sharp fa-solid fa-pen-to-square"></i>Gestionar</button></a></td>
+                              </tr>
+                              {% endfor %}
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                    </section>
+                    <!--Fin codigo tablas-->
+                  </div>
                 </div>
-                <!-- /.card-header -->
-                <div class="card-body" style="width: 95%;overflow-x: auto;white-space: nowrap">
-
-                <!--Inicio codigo tablas-->
-                <section class="content">
-  <div class="row">
-    <div class="container-fluid">
-      <table  style="font-size: 10px;" id="example" class="table table-bordered table-hover text-center"  >
-        <thead>
-          <tr>
-            <th>IN</th>
-            <th>Hora</th>
-            <th>Alarma</th>
-            <th>Equipo</th>
-            <th><i class="fas fa-clock"></i></th>
-            <th>Acciones</th>
-          </tr>
-        </thead>
-        <tbody>
-          <!--[if IE] alarmas <![endif]-->
-          {% for alarma in alarmas %}
-          <tr>
-            <td ><input type="checkbox" class="checkbox"></td>
-            <td>{{ alarma.Event_Time}}</td>
-            <td>{{ alarma.Node_Name }}</td>
-            <td style="font-size: 10PX;"><b>{{ alarma.Node_Name }}</b></td>
-            <td>{{ alarma.Node_Name }}</td>
-            <td><a href="{% url 'gestion' alarma_id=alarma.id %}"><button style="font-size: 10px;" type="button" class="btn btn-success btn-sm"><i class="fa-sharp fa-solid fa-pen-to-square"></i>Gestionar</button></a></td><?php } ?>
-          </tr>
-          {% endfor %}
-        </tbody>
-      </table>
-      
-    </div>
-      <!-- /.col -->
-      </div>
-      <!-- /.row -->
-      </section>
-      <!--Fin codigo tablas-->
-      </div>
-      <!-- /.card-body -->
-      </div>
-      <!-- /.card -->
-      </div>
-      <!-- /.col -->
-
-            <div class="col">
-              <div class="card card-dark card-tabs" style="width: 100%;display: inline-block;width: 100%;overflow-x: auto;white-space: nowrap">
-                <div class="card-header">
-                  <h3 class="card-title">
-                    <i class="fas fa-bullhorn"></i>
-                    Cola de Creación Colvacor Intellisense
-                  </h3>
-                </div>
-                <!-- /.card-header -->
-                <div class="card-body" style="width: 95%;overflow-x: auto;white-space: nowrap">
-
+              </div>
+              <div class="col">
+                <div class="card card-dark card-tabs" style="width: 100%;display: inline-block;width: 100%;overflow-x: auto;white-space: nowrap">
+                  <div class="card-header">
+                    <h3 class="card-title">
+                      <i class="fas fa-bullhorn"></i>
+                      Cola de Creación Colvacor Intellisense
+                    </h3>
+                  </div>
+                  <div class="card-body" style="width: 95%;overflow-x: auto;white-space: nowrap">
                     <!--Inicio cola de creacion-->
-                    <table style="font-size: 10px;" id="example1" class="table table-bordered table-hover text-center" >
+                    <table style="font-size: 10px;" id="cola-alarmas" class="table table-bordered table-hover text-center">
                       <thead style="font-size: 10px;">
-                      <tr>
-                        <th>Hora</th>
-                        <th>Equipo</th>
-                        <th>Alarma</th>
-                        <th>Acciones</th>
-                      </tr>
+                        <tr>
+                          <th>Hora</th>
+                          <th>Equipo</th>
+                          <th>Alarma</th>
+                          <th>Acciones</th>
+                        </tr>
                       </thead>
                       <tbody>
                         <!--[if IE]>cola_creacion<![endif]-->
+                        {% for cola in colaCreacion %}
                         <tr>
-                          {% for cola in colaCreacion %}
                           <td>{{ cola.hora}}</td>
                           <td>{{ cola.equipo }}</td>
                           <td>{{ cola.tipo_alarma }}</td>
                           <td><a href="ver"><button style="font-size: 10px;" type="button" class="btn btn-success btn-sm"><i class="fa-sharp fa-solid fa-eye-to-square"></i> Ver </button></a></td>
-                        </tr> 
-                        {% endfor %}                     
-                    </tbody>
+                        </tr>
+                        {% endfor %}
+                      </tbody>
                     </table>
                     <!--Fin cola de creacion-->
-                  
+                  </div>
                 </div>
-                <!-- /.card-body -->
               </div>
-              <!-- /.card -->
             </div>
-            <!-- /.col -->
-          </div>
-          <!--Fin pestañas alarmas-->
-
+            <!--Fin pestañas alarmas-->
           </div>
           <!--Fin pestaña alarmas adsl-->
-          
           
           <div class="tab-pane fade" id="custom-tabs-three-seguimientoadsl" role="tabpanel" aria-labelledby="custom-tabs-three-seguimientoadsl-tab">
             am.
@@ -138,29 +119,37 @@
           <div class="tab-pane fade" id="custom-tabs-three-manttoadsl" role="tabpanel" aria-labelledby="custom-tabs-three-manttoadsl-tab">
             Ventana de mantenimiento
           </div>
-
         </div>
       </div>
-      <!-- /.card -->
     </div>
   </div>
 </div>
+
 <script>
   document.addEventListener("DOMContentLoaded", function() {
-      const checkboxes = document.querySelectorAll(".checkbox");
-      const eliminarSeleccionados = document.getElementById("eliminarSeleccionados");
+    const checkboxes = document.querySelectorAll(".checkbox");
+    const eliminarSeleccionados = document.getElementById("eliminarSeleccionados");
 
-      checkboxes.forEach(function(checkbox) {
-          checkbox.addEventListener("change", function() {
-              const checkedCheckboxes = document.querySelectorAll(".checkbox:checked");
+    checkboxes.forEach(function(checkbox) {
+      checkbox.addEventListener("change", function() {
+        const checkedCheckboxes = document.querySelectorAll(".checkbox:checked");
 
-              if (checkedCheckboxes.length > 0) {
-                  eliminarSeleccionados.style.display = "block";
-                  eliminarSeleccionados.style.opacity = 1; // Hacerlo visible
-              } else {
-                  eliminarSeleccionados.style.opacity = 0; // Hacerlo invisible
-              }
-          });
+        if (checkedCheckboxes.length > 0) {
+          eliminarSeleccionados.style.display = "block";
+          eliminarSeleccionados.style.opacity = 1; // Hacerlo visible
+        } else {
+          eliminarSeleccionados.style.opacity = 0; // Hacerlo invisible
+        }
       });
+    });
+  });
+</script>
+
+<script>
+  $(document).ready(function() {
+    $('#cola-alarmas').DataTable();
+    $('#alarmas-adsl').DataTable();
+    $('#tailandiaTable').DataTable();
+    // Puedes agregar más inicializaciones para más tablas según sea necesario
   });
 </script>

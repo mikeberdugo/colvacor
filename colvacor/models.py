@@ -8,7 +8,7 @@ class Alarmas(models.Model):
     Event_Time = models.CharField(max_length=250)
     Node_Name = models.CharField(max_length=250)
     Event_Message = models.CharField(max_length=3000)
-
+    Filtro = models.CharField(max_length=255)
     class Meta:
         app_label = 'colvacor'
         db_table = 'alarmas'

@@ -15,7 +15,9 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from colvacor.views import *
+from colvacor.views.todos import *
+from colvacor.views.operators.operadores import * 
+from colvacor.views.automa.auto import * 
 
 
 urlpatterns = [
@@ -33,6 +35,7 @@ urlpatterns = [
     path('casos/',casos,name = 'casos'),
     path('casos/caso/<int:reporte_id>/',caso,name = 'caso'),
     path('reportes/',reportes,name = 'reportes'),
+    path('descartadas/',descartadas,name = 'descartadas'),
     path('user/',user,name = 'user'),
     path('cambio/', cambio_numero, name='cambio_numero'),
     path('imagen/', imagen, name='imagen'),
@@ -51,5 +54,17 @@ urlpatterns = [
     path('alarma2/', alarmas_view, name='alarmas2'),
     path('resta/', resta, name='reestablecer'),
     path('password/<str:user_token>',cambio_password),
-    
+    # operadores  
+
+    path('operadores/core',operators_core,name='core'),
+    path('operadores/nodo',operators_nodo,name='nodo'),
+    path('operadores/gpon',operators_gpon,name='gpon'),
+    path('operadores/nal',operators_nal,name='nal'),
+    path('operadores/adsl',operators_adsl,name='adsl'),
+    path('operadores/local',operators_local,name='local'),
+    path('operadores/iptv',operators_iptv,name='iptv'),
+    path('operadores/mpls',operators_mpls,name='mpls'),
+
+    # Esta línea captura cualquier ruta no definida y la dirige a la vista personalizada
+    path('<str:ruta_no_definida>/', pagina_no_encontrada, name='pagina_no_encontrada'),
 ]

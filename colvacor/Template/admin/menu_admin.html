@@ -145,6 +145,7 @@
               <div class="card-header"></div></div>
             </ul>
           </li>
+          {% if context.cargo == 'Admin' %}
           <!--Fin de opcion para seleccion de gestiones-->
           <li class="nav-item">
             <a href="" class="nav-link">
@@ -175,6 +176,7 @@
               </li>
             </ul>
           </li>
+          {% endif %}
 
 
           <li class="nav-item">
@@ -203,8 +205,113 @@
             </ul>
           </li>
 
-          
+          <!-- inicio de las gestiones del NOC  -->
 
+          {% if context.gestion == 'CORE' %}
+            <li class="nav-item" name="itemIA" id="itemIA">
+              <a id="cargarcasos" name="cargarcasos" href="{% url 'core' %}" class="nav-link">
+                  <i class="fas fa-th-list"></i>
+                  <p>
+                    &nbsp; Gestion CORE
+                  </p>
+              </a>
+            </li> 
+              
+          {% elif context.gestion == 'NODO' %}
+
+          <li class="nav-item" name="itemIA" id="itemIA">
+            <a id="cargarcasos" name="cargarcasos" href="{% url 'nodo' %}" class="nav-link">
+                <i class="fas fa-th-list"></i>
+                <p>
+                  &nbsp; Gestion NODO
+                </p>
+              </a>
+            </li> 
+
+          {% elif context.gestion == 'GPON' %}
+
+          <li class="nav-item" name="itemIA" id="itemIA">
+            <a id="cargarcasos" name="cargarcasos" href="{% url 'gpon' %}" class="nav-link">
+                <i class="fas fa-th-list"></i>
+                <p>
+                  &nbsp; Gestion GPON
+                </p>
+              </a>
+            </li> 
+
+            {% elif context.gestion == 'TX NACIONAL' %}
+
+            <li class="nav-item" name="itemIA" id="itemIA">
+              <a id="cargarcasos" name="cargarcasos" href="{% url 'nal' %}" class="nav-link">
+                  <i class="fas fa-th-list"></i>
+                  <p>
+                    &nbsp; Gestion TX NAL
+                  </p>
+                </a>
+              </li> 
+
+            {% elif context.gestion == 'ADSL' %}
+
+            <li class="nav-item" name="itemIA" id="itemIA">
+              <a id="cargarcasos" name="cargarcasos" href="{% url 'adsl' %}" class="nav-link">
+                  <i class="fas fa-th-list"></i>
+                  <p>
+                    &nbsp; Gestion ADSL
+                  </p>
+                </a>
+              </li> 
+
+            {% elif context.gestion == 'TX LOCAL' %}
+
+            <li class="nav-item" name="itemIA" id="itemIA">
+              <a id="cargarcasos" name="cargarcasos" href="{% url 'local' %}" class="nav-link">
+                  <i class="fas fa-th-list"></i>
+                  <p>
+                    &nbsp; Gestion TX LOCAL
+                  </p>
+                </a>
+            </li> 
+
+            {% elif context.gestion == 'IPTV' %}
+
+            <li class="nav-item" name="itemIA" id="itemIA">
+              <a id="cargarcasos" name="cargarcasos" href="{% url 'iptv' %}" class="nav-link">
+                  <i class="fas fa-th-list"></i>
+                  <p>
+                    &nbsp; Gestion IPTV
+                  </p>
+                </a>
+              </li> 
+
+            {% elif context.gestion == 'MPLS' %}
+              <li class="nav-item" name="itemIA" id="itemIA">
+                <a id="cargarcasos" name="cargarcasos" href="{% url 'mpls' %}" class="nav-link">
+                    <i class="fas fa-th-list"></i>
+                    <p>
+                      &nbsp; Gestion MPLS
+                    </p>
+                  </a>
+                </li> 
+
+          {% endif %}
+
+
+
+
+
+
+
+                
+
+                  
+                    
+
+
+
+    
+
+                        
+            <!-- fin de las gestiones  -->
           <li class="nav-header">Reporting</li> 
             <li class="nav-item">
             <a href="{% url 'reportes' %}" class="nav-link">
@@ -311,3 +418,4 @@
 
     recargarVista();
 </script>
+

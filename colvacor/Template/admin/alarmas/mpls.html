@@ -1,0 +1,408 @@
+
+<div class="row flex-column">
+  <div class="col-12 col-sm-12 col">
+  <div class="card card-dark card-outline card-tabs">
+
+      <div class="card-header p-0 pt-1 border-bottom-0">
+          
+          <ul class="nav nav-tabs" id="custom-tabs-three-tab" role="tablist">
+
+
+              <li class="nav-item">
+                  <a class="nav-link" id="custom-tabs-three-DesempenoMPLS-tab" data-toggle="pill" href="#custom-tabs-three-DesempenoMPLS" role="tab" aria-controls="custom-tabs-three-DesempenoMPLS" aria-selected="true"><p>Desempeño MPLS <span class="right badge badge-danger">2</span></p></a>
+              </li>
+
+              <li class="nav-item">
+                  <a class="nav-link" id="custom-tabs-three-LSPs-LDPs-Status-tab" data-toggle="pill" href="#custom-tabs-three-LSPs-LDPs-Status" role="tab" aria-controls="custom-tabs-three-LSPs-LDPs-Status" aria-selected="false"><p>LSPs y LDPs Status <span class="right badge badge-danger">2</span></p></a>
+                </li>
+
+              <li class="nav-item">
+                  <a class="nav-link" id="custom-tabs-three-Subscribers-tab" data-toggle="pill" href="#custom-tabs-three-Subscribers" role="tab" aria-controls="custom-tabs-three-Subscribers" aria-selected="false"><p>Subscribers <span class="right badge badge-danger">2</span></p></a>
+              </li>
+
+              <li class="nav-item">
+                  <a class="nav-link" id="custom-tabs-three-TraficoInterfaces-tab" data-toggle="pill" href="#custom-tabs-three-TraficoInterfaces" role="tab" aria-controls="custom-tabs-three-TraficoInterfaces" aria-selected="false"><p>Tráfico Interfaces <span class="right badge badge-danger">2</span></p></a>
+                </li>
+
+              <li class="nav-item">
+                  <a class="nav-link" id="custom-tabs-three-Falla-MPLS-tab" data-toggle="pill" href="#custom-tabs-three-Falla-MPLS" role="tab" aria-controls="custom-tabs-three-Falla-MPLS" aria-selected="false"><p>Falla Componentes <span class="right badge badge-danger">2</span></p></a>
+                </li>
+
+              <li class="nav-item">
+                  <a class="nav-link" id="custom-tabs-three-CGNAT-tab" data-toggle="pill" href="#custom-tabs-three-CGNAT" role="tab" aria-controls="custom-tabs-three-CGNAT" aria-selected="false"><p>CGNAT <span class="right badge badge-danger">2</span></p></a>
+                </li>
+              
+
+              <li class="nav-item">
+                  <a class="nav-link" id="custom-tabs-three-BGP-RR-tab" data-toggle="pill" href="#custom-tabs-three-BGP-RR" role="tab" aria-controls="custom-tabs-three-BGP-RR" aria-selected="false"><p>BGP contra RR <span class="right badge badge-danger">2</span></p></a>
+                </li>
+
+              <li class="nav-item">
+                  <a  class="nav-link" id="custom-tabs-three-Potencia-Interfaces-tab" data-toggle="pill" href="#custom-tabs-three-Potencia-Interfaces" role="tab" aria-controls="custom-tabs-three-Potencia-Interfaces" aria-selected="false"><p>Potencia Interfaces <span class="right badge badge-danger">2</span></p></a>
+                </li>
+
+              <li class="nav-item">
+                  <a class="nav-link" id="custom-tabs-three-Troncales-tab" data-toggle="pill" href="#custom-tabs-three-Troncales" role="tab" aria-controls="custom-tabs-three-Troncales" aria-selected="false"><p>Troncales <span class="right badge badge-danger">2</span></p></a>
+                </li>
+
+          </ul>
+
+      </div>
+
+      <div class="card-body">
+          <div class="tab-content" id="custom-tabs-three-tabContent">
+              <div class="tab-pane fade show active " id="custom-tabs-three-DesempenoMPLS" role="tabpanel" aria-labelledby="custom-tabs-three-DesempenoMPLS-tab">
+
+
+                  <section class="content">
+                      <div class="row">
+                        <div class="container-fluid">
+                          <table style="font-size: 10px;" id="alarmas-DesempenoMPLS" class="table table-bordered table-hover text-center">
+                            <thead>
+                              <tr>
+                                <th>IN</th>
+                                <th>Hora</th>
+                                <th>Alarma</th>
+                                <th>Equipo</th>
+                                <th><i class="fas fa-clock"></i></th>
+                                <th>Acciones</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <!--[if IE] alarmas <![endif]-->
+                              {% for DesempenoMPL in DesempenoMPLS %}
+                              <tr>
+                                <td><input type="checkbox" class="checkbox"></td>
+                                <td>{{ DesempenoMPL.Event_Time}}</td>
+                                <td>{{ DesempenoMPL.Severity }}</td>
+                                <td style="font-size: 10PX;"><b>{{ DesempenoMPL.Node_Name }}</b></td>
+                                <td>{{ DesempenoMPL.Node_Name }}</td>
+                                <td><a href="{% url 'gestion' alarma_id=DesempenoMPL.id %}"><button style="font-size: 10px;" type="button" class="btn btn-success btn-sm"><i class="fa-sharp fa-solid fa-pen-to-square"></i>Gestionar</button></a></td>
+                              </tr>
+                              {% endfor %}
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                    </section>
+
+
+
+              </div>
+      
+              <div class="tab-pane fade" id="custom-tabs-three-LSPs-LDPs-Status" role="tabpanel" aria-labelledby="custom-tabs-three-LSPs-LDPs-Status-tab">
+                  LSPs-LDPs-Status 
+                  <section class="content">
+                      <div class="row">
+                        <div class="container-fluid">
+                          <table style="font-size: 10px;" id="alarmas-LSPs_Status" class="table table-bordered table-hover text-center">
+                            <thead>
+                              <tr>
+                                <th>IN</th>
+                                <th>Hora</th>
+                                <th>Alarma</th>
+                                <th>Equipo</th>
+                                <th><i class="fas fa-clock"></i></th>
+                                <th>Acciones</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <!--[if IE] alarmas <![endif]-->
+                              {% for LSPs_Statu in LSPs_Status %}
+                              <tr>
+                                <td><input type="checkbox" class="checkbox"></td>
+                                <td>{{ LSPs_Statu.Event_Time}}</td>
+                                <td>{{ LSPs_Statu.Severity }}</td>
+                                <td style="font-size: 10PX;"><b>{{ LSPs_Statu.Node_Name }}</b></td>
+                                <td>{{ LSPs_Statu.Node_Name }}</td>
+                                <td><a href="{% url 'gestion' alarma_id=LSPs_Statu.id %}"><button style="font-size: 10px;" type="button" class="btn btn-success btn-sm"><i class="fa-sharp fa-solid fa-pen-to-square"></i>Gestionar</button></a></td>
+                              </tr>
+                              {% endfor %}
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                    </section>
+              </div>
+      
+              <div class="tab-pane fade" id="custom-tabs-three-Subscribers" role="tabpanel" aria-labelledby="custom-tabs-three-Subscribers-tab">
+                  Subscribers
+
+                  <section class="content">
+                      <div class="row">
+                        <div class="container-fluid">
+                          <table style="font-size: 10px;" id="alarmas-Subscribers" class="table table-bordered table-hover text-center">
+                            <thead>
+                              <tr>
+                                <th>IN</th>
+                                <th>Hora</th>
+                                <th>Alarma</th>
+                                <th>Equipo</th>
+                                <th><i class="fas fa-clock"></i></th>
+                                <th>Acciones</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <!--[if IE] alarmas <![endif]-->
+                              {% for Subscriber in Subscribers %}
+                              <tr>
+                                <td><input type="checkbox" class="checkbox"></td>
+                                <td>{{ Subscriber.Event_Time}}</td>
+                                <td>{{ Subscriber.Severity }}</td>
+                                <td style="font-size: 10PX;"><b>{{ Subscriber.Node_Name }}</b></td>
+                                <td>{{ Subscriber.Node_Name }}</td>
+                                <td><a href="{% url 'gestion' alarma_id=Subscriber.id %}"><button style="font-size: 10px;" type="button" class="btn btn-success btn-sm"><i class="fa-sharp fa-solid fa-pen-to-square"></i>Gestionar</button></a></td>
+                              </tr>
+                              {% endfor %}
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                    </section>
+
+              </div>
+
+              <div class="tab-pane fade" id="custom-tabs-three-TraficoInterfaces" role="tabpanel" aria-labelledby="custom-tabs-three-TraficoInterfaces-tab">
+                  Trafico Interfaces
+
+                  <section class="content">
+                      <div class="row">
+                        <div class="container-fluid">
+                          <table style="font-size: 10px;" id="alarmas-Trafico_Interfaces" class="table table-bordered table-hover text-center">
+                            <thead>
+                              <tr>
+                                <th>IN</th>
+                                <th>Hora</th>
+                                <th>Alarma</th>
+                                <th>Equipo</th>
+                                <th><i class="fas fa-clock"></i></th>
+                                <th>Acciones</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <!--[if IE] alarmas <![endif]-->
+                              {% for Trafico_Interface in Trafico_Interfaces %}
+                              <tr>
+                                <td><input type="checkbox" class="checkbox"></td>
+                                <td>{{ Trafico_Interface.Event_Time}}</td>
+                                <td>{{ Trafico_Interface.Severity }}</td>
+                                <td style="font-size: 10PX;"><b>{{ Trafico_Interface.Node_Name }}</b></td>
+                                <td>{{ Trafico_Interface.Node_Name }}</td>
+                                <td><a href="{% url 'gestion' alarma_id=Trafico_Interface.id %}"><button style="font-size: 10px;" type="button" class="btn btn-success btn-sm"><i class="fa-sharp fa-solid fa-pen-to-square"></i>Gestionar</button></a></td>
+                              </tr>
+                              {% endfor %}
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                    </section>
+
+              </div>
+
+              <div class="tab-pane fade" id="custom-tabs-three-Falla-MPLS" role="tabpanel" aria-labelledby="custom-tabs-three-Falla-MPLS-tab">
+                  Falla-MPLS
+
+                  <section class="content">
+                      <div class="row">
+                        <div class="container-fluid">
+                          <table style="font-size: 10px;" id="alarmas-Falla_componentes" class="table table-bordered table-hover text-center">
+                            <thead>
+                              <tr>
+                                <th>IN</th>
+                                <th>Hora</th>
+                                <th>Alarma</th>
+                                <th>Equipo</th>
+                                <th><i class="fas fa-clock"></i></th>
+                                <th>Acciones</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <!--[if IE] alarmas <![endif]-->
+                              {% for Falla_componente in Falla_componentes %}
+                              <tr>
+                                <td><input type="checkbox" class="checkbox"></td>
+                                <td>{{ Falla_componente.Event_Time}}</td>
+                                <td>{{ Falla_componente.Severity }}</td>
+                                <td style="font-size: 10PX;"><b>{{ Falla_componente.Node_Name }}</b></td>
+                                <td>{{ Falla_componente.Node_Name }}</td>
+                                <td><a href="{% url 'gestion' alarma_id=Falla_componente.id %}"><button style="font-size: 10px;" type="button" class="btn btn-success btn-sm"><i class="fa-sharp fa-solid fa-pen-to-square"></i>Gestionar</button></a></td>
+                              </tr>
+                              {% endfor %}
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                    </section>
+
+              </div>
+
+              <div class="tab-pane fade" id="custom-tabs-three-CGNAT" role="tabpanel" aria-labelledby="custom-tabs-three-CGNAT-tab">
+                  Link Status - CGNAT (mams) 
+                  
+                  <section class="content">
+                      <div class="row">
+                        <div class="container-fluid">
+                          <table style="font-size: 10px;" id="alarmas-CGNAT" class="table table-bordered table-hover text-center">
+                            <thead>
+                              <tr>
+                                <th>IN</th>
+                                <th>Hora</th>
+                                <th>Alarma</th>
+                                <th>Equipo</th>
+                                <th><i class="fas fa-clock"></i></th>
+                                <th>Acciones</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <!--[if IE] alarmas <![endif]-->
+                              {% for CGNA in CGNAT %}
+                              <tr>
+                                <td><input type="checkbox" class="checkbox"></td>
+                                <td>{{ CGNA.Event_Time}}</td>
+                                <td>{{ CGNA.Severity }}</td>
+                                <td style="font-size: 10PX;"><b>{{ CGNA.Node_Name }}</b></td>
+                                <td>{{ CGNA.Node_Name }}</td>
+                                <td><a href="{% url 'gestion' alarma_id=CGNA.id %}"><button style="font-size: 10px;" type="button" class="btn btn-success btn-sm"><i class="fa-sharp fa-solid fa-pen-to-square"></i>Gestionar</button></a></td>
+                              </tr>
+                              {% endfor %}
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                    </section>
+
+              </div>
+
+              <div class="tab-pane fade" id="custom-tabs-three-BGP-RR" role="tabpanel" aria-labelledby="custom-tabs-three-BGP-RR-tab">
+                  BGP contra RR
+
+                  <section class="content">
+                      <div class="row">
+                        <div class="container-fluid">
+                          <table style="font-size: 10px;" id="alarmas-BGP_RR" class="table table-bordered table-hover text-center">
+                            <thead>
+                              <tr>
+                                <th>IN</th>
+                                <th>Hora</th>
+                                <th>Alarma</th>
+                                <th>Equipo</th>
+                                <th><i class="fas fa-clock"></i></th>
+                                <th>Acciones</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <!--[if IE] alarmas <![endif]-->
+                              {% for BGP_R in BGP_RR %}
+                              <tr>
+                                <td><input type="checkbox" class="checkbox"></td>
+                                <td>{{ BGP_R.Event_Time}}</td>
+                                <td>{{ BGP_R.Severity }}</td>
+                                <td style="font-size: 10PX;"><b>{{ BGP_R.Node_Name }}</b></td>
+                                <td>{{ BGP_R.Node_Name }}</td>
+                                <td><a href="{% url 'gestion' alarma_id=BGP_R.id %}"><button style="font-size: 10px;" type="button" class="btn btn-success btn-sm"><i class="fa-sharp fa-solid fa-pen-to-square"></i>Gestionar</button></a></td>
+                              </tr>
+                              {% endfor %}
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                    </section>
+
+              </div>
+
+              <div class="tab-pane fade" id="custom-tabs-three-Potencia-Interfaces" role="tabpanel" aria-labelledby="custom-tabs-three-Potencia-Interfaces-tab">
+                  Potencia Interfaces
+
+                  <section class="content">
+                      <div class="row">
+                        <div class="container-fluid">
+                          <table style="font-size: 10px;" id="alarmas-Potencia_Interfaces" class="table table-bordered table-hover text-center">
+                            <thead>
+                              <tr>
+                                <th>IN</th>
+                                <th>Hora</th>
+                                <th>Alarma</th>
+                                <th>Equipo</th>
+                                <th><i class="fas fa-clock"></i></th>
+                                <th>Acciones</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <!--[if IE] alarmas <![endif]-->
+                              {% for Potencia_Interface in Potencia_Interfaces %}
+                              <tr>
+                                <td><input type="checkbox" class="checkbox"></td>
+                                <td>{{ Potencia_Interface.Event_Time}}</td>
+                                <td>{{ Potencia_Interface.Severity }}</td>
+                                <td style="font-size: 10PX;"><b>{{ Potencia_Interface.Node_Name }}</b></td>
+                                <td>{{ Potencia_Interface.Node_Name }}</td>
+                                <td><a href="{% url 'gestion' alarma_id=Potencia_Interface.id %}"><button style="font-size: 10px;" type="button" class="btn btn-success btn-sm"><i class="fa-sharp fa-solid fa-pen-to-square"></i>Gestionar</button></a></td>
+                              </tr>
+                              {% endfor %}
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                    </section>
+
+              </div>
+
+              <div class="tab-pane fade" id="custom-tabs-three-Troncales" role="tabpanel" aria-labelledby="custom-tabs-three-Troncales-tab">
+                  Link Status - Troncales
+
+                  <section class="content">
+                      <div class="row">
+                        <div class="container-fluid">
+                          <table style="font-size: 10px;" id="alarmas-Troncales" class="table table-bordered table-hover text-center">
+                            <thead>
+                              <tr>
+                                <th>IN</th>
+                                <th>Hora</th>
+                                <th>Alarma</th>
+                                <th>Equipo</th>
+                                <th><i class="fas fa-clock"></i></th>
+                                <th>Acciones</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <!--[if IE] alarmas <![endif]-->
+                              {% for Troncale in Troncales %}
+                              <tr>
+                                <td><input type="checkbox" class="checkbox"></td>
+                                <td>{{ Troncale.Event_Time}}</td>
+                                <td>{{ Troncale.Severity }}</td>
+                                <td style="font-size: 10PX;"><b>{{ Troncale.Node_Name }}</b></td>
+                                <td>{{ Troncale.Node_Name }}</td>
+                                <td><a href="{% url 'gestion' alarma_id=Troncale.id %}"><button style="font-size: 10px;" type="button" class="btn btn-success btn-sm"><i class="fa-sharp fa-solid fa-pen-to-square"></i>Gestionar</button></a></td>
+                              </tr>
+                              {% endfor %}
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                    </section>
+
+              </div>
+          </div>
+          
+  
+
+      </div>
+      <!-- /.card -->
+  </div>
+  </div>
+</div>
+
+<script>
+function showTab(tabId) {
+// Hide all tab contents
+var tabContents = document.querySelectorAll('.tab-content');
+tabContents.forEach(function(content) {
+  content.classList.remove('active');
+});
+
+// Show the selected tab content
+var selectedTab = document.getElementById(tabId);
+selectedTab.classList.add('active');
+}
+</script>

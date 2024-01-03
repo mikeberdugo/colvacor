@@ -1,83 +1,45 @@
-<!DOCTYPE html>
-<html>
+<!-- <!DOCTYPE html>
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Botón Eliminar Seleccionados</title>
-    <!-- Incluir hojas de estilo de AdminLTE -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/3.1.0/css/adminlte.min.css">
-    <!-- Agregar estilos personalizados -->
-    <style>
-        /* Estilo de la tabla */
-        .table {
-            width: 60%;
-            margin: 20px auto;
-        }
-
-        /* Estilo de los checkboxes */
-        .checkbox-container {
-            display: inline-block;
-            margin-right: 10px;
-        }
-
-        /* Estilo del botón "Eliminar Seleccionados" */
-        #eliminarSeleccionados {
-            display: none;
-            transition: opacity 0.3s ease-in-out;
-            margin: 20px 0;
-            opacity: 0; /* Inicialmente invisible */
-        }
-    </style>
+   Agrega las hojas de estilos de Bootstrap 
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 </head>
-<body class="hold-transition sidebar-mini">
-    <div class="wrapper">
-        <!-- Contenedor de AdminLTE (simplificado) -->
-        <div class="content-wrapper">
-            <section class="content">
-                <!-- Tabla con checkboxes -->
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th></th>
-                            <th>Nombre</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td class="checkbox-container"><input type="checkbox" class="checkbox"></td>
-                            <td>Elemento 1</td>
-                        </tr>
-                        <tr>
-                            <td class="checkbox-container"><input type="checkbox" class="checkbox"></td>
-                            <td>Elemento 2</td>
-                        </tr>
-                        <!-- Agrega más filas con checkboxes aquí -->
-                    </tbody>
-                </table>
-                
-                <!-- Botón "Eliminar Seleccionados" con animación de desvanecimiento suave -->
-                <button id="eliminarSeleccionados" class="btn btn-danger" style="animation: fadeIn 0.5s ease-in-out">Eliminar Seleccionados</button>
-            </section>
-        </div>
-    </div>
+<body>
 
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            const checkboxes = document.querySelectorAll(".checkbox");
-            const eliminarSeleccionados = document.getElementById("eliminarSeleccionados");
 
-            checkboxes.forEach(function(checkbox) {
-                checkbox.addEventListener("change", function() {
-                    const checkedCheckboxes = document.querySelectorAll(".checkbox:checked");
 
-                    if (checkedCheckboxes.length > 0) {
-                        eliminarSeleccionados.style.display = "block";
-                        eliminarSeleccionados.style.opacity = 1; // Hacerlo visible
-                    } else {
-                        eliminarSeleccionados.style.opacity = 0; // Hacerlo invisible
-                    }
-                });
-            });
-        });
-    </script>
+   Agrega la biblioteca de jQuery y Bootstrap al final del cuerpo del documento 
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+   Configuración para inicializar los toasts de Bootstrap 
+  <script>
+    // Configuración para inicializar los toasts de Bootstrap
+    $(document).ready(function(){
+      $(".toast").toast('show');
+    });
+  </script>
+
 </body>
-</html>
+</html> -->
+
+
+
+
+{% extends 'plantilla.html' %}
+{% load static %}
+
+{% block title %}Sistema NOC -  prueba {% endblock %}
+
+{% block sub-title %}alertas{% endblock %}
+
+{% block content %}
+
+<h1> prueba </h1>
+
+<pre>{{ messages_list }}</pre>
+
+{% endblock %}
+
+
