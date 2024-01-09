@@ -9,40 +9,89 @@
 
 
               <li class="nav-item">
-                  <a class="nav-link" id="custom-tabs-three-DesempenoMPLS-tab" data-toggle="pill" href="#custom-tabs-three-DesempenoMPLS" role="tab" aria-controls="custom-tabs-three-DesempenoMPLS" aria-selected="true"><p>Desempeño MPLS <span class="right badge badge-danger">2</span></p></a>
+                  <a class="nav-link" id="custom-tabs-three-DesempenoMPLS-tab" data-toggle="pill" href="#custom-tabs-three-DesempenoMPLS" role="tab" aria-controls="custom-tabs-three-DesempenoMPLS" aria-selected="true">
+                    <p>Desempeño MPLS 
+                        <p>
+                          {% if DesempenoMPLS.count > 0 %}
+                            <span class="right badge badge-danger">{{ DesempenoMPLS.count }}</span>
+                          {% endif %} 
+                        </p>
+                    </p>
+                  </a>
               </li>
 
               <li class="nav-item">
-                  <a class="nav-link" id="custom-tabs-three-LSPs-LDPs-Status-tab" data-toggle="pill" href="#custom-tabs-three-LSPs-LDPs-Status" role="tab" aria-controls="custom-tabs-three-LSPs-LDPs-Status" aria-selected="false"><p>LSPs y LDPs Status <span class="right badge badge-danger">2</span></p></a>
+                  <a class="nav-link" id="custom-tabs-three-LSPs-LDPs-Status-tab" data-toggle="pill" href="#custom-tabs-three-LSPs-LDPs-Status" role="tab" aria-controls="custom-tabs-three-LSPs-LDPs-Status" aria-selected="false">
+                    <p>LSPs y LDPs Status 
+                        {% if LSPs_Status.count > 0 %}
+                          <span class="right badge badge-danger">{{ LSPs_Status.count }}</span>
+                        {% endif %} 
+                    </p></a>
                 </li>
 
               <li class="nav-item">
-                  <a class="nav-link" id="custom-tabs-three-Subscribers-tab" data-toggle="pill" href="#custom-tabs-three-Subscribers" role="tab" aria-controls="custom-tabs-three-Subscribers" aria-selected="false"><p>Subscribers <span class="right badge badge-danger">2</span></p></a>
+                  <a class="nav-link" id="custom-tabs-three-Subscribers-tab" data-toggle="pill" href="#custom-tabs-three-Subscribers" role="tab" aria-controls="custom-tabs-three-Subscribers" aria-selected="false">
+                    <p>Subscribers 
+                        {% if Subscribers.count > 0 %}
+                          <span class="right badge badge-danger">{{ Subscribers.count }}</span>
+                        {% endif %} 
+                    </p>
+                  </a>
               </li>
 
               <li class="nav-item">
-                  <a class="nav-link" id="custom-tabs-three-TraficoInterfaces-tab" data-toggle="pill" href="#custom-tabs-three-TraficoInterfaces" role="tab" aria-controls="custom-tabs-three-TraficoInterfaces" aria-selected="false"><p>Tráfico Interfaces <span class="right badge badge-danger">2</span></p></a>
+                  <a class="nav-link" id="custom-tabs-three-TraficoInterfaces-tab" data-toggle="pill" href="#custom-tabs-three-TraficoInterfaces" role="tab" aria-controls="custom-tabs-three-TraficoInterfaces" aria-selected="false">
+                    <p>Tráfico Interfaces 
+                      {% if Trafico_Interfaces.count > 0 %}
+                          <span class="right badge badge-danger">{{ Trafico_Interfaces.count }}</span>
+                        {% endif %} 
+                    </p></a>
                 </li>
 
               <li class="nav-item">
-                  <a class="nav-link" id="custom-tabs-three-Falla-MPLS-tab" data-toggle="pill" href="#custom-tabs-three-Falla-MPLS" role="tab" aria-controls="custom-tabs-three-Falla-MPLS" aria-selected="false"><p>Falla Componentes <span class="right badge badge-danger">2</span></p></a>
+                  <a class="nav-link" id="custom-tabs-three-Falla-MPLS-tab" data-toggle="pill" href="#custom-tabs-three-Falla-MPLS" role="tab" aria-controls="custom-tabs-three-Falla-MPLS" aria-selected="false">
+                    <p>Falla Componentes 
+                      {% if Falla_componentes.count > 0 %}
+                          <span class="right badge badge-danger">{{ Falla_componentes.count }}</span>
+                        {% endif %} 
+                    </p></a>
                 </li>
 
               <li class="nav-item">
-                  <a class="nav-link" id="custom-tabs-three-CGNAT-tab" data-toggle="pill" href="#custom-tabs-three-CGNAT" role="tab" aria-controls="custom-tabs-three-CGNAT" aria-selected="false"><p>CGNAT <span class="right badge badge-danger">2</span></p></a>
+                  <a class="nav-link" id="custom-tabs-three-CGNAT-tab" data-toggle="pill" href="#custom-tabs-three-CGNAT" role="tab" aria-controls="custom-tabs-three-CGNAT" aria-selected="false">
+                    <p>CGNAT 
+                      {% if CGNAT.count > 0 %}
+                          <span class="right badge badge-danger">{{ CGNAT.count }}</span>
+                        {% endif %} 
+                    </p></a>
                 </li>
               
 
               <li class="nav-item">
-                  <a class="nav-link" id="custom-tabs-three-BGP-RR-tab" data-toggle="pill" href="#custom-tabs-three-BGP-RR" role="tab" aria-controls="custom-tabs-three-BGP-RR" aria-selected="false"><p>BGP contra RR <span class="right badge badge-danger">2</span></p></a>
+                  <a class="nav-link" id="custom-tabs-three-BGP-RR-tab" data-toggle="pill" href="#custom-tabs-three-BGP-RR" role="tab" aria-controls="custom-tabs-three-BGP-RR" aria-selected="false">
+                    <p>BGP contra RR 
+                      {% if BGP_RR.count > 0 %}
+                          <span class="right badge badge-danger">{{ BGP_RR.count }}</span>
+                        {% endif %} 
+                    </p></a>
                 </li>
 
               <li class="nav-item">
-                  <a  class="nav-link" id="custom-tabs-three-Potencia-Interfaces-tab" data-toggle="pill" href="#custom-tabs-three-Potencia-Interfaces" role="tab" aria-controls="custom-tabs-three-Potencia-Interfaces" aria-selected="false"><p>Potencia Interfaces <span class="right badge badge-danger">2</span></p></a>
+                  <a  class="nav-link" id="custom-tabs-three-Potencia-Interfaces-tab" data-toggle="pill" href="#custom-tabs-three-Potencia-Interfaces" role="tab" aria-controls="custom-tabs-three-Potencia-Interfaces" aria-selected="false">
+                    <p>Potencia Interfaces 
+                      {% if Potencia_Interfaces.count > 0 %}
+                          <span class="right badge badge-danger">{{ Potencia_Interfaces.count }}</span>
+                        {% endif %} 
+                    </p></a>
                 </li>
 
               <li class="nav-item">
-                  <a class="nav-link" id="custom-tabs-three-Troncales-tab" data-toggle="pill" href="#custom-tabs-three-Troncales" role="tab" aria-controls="custom-tabs-three-Troncales" aria-selected="false"><p>Troncales <span class="right badge badge-danger">2</span></p></a>
+                  <a class="nav-link" id="custom-tabs-three-Troncales-tab" data-toggle="pill" href="#custom-tabs-three-Troncales" role="tab" aria-controls="custom-tabs-three-Troncales" aria-selected="false">
+                    <p>Troncales 
+                      {% if Troncales.count > 0 %}
+                          <span class="right badge badge-danger">{{ Troncales.count }}</span>
+                        {% endif %} 
+                    </p></a>
                 </li>
 
           </ul>

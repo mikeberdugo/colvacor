@@ -9,74 +9,79 @@
 {% block content %}
     <div class="container">
         <div class="container">
-        <form  name="frm" id="frm" class="form" method="post" >
-            {% csrf_token %}
-                                <div class="mb-3 row">
-                                    <label for="inputPassword" class="col-sm-3 col-form-label">ID Reporte</label>
-                                    <div class="col-sm-9">
-                                        <input type="text" class="form-control" id="id" name="id" value="{{ alarma.Event_ID }}" readonly/>
-                                    </div>
-                                </div>
-    
-                                <div class="mb-3 row">
-                                    <label for="inputPassword" class="col-sm-3 col-form-label">Equipo</label>
-                                    <div class="col-sm-9">
-                                        <input type="text" class="form-control" id="equipo" name="equipo" value="{{ alarma.Node_Name }}" readonly/>
-                                    </div>
-                                </div>
-    
-                                <div class="mb-3 row">
-                                    <label for="inputPassword" class="col-sm-3 col-form-label">Hora Afectación</label>
-                                    <div class="col-sm-9">
-                                        <input type="text" class="form-control" id="hora_inicio" name="hora_inicio" value="{{ alarma.Event_Time }}" readonly/>
-                                    </div>
-                                </div>
-                                <div class="mb-3 row">
-                                    <label for="inputPassword" class="col-sm-3 col-form-label">Tipo Alarma</label>
-                                    <div class="col-sm-9">
-                                        <input type="text" class="form-control" id="tipo_alarma" name="tipo_alarma" value="{{ alarma.Event_Message }}" readonly/>
-                                    </div>
-                                </div>
-                                <div class="mb-3 row">
-                                    <label for="inputPassword" class="col-sm-3 col-form-label">Central</label>
-                                    <div class="col-sm-9">
-                                        <input type="text" id="central" name="central" class="form-control" value="{{ equipo.central }}" readonly/>
-                                    </div>
-                                </div>
-                                
-                                <div class="mb-3 row">
-                                    <label for="inputPassword" class="col-sm-3 col-form-label">Clientes Afectados</label>
-                                    <div class="col-sm-9">
-                                        <input type="text" id="clientes" name="clientes" class="form-control"  value="{{ equipo.clientes }}" readonly/>
-                                    </div>
-                                </div>
-                                
-                                <div class="mb-3 row">
-                                    <label for="inputPassword" class="col-sm-3 col-form-label">Documentacion 1</label>
-                                    <div class="col-sm-9">
-                                        <input type="text" id="docu1" name="docu1" class="form-control" value="ADSL: Se evidencia equipo alarmado en gestor" />
-                                    </div>
-                                </div>
-    
-                                <div class="mb-3 row">
-                                    <label for="inputPassword" class="col-sm-3 col-form-label">Documentacion 2</label>
-                                    <div class="col-sm-9">
-                                        <input type="text" id="docu2" name="docu2" class="form-control"  value="ADSL: Se realizan pruebas de equipo sobre la red metro,equipo no responde" />
-                                    </div>
-                                </div>
-    
-                                <div class="mb-3 row">
-                                    <label for="inputPassword" class="col-sm-3 col-form-label">Documentacion 3</label>
-                                    <div class="col-sm-9">
-                                        <input type="text" id="docu3" name="docu3" class="form-control"  value="ADSL: Se realizan pruebas de equipo sobre la red metro, interface UP, No aprende MACS" />
-                                    </div>
-                                </div>
-                                <div class="col" style="display: flex;  justify-content: right;">
-                                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modaldescartar">Descartar Alarma</button>&nbsp;
-                                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#ModalContingencia">Crear por Contingencia</button>&nbsp;
-                                    <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#ModalIncidente" >Crear Incidente</button>&nbsp;
-                                </div>  
-                        </form>
+            <form name="frm" id="frm" class="form" method="post">
+                {% csrf_token %}
+                <div class="mb-3 row">
+                    <label for="id" class="col-sm-3 col-form-label">ID Reporte</label>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control" id="id" name="id" value="{{ alarma.Event_ID }}" readonly/>
+                    </div>
+                </div>
+            
+                <div class="mb-3 row">
+                    <label for="equipo" class="col-sm-3 col-form-label">Equipo</label>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control" id="equipo" name="equipo" value="{{ alarma.Node_Name }}" readonly/>
+                    </div>
+                </div>
+            
+                <div class="mb-3 row">
+                    <label for="hora_inicio" class="col-sm-3 col-form-label">Hora Afectación</label>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control" id="hora_inicio" name="hora_inicio" value="{{ alarma.Event_Time }}" readonly/>
+                    </div>
+                </div>
+            
+                <div class="mb-3 row">
+                    <label for="tipo_alarma" class="col-sm-3 col-form-label">Tipo Alarma</label>
+                    <div class="col-sm-9 ">
+                        <textarea id="tipo_alarma" name="tipo_alarma"  rows="7" type="text" class="form-control rounded-0 fixed-size-textarea"  readonly >{{ alarma.Event_Message }}</textarea>
+                        
+                    </div>
+                </div>
+            
+                <div class="mb-3 row">
+                    <label for="central" class="col-sm-3 col-form-label">Central</label>
+                    <div class="col-sm-9">
+                        <input type="text" id="central" name="central" class="form-control" value="{{ equipo.central }}" readonly/>
+                    </div>
+                </div>
+            
+                <div class="mb-3 row">
+                    <label for="clientes" class="col-sm-3 col-form-label">Clientes Afectados</label>
+                    <div class="col-sm-9">
+                        <input type="text" id="clientes" name="clientes" class="form-control" value="{{ equipo.clientes }}" readonly/>
+                    </div>
+                </div>
+            
+                <div class="mb-3 row">
+                    <label for="docu1" class="col-sm-3 col-form-label">Documentacion 1</label>
+                    <div class="col-sm-9">
+                        <input type="text" id="docu1" name="docu1" class="form-control"  />
+                    </div>
+                </div>
+            
+                <div class="mb-3 row">
+                    <label for="docu2" class="col-sm-3 col-form-label">Documentacion 2</label>
+                    <div class="col-sm-9">
+                        <input type="text" id="docu2" name="docu2" class="form-control"  />
+                    </div>
+                </div>
+            
+                <div class="mb-3 row">
+                    <label for="docu3" class="col-sm-3 col-form-label">Documentacion 3</label>
+                    <div class="col-sm-9">
+                        <input type="text" id="docu3" name="docu3" class="form-control"  />
+                    </div>
+                </div>
+            
+                <div class="col" style="display: flex; justify-content: right;">
+                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modaldescartar">Descartar Alarma</button>&nbsp;
+                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#ModalContingencia">Crear por Contingencia</button>&nbsp;
+                    <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#ModalIncidente">Crear Incidente</button>&nbsp;
+                </div>
+            </form>
+            
                     </div>
                 </div>
 
