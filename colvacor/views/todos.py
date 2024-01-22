@@ -24,6 +24,13 @@ import random
 import string
 
 
+# anality 
+import plotly.express as px
+import plotly.graph_objs as go
+from plotly.offline import plot
+from plotly.graph_objs import Figure
+
+
 def texto_aleatorio(max_length):
     caracteres = string.ascii_letters + string.digits
     longitud = random.randint(1, max_length)
@@ -154,7 +161,10 @@ def sistema1(request):
     Troncales = Alarmas.objects.filter(Filtro='link') 
     
     colaCreacion = ColaCreacion.objects.filter(recuperada='NO')
+    #! parte de la analitica 
     
+    
+    #! final parte analitica 
     return render(request, "sistema1.html", {
         'context' :context ,
         'alarmas' : alarmas, 
@@ -167,7 +177,7 @@ def sistema1(request):
         'CGNAT':CGNAt,
         'BGP_RR':BGP_Rr,
         'Potencia_Interfaces':Potencia_Interfaces,
-        'Troncales':Troncales        
+        'Troncales':Troncales    
         })
 
 
@@ -193,15 +203,28 @@ def incidente(request,alarma_id):
 #### plantilla --- prueba
 def prueba(request):
         # Agrega un mensaje de éxito a la lista de mensajes
-    messages_list = [
-        {'tag': 'success', 'text': "Dato 1 guardado correctamente."},
-        {'tag': 'error', 'text': "Error al guardar Dato 2."},
-        {'tag': 'warning', 'text': "Dato 3 guardado correctamente."},
+    # messages_list = [
+    #     {'tag': 'success', 'text': "Dato 1 guardado correctamente."},
+    #     {'tag': 'error', 'text': "Error al guardar Dato 2."},
+    #     {'tag': 'warning', 'text': "Dato 3 guardado correctamente."},
 
-        # Puedes agregar más mensajes según sea necesario
-    ]
+    #     # Puedes agregar más mensajes según sea necesario
+    # ]
+    # Ejemplo de gráfico de barras con Plotly Express
+     # Configuración del gráfico de barras
+    bar_fig = Figure({
+        'data': [{'alignmentgroup': 'True', 'hovertemplate': 'x=%{x} y=%{y}', 'legendgroup': '', 'marker': {'color': '#636efa', 'pattern': {'shape': ''}}, 'name': '', 'offsetgroup': '', 'orientation': 'v', 'showlegend': False, 'textposition': 'auto', 'type': 'bar', 'x': ['A', 'B', 'C'], 'xaxis': 'x', 'y': [3, 5, 2], 'yaxis': 'y'}],
+        'layout': {'barmode': 'relative', 'legend': {'tracegroupgap': 0}, 'title': {'text': 'Gráfico de Barras'}, 'xaxis': {'anchor': 'y', 'domain': [0.0, 1.0], 'title': {'text': 'x'}}, 'yaxis': {'anchor': 'x', 'domain': [0.0, 1.0], 'title': {'text': 'y'}}}
+    })
 
-    return render(request,"prueba.html",{'messages_list': messages_list})
+    # Configuración del gráfico de dispersión
+    scatter_fig = Figure({
+        'data': [{'mode': 'markers', 'name': 'Scatter', 'type': 'scatter', 'x': [1, 2, 3], 'y': [10, 11, 12]}],
+        'layout': {}  # No se incluye la propiedad 'template'
+    })
+
+
+    return render(request,"prueba.html",{'bar_fig': bar_fig,'scatter_fig': scatter_fig})
 
 def descartadas(request):
     return render(request,"prueba.html")

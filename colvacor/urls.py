@@ -18,6 +18,7 @@ from django.urls import path
 from colvacor.views.todos import *
 from colvacor.views.operators.operadores import * 
 from colvacor.views.automa.auto import * 
+from colvacor.views.analitic.analitic import * 
 
 
 urlpatterns = [
@@ -64,6 +65,9 @@ urlpatterns = [
     path('operadores/local',operators_local,name='local'),
     path('operadores/iptv',operators_iptv,name='iptv'),
     path('operadores/mpls',operators_mpls,name='mpls'),
+
+    #analitic 
+    path('prueba/analitica',mpls_analysis,name='analitica-1'),
 
     # Esta línea captura cualquier ruta no definida y la dirige a la vista personalizada
     path('<str:ruta_no_definida>/', pagina_no_encontrada, name='pagina_no_encontrada'),
